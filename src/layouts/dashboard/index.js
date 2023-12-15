@@ -60,9 +60,8 @@ const DashboardLayout = () => {
 
   const {onToggleMode} = useSettings();
 
-  return (
-    <>
-    
+  return (   
+    <Stack direction={"row"}>    
       <Box
         padding={2}
           sx={{
@@ -167,10 +166,9 @@ const DashboardLayout = () => {
                 <Avatar src={faker.image.avatar()}    />   
               </Stack>                   
             </Stack>       
-        </Box>
-     
+        </Box>   
       <Outlet />
-    </>
+    </Stack>   
   );
 };
 
