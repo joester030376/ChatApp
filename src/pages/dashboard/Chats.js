@@ -31,7 +31,7 @@ const ChatElement = ({id, name, img, msg, time, unread, online}) => {
                             <StyledBadge
                                 overlap="circular"
                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}  
-                                variant= {online ? "dot" : ""}                           
+                                variant={online ? "dot" : ""}                          
                             >
                                 <Avatar src={img}    />   
                             </StyledBadge>      
@@ -200,8 +200,23 @@ const Chats = () => {
                     </Typography>
                     {ChatList.filter((el) => el.pinned).map((el) => {
                         return <ChatElement {...el} key={el.id} />
-                    })}
-                    
+                    })}                    
+                </Stack>  
+                <Stack 
+                    spacing={2.4}
+                    marginTop={2}
+                >
+                    <Typography 
+                        variant='subtitle'
+                        sx={{
+                            color: "#676767"
+                        }}
+                    >
+                        All Chats
+                    </Typography>
+                    {ChatList.filter((el) => !el.pinned).map((el) => {
+                        return <ChatElement {...el} key={el.id} />
+                    })}                    
                 </Stack>  
                               
             </Stack>
