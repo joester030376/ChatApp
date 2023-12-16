@@ -9,7 +9,6 @@ const ChatElement = () => {
         <Box
             sx={{
                 width: "100%",
-                height: 70,
                 borderRadius: 1,
                 backgroundColor: "#fff",                
             }}
@@ -41,34 +40,32 @@ const ChatElement = () => {
                             spacing={0.3}
                             direction={"column"}
                         >
-                            <Typography
-                                sx={{
-                                    fontWeight: 700,
-                                    fontSize: "16px"
-                                }}
-                            >
+                            <Typography variant='subtitle2'>
                                 Jaydog1976
                             </Typography>
-                            <Typography
-                                sx={{
-                                    fontWeight: 400,
-                                    fontSize: "14px"
-                                }}
-                            >
+                            <Typography variant='caption'>
                                 You: thnx!
-                            </Typography>
-                        
+                            </Typography>    
                         </Stack>                  
                     </Stack>              
                 </Stack>
                 <Stack
-                    direction={"column"}
-                    spacing={0.3}
-                    al
+                    spacing={2}
+                    alignItems={"center"}
                 >
-                    <Typography>
+                    <Typography
+                        sx={{
+                            fontWeight: 600
+                        }}
+                        variant='caption'
+                    >
                         9:36
                     </Typography>
+                    <Badge
+                        color="primary" 
+                        badgeContent={2}
+                    />
+                    
                 </Stack>
             </Stack>
         </Box>
@@ -191,7 +188,19 @@ const Chats = () => {
             <Stack
                 direction={"column"}
             >
-                <ChatElement />
+                <Stack 
+                    spacing={2.4}
+                >
+                    <Typography 
+                        variant='subtitle'
+                        sx={{
+                            color: "#676767"
+                        }}
+                    >
+                        Pinned
+                    </Typography>
+                    <ChatElement />
+                </Stack>                
             </Stack>
         </Stack>
     </Box>
