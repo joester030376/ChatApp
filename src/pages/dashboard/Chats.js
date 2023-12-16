@@ -2,11 +2,11 @@ import { Box, IconButton, Typography, Stack, InputBase, Divider, Button, Badge, 
 import { CircleDashed, MagnifyingGlass, ArchiveBox } from 'phosphor-react';
 import { styled, alpha } from '@mui/material/styles';
 import React from 'react';
-import { faker } from '@faker-js/faker';
+import { ChatList } from '../../data';
 
-const ChatElement = () => {
+const ChatElement = ({id, name, img, msg, time, unread, online}) => {
     return (
-        <Box
+        <Box 
             sx={{
                 width: "100%",
                 borderRadius: 1,
@@ -19,21 +19,21 @@ const ChatElement = () => {
                 spacing={2}
                 alignItems={"center"}
                 justifyContent={"space-between"}
-            >
+            >               
                 <Stack>
                     <Stack
                         direction={"row"}
                         spacing={2}
                         alignItems={"center"}
-                        justifyContent={"space-between"}
+                        justifyContent={"space-between"}                        
                     >
                         <Stack>
                             <StyledBadge
                                 overlap="circular"
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                                variant="dot"
+                                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}  
+                                variant= {online ? "dot" : ""}                           
                             >
-                                <Avatar src={faker.image.avatar()}    />   
+                                <Avatar src={img}    />   
                             </StyledBadge>      
                         </Stack>  
                         <Stack
@@ -41,10 +41,10 @@ const ChatElement = () => {
                             direction={"column"}
                         >
                             <Typography variant='subtitle2'>
-                                Jaydog1976
+                                {name}
                             </Typography>
                             <Typography variant='caption'>
-                                You: thnx!
+                                {msg}
                             </Typography>    
                         </Stack>                  
                     </Stack>              
@@ -59,13 +59,12 @@ const ChatElement = () => {
                         }}
                         variant='caption'
                     >
-                        9:36
+                        {time}
                     </Typography>
                     <Badge
                         color="primary" 
-                        badgeContent={2}
-                    />
-                    
+                        badgeContent={unread}
+                    />                    
                 </Stack>
             </Stack>
         </Box>
@@ -199,8 +198,12 @@ const Chats = () => {
                     >
                         Pinned
                     </Typography>
-                    <ChatElement />
-                </Stack>                
+                    {ChatList.filter((el) => el.pinned).map((el) => {
+                        return <ChatElement {...el} key={el.id} />
+                    })}
+                    
+                </Stack>  
+                              
             </Stack>
         </Stack>
     </Box>

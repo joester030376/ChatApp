@@ -95,6 +95,7 @@ const DashboardLayout = () => {
                   {Nav_Buttons.map((el) => (  
                     el.index === selected ?
                     <Box
+                    key={el.index}
                       p={1}
                       sx={{
                         backgroundColor: theme.palette.primary.main,
