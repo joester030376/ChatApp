@@ -1,6 +1,7 @@
 import { Box, IconButton, Typography, Stack, InputBase, Divider, Button, Badge, Avatar } from '@mui/material';
 import { CircleDashed, MagnifyingGlass, ArchiveBox } from 'phosphor-react';
 import { styled, alpha } from '@mui/material/styles';
+import SimpleBarReact from 'simplebar-react';
 import React from 'react';
 import { ChatList } from '../../data';
 
@@ -20,7 +21,7 @@ const ChatElement = ({id, name, img, msg, time, unread, online}) => {
                 alignItems={"center"}
                 justifyContent={"space-between"}
             >               
-                <Stack>
+                
                     <Stack
                         direction={"row"}
                         spacing={2}
@@ -48,7 +49,7 @@ const ChatElement = ({id, name, img, msg, time, unread, online}) => {
                             </Typography>    
                         </Stack>                  
                     </Stack>              
-                </Stack>
+            
                 <Stack
                     spacing={2}
                     alignItems={"center"}
@@ -135,13 +136,12 @@ const Chats = () => {
     <Box 
         sx={{
             position: "relative", 
-            height: "auto", 
             width: 320,
             backgroundColor: "#F8FAFF",
             boxShadow: "0 0 2px rgba(0, 0, 0, 0.25"
         }}
     >
-        <Stack p={3} spacing={2}  >
+        <Stack p={3} spacing={2}  sx={{height: "100vh"}} >
             <Stack 
                 direction={"row"}
                 alignItems={"center"}
@@ -150,7 +150,6 @@ const Chats = () => {
                 <Typography 
                     variant="h5"
                     letterSpacing={1}
-                    
                 >
                     Chats
                 </Typography>
@@ -186,7 +185,15 @@ const Chats = () => {
             </Stack>
             <Stack
                 direction={"column"}
+                sx={{
+                    flexGrow: 1,
+                    overflow: "scroll",
+                    height: "100%",
+                                      
+                }}
+                spacing={2}
             >
+                <SimpleBarReact timeout={500} clickOnTrack={false}>
                 <Stack 
                     spacing={2.4}
                 >
@@ -217,8 +224,8 @@ const Chats = () => {
                     {ChatList.filter((el) => !el.pinned).map((el) => {
                         return <ChatElement {...el} key={el.id} />
                     })}                    
-                </Stack>  
-                              
+                </Stack> 
+                </SimpleBarReact>
             </Stack>
         </Stack>
     </Box>
