@@ -1,17 +1,18 @@
 import { Box, IconButton, Typography, Stack, InputBase, Divider, Button, Badge, Avatar } from '@mui/material';
 import { CircleDashed, MagnifyingGlass, ArchiveBox } from 'phosphor-react';
-import { styled, alpha } from '@mui/material/styles';
-import SimpleBarReact from 'simplebar-react';
+import { styled, alpha, useTheme } from '@mui/material/styles';
 import React from 'react';
 import { ChatList } from '../../data';
 
 const ChatElement = ({id, name, img, msg, time, unread, online}) => {
+
+    const theme = useTheme();
     return (
         <Box 
             sx={{
                 width: "100%",
                 borderRadius: 1,
-                backgroundColor: "#fff",                
+                backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,                
             }}
             p={2}
         >     
@@ -20,8 +21,7 @@ const ChatElement = ({id, name, img, msg, time, unread, online}) => {
                 spacing={2}
                 alignItems={"center"}
                 justifyContent={"space-between"}
-            >               
-                
+            > 
                     <Stack
                         direction={"row"}
                         spacing={2}
@@ -48,8 +48,7 @@ const ChatElement = ({id, name, img, msg, time, unread, online}) => {
                                 {msg}
                             </Typography>    
                         </Stack>                  
-                    </Stack>              
-            
+                    </Stack> 
                 <Stack
                     spacing={2}
                     alignItems={"center"}
@@ -104,7 +103,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: 20,
-    backgroundColor: alpha(theme.palette.background.paper, 1),
+    backgroundColor: alpha(theme.palette.background.default, 1),
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%"
@@ -132,13 +131,17 @@ const Search = styled('div')(({ theme }) => ({
   }));
 
 const Chats = () => {
+
+    const theme = useTheme();
+    console.log(theme);
+    
   return (
     <Box 
         sx={{
             position: "relative", 
             width: 320,
-            backgroundColor: "#F8FAFF",
-            boxShadow: "0 0 2px rgba(0, 0, 0, 0.25"
+            backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
+            boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
         }}
     >
         <Stack p={3} spacing={2}  sx={{height: "100vh"}} >
@@ -186,21 +189,21 @@ const Chats = () => {
             <Stack
                 direction={"column"}
                 sx={{
-                    flexGrow: 1,
-                    overflow: "scroll",
+                    flexGrow: 1,                    
                     height: "100%",
-                                      
+                    overflowX: "hidden",
+                    scrollbarColor: theme.palette.primary.dark,
                 }}
                 spacing={2}
             >
-                <SimpleBarReact timeout={500} clickOnTrack={false}>
+                
                 <Stack 
                     spacing={2.4}
                 >
                     <Typography 
                         variant='subtitle'
                         sx={{
-                            color: "#676767"
+                            color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
                         }}
                     >
                         Pinned
@@ -216,7 +219,7 @@ const Chats = () => {
                     <Typography 
                         variant='subtitle'
                         sx={{
-                            color: "#676767"
+                            color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
                         }}
                     >
                         All Chats
@@ -225,7 +228,7 @@ const Chats = () => {
                         return <ChatElement {...el} key={el.id} />
                     })}                    
                 </Stack> 
-                </SimpleBarReact>
+               
             </Stack>
         </Stack>
     </Box>
