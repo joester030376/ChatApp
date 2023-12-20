@@ -1,7 +1,8 @@
 import React from 'react';
-import { Stack, Typography, Divider, Box, Link, IconButton } from "@mui/material";
+import { Stack, Typography, Divider, Box, Link, IconButton, Menu, MenuItem } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
-import { Image, DownloadSimple } from 'phosphor-react';
+import { Image, DownloadSimple, DotsThreeVertical } from 'phosphor-react';
+import { Message_options } from '../../data';
 
 
 const DocMsg = ({el}) => {
@@ -88,9 +89,12 @@ const LinkMsg = ({el}) => {
                                 variant='subtitle2' 
                                 component={Link}
                                 sx={{
-                                    color: theme.palette.primary.main
+                                    color: theme.palette.primary.main,
+                                    '&:hover' : {
+                                        cursor: "pointer"
+                                    }
                                 }}     
-                                to="//https://www.youtube.com"
+                                to="https://www.youtube.com"                                
                             >   
                                 www.youtube.com                  
                             </Typography>
@@ -195,6 +199,8 @@ const TextMsg = ({el}) => {
                             {el.message}
                         </Typography>
             </Box>
+           {/* Menu Options */}
+           <MessageOptions />
         </Stack>    
     )
 }
@@ -212,6 +218,51 @@ const TimeLine = ({el}) => {
         <Divider width="46%" />
     </Stack>
   )
+}
+
+const MessageOptions = () => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+    return (
+        <>
+            <DotsThreeVertical size={32} 
+                id="demo-positioned-button"
+                aria-controls={open ? 'demo-positioned-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}           
+            />
+            <Menu
+                id="demo-positioned-menu"
+                aria-labelledby="demo-positioned-button"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+            >
+                <Stack spacing={1} px={1}>
+                    {Message_options.map((el) => (
+                        <MenuItem onClick={handleClick}>{el.title}</MenuItem>
+                    ))}
+                </Stack>
+            </Menu>
+        </>
+         
+    )
 }
 
 export { TimeLine, TextMsg, MediaMsg, ReplyMsg, LinkMsg, DocMsg};
