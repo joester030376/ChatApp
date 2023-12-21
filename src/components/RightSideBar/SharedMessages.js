@@ -41,7 +41,7 @@ const SharedMessages = () => {
                     <Box sx={{ width: '100%', typography: 'body1' }}>
                         <TabContext value={value}>
                             <Box sx={{} }>
-                                <TabList onChange={handleChange} aria-label="lab API tabs example">
+                                <TabList onChange={handleChange} aria-label="">
                                     <Tab label="Item One" value="1" />
                                     <Tab label="Item Two" value="2" />
                                     <Tab label="Item Three" value="3" />
