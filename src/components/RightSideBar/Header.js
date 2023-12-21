@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import { XCircle, ArrowLeft } from "@phosphor-icons/react";
 import { useSelector } from "react-redux";
 
-const Header = ({HeaderType}) => {
+const Header = ({SidebarHeaderTitle}) => {
 
     const theme = useTheme();
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Header = ({HeaderType}) => {
         <Stack
             direction={"row"}
             alignItems={"center"}  
-            justifyContent={"space-between"}   
+            justifyContent={sidebar.type === "CONTACT" ? "space-between" : ""}   
             spacing={3}             
             sx={{
                 height: "100%",
@@ -32,7 +32,7 @@ const Header = ({HeaderType}) => {
         >
             {sidebar.type === "CONTACT" ? (
                 <>
-                    <Typography variant="body1">
+                    <Typography variant="body1" fontWeight={600}>
                         Contact Info
                     </Typography>
                     <IconButton 
@@ -44,13 +44,18 @@ const Header = ({HeaderType}) => {
                     </IconButton>        
                 </>
             ) : (
-                    <IconButton 
+                    <>
+                        <IconButton 
                         onClick={() => {
                              dispatch(UpdateSidebarType("CONTACT"));
                         }}
                     >
-                        <ArrowLeft size={24}  />
-                    </IconButton>        
+                            <ArrowLeft size={24}  />
+                        </IconButton>  
+                        <Typography variant="body1" fontWeight={600}>
+                            {SidebarHeaderTitle} Messages
+                        </Typography> 
+                    </>
             )        
         }
         </Stack>
