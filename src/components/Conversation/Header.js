@@ -2,6 +2,8 @@ import { VideoCamera, Phone, MagnifyingGlass, CaretDown} from "@phosphor-icons/r
 import { Box, Stack, Badge, Avatar, Typography, IconButton, Divider} from "@mui/material";
 import { styled, useTheme } from '@mui/material/styles';
 import { faker } from "@faker-js/faker";
+import { ToggleSideBar } from "../../redux/slices/app";
+import { useDispatch } from "react-redux";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -35,6 +37,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Header = () => {
 
     const theme = useTheme();
+    const dispatch = useDispatch();
 
   return (
     <Box
@@ -55,12 +58,15 @@ const Header = () => {
                     height: "100%"
                 }}    
             >
-                <Stack 
+                <Stack                     
                     direction={"row"}
                     alignItems={"center"}
                     spacing={3}
                 >
                     <StyledBadge
+                    onClick={() => {
+                        dispatch(ToggleSideBar())
+                    }}
                         overlap="circular"
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                         variant="dot"
