@@ -1,12 +1,14 @@
-import { Box, Stack, Typography, IconButton, } from '@mui/material';
+import { Box, Stack, Grid, Typography} from '@mui/material';
 import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
+import Tabs from '@mui/material/Tabs';
 import { useDispatch } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import Header from './Header';
 import { useState } from 'react';
+import { faker } from '@faker-js/faker';
+import { SHARED_DOCUMENTS, SHARED_LINKS } from '../../data';
+import { DocMsg, LinkMsg } from '../Conversation/MsgTypes';
+
 
 
 const SharedMessages = () => {
@@ -17,44 +19,80 @@ const SharedMessages = () => {
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+        setValue(newValue);
+    };
 
     return (
-        <Box 
-            sx={{
-                width: 320,
-                height: "100vh"
-            }}
-        >
-           <Header SidebarHeaderTitle={"Shared"}/>
+        <Box sx={{width: 320, height: "100vh"}}>
+            <Stack
+                sx={{
+                    height: "100%"
+                }}
+            >   
+                {/* Header */}
+                <Header />
 
-           <Stack
-            p={2}
-           >
-                <Stack 
-                    direction={"row"}
-                    alignItems={"center"}
-                    justifyContent={"space-between"}
-                    spacing={2}            
+                <Tabs value={value} onChange={handleChange} centered>
+                    <Tab label="Media" />
+                    <Tab label="Links" />
+                    <Tab label="Docs" />
+                </Tabs>
+           
+                {/* Body */}
+                <Stack
+                alignItems={"center"}
+                    p={3}
+                    spacing={value === 1 ? 1 : 3}                    
+                    sx={{
+                        height: "100%",
+                        position: "relative",
+                        flexGrow: 1,
+                        overflowY: "scroll",
+                        overflowX: "hidden"                        
+                    }}
                 >
-                    <Box sx={{ width: '100%', typography: 'body1' }}>
-                        <TabContext value={value}>
-                            <Box sx={{} }>
-                                <TabList onChange={handleChange} aria-label="">
-                                    <Tab label="Item One" value="1" />
-                                    <Tab label="Item Two" value="2" />
-                                    <Tab label="Item Three" value="3" />
-                                </TabList>
-                            </Box>
-                            <TabPanel value="1"></TabPanel>
-                            <TabPanel value="2">Item Two</TabPanel>
-                            <TabPanel value="3">Item Three</TabPanel>
-                        </TabContext>
-                    </Box>              
+
+        
+{(() => {
+
+    switch (value) {
+        case 0:
+
+            return (
+                <Grid container spacing={2}>
+                    {
+                        [1,2,3,4,5,6].map((el) => {
+                            return <Grid item xs={4}>
+                                        <img 
+                                            src={faker.image.avatar()}
+                                            alt={faker.name.fullName()}
+                                        />
+                                   </Grid>
+
+                        })
+                    }
+                </Grid>
+            );           
+
+        case 1: 
+            return SHARED_LINKS.map((el) => <LinkMsg el={el} />);            
+
+        case 2: 
+            return SHARED_DOCUMENTS.map((el) => <DocMsg el={el} />);           
+
+    }
+
+
+
+
+})()}
+                   
+
+                    
+                    
                 </Stack>
-           </Stack>
-        </Box>
+        </Stack>        
+    </Box>
       )
 }
 

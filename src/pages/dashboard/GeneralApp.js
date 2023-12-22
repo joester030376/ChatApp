@@ -35,8 +35,7 @@ const GeneralApp = () => {
       {/* Contact */}
       {sidebar.open && (() => {
         switch (sidebar.type) {
-          case "CONTACT":
-            console.log(sidebar.type);
+          case "CONTACT":            
             return <Contact />;
                       
           case "STARRED":

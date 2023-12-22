@@ -12,24 +12,24 @@ const Header = ({SidebarHeaderTitle}) => {
     const {sidebar} = useSelector((store) => store.app);
 
   return (
-    <Box 
-        sx={{
-            boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
-            width: "100%",
-            height: 100,
-            backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background
-        }}
-    >
-        <Stack
-            direction={"row"}
-            alignItems={"center"}  
-            justifyContent={sidebar.type === "CONTACT" ? "space-between" : ""}   
-            spacing={3}             
+    <Box
+            p={2}
             sx={{
-                height: "100%",
-                p: 2
+                height: 100,
+                width: "100%",
+                backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
+                boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
             }}
         >
+            <Stack                
+                direction={"row"}                   
+                alignItems={"center"}
+                justifyContent={sidebar.type==="CONTACT" ? "space-between" : ""}
+                sx={{
+                    width: "100%",
+                    height: "100%"
+                }}    
+            >
             {sidebar.type === "CONTACT" ? (
                 <>
                     <Typography variant="body1" fontWeight={600}>
@@ -53,7 +53,7 @@ const Header = ({SidebarHeaderTitle}) => {
                             <ArrowLeft size={24}  />
                         </IconButton>  
                         <Typography variant="body1" fontWeight={600}>
-                            {SidebarHeaderTitle} Messages
+                            {sidebar.type === "SHARED" ? "Shared Messages" : "Starred Messages"}
                         </Typography> 
                     </>
             )        
