@@ -1,8 +1,6 @@
-import { Box, Stack, Grid, Typography} from '@mui/material';
+import { Box, Stack, Grid} from '@mui/material';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import { useDispatch } from 'react-redux';
-import { useTheme } from '@mui/material/styles';
 import Header from './Header';
 import { useState } from 'react';
 import { faker } from '@faker-js/faker';
@@ -11,10 +9,7 @@ import { DocMsg, LinkMsg } from '../Conversation/MsgTypes';
 
 
 
-const SharedMessages = () => {
-
-    const theme = useTheme();
-    const dispatch = useDispatch(); 
+const SharedMessages = () => {    
 
     const [value, setValue] = useState(0);
 
@@ -57,7 +52,6 @@ const SharedMessages = () => {
 
     switch (value) {
         case 0:
-
             return (
                 <Grid container spacing={2}>
                     {
@@ -78,8 +72,10 @@ const SharedMessages = () => {
             return SHARED_LINKS.map((el) => <LinkMsg el={el} />);            
 
         case 2: 
-            return SHARED_DOCUMENTS.map((el) => <DocMsg el={el} />);           
-
+            return SHARED_DOCUMENTS.map((el) => <DocMsg el={el} />); 
+        
+        default: 
+            break;
     }
 
 

@@ -1,6 +1,5 @@
 import { useState, forwardRef } from "react"; 
 import { Box, IconButton, Stack, Typography, Divider, Avatar, Button, Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions, Slide} from "@mui/material";
-import { useTheme } from '@mui/material/styles';
 import { useDispatch } from "react-redux";
 import Header from './Header';
 import { faker } from "@faker-js/faker";
@@ -65,8 +64,7 @@ const Contact = () => {
 
     const [openBlock, setOpenBlock] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
-
-    const theme = useTheme();
+    
     const dispatch = useDispatch();
 
     const handleCloseBlock = () => {
