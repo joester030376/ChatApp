@@ -1,4 +1,3 @@
-
 import {useState} from 'react';
 import * as Yup from 'yup';
 import {useForm} from 'react-hook-form';
@@ -7,26 +6,25 @@ import FormProvider from "../../components/hook-form/FormProvider";
 import { Stack, Alert, InputAdornment, IconButton, Link, Button } from "@mui/material";
 import RHFTextField from '../../components/hook-form/RHFTextField';
 import {Eye, EyeSlash} from '@phosphor-icons/react';
-import { useTheme } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
+import { CaretLeft } from '@phosphor-icons/react';
 
-const LoginForm = () => {
-
-    const theme = useTheme();
+const NewPasswordForm = () => {
+    
     const [showPassword, setShowPassword] = useState(false);
 
-    const LoginSchema = Yup.object().shape({
-        email: Yup.string().required("Email is required").email("Email must be valid email address."),
-        password: Yup.string().required("Password is required"),
+    const NewPasswordSchema = Yup.object().shape({
+        newPassword: Yup.string().min(6, "Password must be at least 6 characters.").required("Password is required"),
+        confirmPassword: Yup.string().required("Password is required").oneOf([Yup.ref('newPassword'), null], "Password must match."),
     });
 
     const defaultValues = {
-        email: "demo@text2them.com",
-        password: "demo1234"
+       newPassword: "",
+       password: ""
     };
 
     const methods = useForm({
-        resolver: yupResolver(LoginSchema),
+        resolver: yupResolver(NewPasswordSchema),
         defaultValues,
     });
 
@@ -35,24 +33,23 @@ const LoginForm = () => {
         setError, 
         handleSubmit, 
         formState: {errors, isSubmitting, isSubmitSuccessful},
-} = methods;
+    } = methods;
 
-const onSubmit = async () => {
-    try {
-        // submit data to backend
-    }
-    catch(error) {
-        console.log(error);
-        reset();
-        setError("afterSubmit", {
-            ...error, 
-            message: error.messasge,
-        })
-    }
-};
+    const onSubmit = async () => {
+        try {
+            // submit data to backend
+        }
+        catch(error) {
+            console.log(error);
+            reset();
+            setError("afterSubmit", {
+                ...error, 
+                message: error.messasge,
+            })
+        }
+    };
 
-  return (    
-  
+  return (
     <FormProvider 
         methods={methods} 
         onSubmit={handleSubmit(onSubmit)}        
@@ -64,13 +61,25 @@ const onSubmit = async () => {
                     {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 
             <RHFTextField 
-                name={"email"} 
-                label={"Email address"} 
+                name={"newPassword"} 
+                label={"New Password"} 
+                type={showPassword ? "text" : "password"} 
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment>
+                            <IconButton onClick={() => {
+                                setShowPassword(!showPassword);
+                            }}>
+                                {showPassword ? <Eye /> : <EyeSlash />}
+                            </IconButton>
+                        </InputAdornment>
+                    )            
+                }}
             />
 
             <RHFTextField 
-                name={"password"} 
-                label={"Password"} 
+                name={"confirmPassword"} 
+                label={"Confirm Password"} 
                 type={showPassword ? "text" : "password"} 
                 InputProps={{
                     endAdornment: (
@@ -93,9 +102,7 @@ const onSubmit = async () => {
                 my: 2
             }}
         >
-            <Link component={RouterLink} to="/auth/reset-password" variant='subtitle2'>
-                   Forgot Password             
-                </Link>
+            
         </Stack>
 
         <Stack 
@@ -118,14 +125,13 @@ const onSubmit = async () => {
                     }
                 }}              
             >
-                Login
-            </Button>
+                Submit
+            </Button>            
 
         </Stack>
         
     </FormProvider>
-    
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default NewPasswordForm
