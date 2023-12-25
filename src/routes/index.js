@@ -35,7 +35,8 @@ export default function Router() {
       children: [
         { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
         { path: "app", element: <GeneralApp /> },
-        { path: "settings", element: <Settings />},        
+        { path: "settings", element: <Settings />},  
+        { path: "notifications", element: <Notifications />},      
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
       ],
@@ -51,6 +52,10 @@ const GeneralApp = Loadable(
 const Settings = Loadable(
   lazy(() => import("../pages/dashboard/Settings")),
 );
+
+const Notifications = Loadable(
+    lazy(() => import("../pages/dashboard/Notifications")),
+  );
 
 const LoginPage = Loadable(
   lazy(() => import("../pages/auth/Login")),

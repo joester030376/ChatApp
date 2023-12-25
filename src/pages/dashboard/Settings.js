@@ -1,4 +1,4 @@
-import {Avatar, Box, IconButton, Stack, Typography, Divider } from '@mui/material';
+import {Avatar, Box, IconButton, Stack, Typography, Divider, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { CaretLeft, Bell, Lock, Key, Sliders, Image, ClipboardText, Keyboard, Info } from '@phosphor-icons/react';
 import { faker } from '@faker-js/faker';
@@ -11,6 +11,7 @@ const Settings = () => {
     const theme = useTheme();
 
     const [openShortCuts, setOpenShortCuts] = useState(false);
+    const [openThemeDialog, setOpenThemeDialog] = useState(false);
 
     const handleOpenShortcuts = () => {
         setOpenShortCuts(true);
@@ -20,13 +21,22 @@ const Settings = () => {
         setOpenShortCuts(false);
     }
 
+    const handleOpenThemeDialog = () => {
+        setOpenThemeDialog(true);
+    }
+
+    const handleCloseThemeDialog = () => {
+        setOpenThemeDialog(false);
+    }
+
     const SettingsMenu = [
 
         {
           title: "Notifications",
           icon: <Bell size={24} />,    
           divider: true,
-          onclick: () => {},
+          onclick: null,
+          route: "/notifications"
         },
         {
           title: "Privacy",
@@ -44,7 +54,7 @@ const Settings = () => {
           title: "Theme",
           icon: <Sliders size={24} />,
           divider: true,
-          onclick: () => {},
+          onclick: handleOpenThemeDialog,
         },
         {
           title: "Chat Wallpaper",
@@ -82,7 +92,7 @@ const Settings = () => {
             {/* Left Panel */}
             <Box
                 sx={{
-                    //overflowY: "scroll",
+                    overflowY: "scroll",
                     height: "100vh",
                     width: 320,
                     backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
@@ -133,7 +143,7 @@ const Settings = () => {
                 <Stack spacing={4} p={3}>        
                 {
                     SettingsMenu.map((el) => <>
-                    
+                        {console.log(el.route)}
                         <Stack 
                             spacing={2} 
                             onClick={el.onclick}
@@ -160,6 +170,7 @@ const Settings = () => {
             </Box>
         </Stack>
         { openShortCuts && <Shortcuts open={openShortCuts} handleClose={handleCloseShortcuts} />}
+        { openThemeDialog && <ThemeDialog open={openThemeDialog} handleClose={handleCloseThemeDialog} /> }
      </>
   )
 }

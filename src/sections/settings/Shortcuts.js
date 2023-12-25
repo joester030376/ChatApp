@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'; 
-import { Dialog, Slide, DialogTitle, DialogContent, Grid, Stack, Typography, Button, DialogActions } from '@mui/material';
+import { Dialog, Slide, DialogTitle, DialogContent, Grid, Stack, Typography, Button, DialogActions} from '@mui/material';
 import { ShortcutsList } from '../../data/shortcutslist';
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -25,7 +25,7 @@ const Shortcuts = ({open, handleClose}) => {
                 Keyboard Shortcuts
             </DialogTitle>
             <DialogContent sx={{mt: 4}} >
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 2 }}>
 
                 {
                     ShortcutsList.map(({key, title, combination}) => (

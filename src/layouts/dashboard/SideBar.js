@@ -7,6 +7,7 @@ import { faker } from "@faker-js/faker";
 import { useTheme, styled } from "@mui/material/styles";
 import useSettings from "../../hooks/useSettings";
 import { Profile_Menu } from '../../data';
+import {useNavigate} from 'react-router-dom';
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 40,
@@ -56,17 +57,26 @@ const SideBar = () => {
     const theme = useTheme();
     const [selected, setSelected] = useState(0);  
     const {onToggleMode} = useSettings();
+    const navigate = useNavigate();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
+    
     const handleClose = () => {
       setAnchorEl(null);
     };
 
-  return (
+    const handleOnClick = (el) => {
+        console.log(el);
+        navigate(el);
+    } 
+
+
+    return (
     <Box
         padding={2}
           sx={{
@@ -151,13 +161,15 @@ const SideBar = () => {
                     <IconButton                  
                       onClick={() => {
                         setSelected(3);
+                        handleOnClick("/settings");
                       }}  
                       sx={{
                         width: "max-content",
                         color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
                       }}                  
                     >
-                      <SettingsOutlinedIcon />
+                      <SettingsOutlinedIcon />                    
+                    
                     </IconButton> 
                   }                           
                 </Stack> 

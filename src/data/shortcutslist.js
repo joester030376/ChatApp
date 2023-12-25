@@ -90,11 +90,7 @@ const ShortcutsList = [
         title: "Sticker Panel",
         combination: ["Ctrl ", "S "]
     },
-
-
-
-
-
+    
 ];
 
 

@@ -1,16 +1,38 @@
-import { forwardRef } from 'react'; 
-import { Dialog, Slide, DialogTitle, DialogContent, Grid, Stack, Typography, Button, DialogActions } from '@mui/material';
-
+import { forwardRef, useState } from 'react'; 
+import { 
+    Box,
+    Dialog, 
+    Slide, 
+    DialogTitle, 
+    DialogContent, 
+    Stack, 
+    Typography, 
+    Button, 
+    DialogActions, 
+    Radio, 
+    FormControl, 
+    FormLabel, 
+    RadioGroup, 
+    FormControlLabel   
+} from '@mui/material';
+import { themeoptions } from '../../data/themeoptions';
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });  
 
 const ThemeDialog = ({open, handleClose}) => {
-  return (
+
+    const [radioValue, setRadioValue] = useState();
+
+    const setRadioButton = ({selection}) => {
+        setRadioValue(selection);
+        console.log(radioValue)
+    }; 
+
+    return (
     <>
         <Dialog
-            fullWidth 
             maxWidth="md" 
             open={open} 
             onClose={handleClose}
@@ -18,25 +40,43 @@ const ThemeDialog = ({open, handleClose}) => {
             TransitionComponent={Transition}
             tran
             sx={{
-                p: 4,
+                p: 4,               
             }}  
         >
-            <DialogTitle>
-                Choose Theme
-            </DialogTitle>
-            <DialogContent>
-                <Stack 
-                    alignItems={"center"}
-                    direction={"row"}
-                >
+            <Box 
+                width={420}
+            >
+                <DialogTitle>
+                    Choose Theme
+                </DialogTitle>
+                <DialogContent>                    
+                <FormControl>
+                            <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue="light"
+                                name="radio-buttons-group"
+                            >
+                                {
+                                    themeoptions.map((el) => {
 
-
-                </Stack>
-
-            </DialogContent>
-            <DialogActions>
-
-            </DialogActions>
+                                        return (
+                                            <FormControlLabel 
+                                                key={el.key} 
+                                                value={el.selection} 
+                                                control={<Radio onClick={() => {}} />} 
+                                                label={el.title} 
+                                            />
+                                        );
+                                    })
+                                }        
+                            </RadioGroup>
+                        </FormControl>
+                        <DialogActions>
+                            <Button variant="text" onClick={handleClose}>Cancel</Button>
+                            <Button variant='contained' onClick={handleClose}>Apply</Button>
+                        </DialogActions>                    
+                </DialogContent>                
+            </Box>
         </Dialog> 
     
     

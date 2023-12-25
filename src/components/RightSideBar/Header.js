@@ -46,10 +46,10 @@ const Header = ({SidebarHeaderTitle}) => {
             ) : (
                     <>
                         <IconButton 
-                        onClick={() => {
-                             dispatch(UpdateSidebarType("CONTACT"));
-                        }}
-                    >
+                            onClick={() => {
+                                dispatch(UpdateSidebarType("CONTACT"));
+                            }}
+                        >
                             <ArrowLeft size={24}  />
                         </IconButton>  
                         <Typography variant="body1" fontWeight={600}>
