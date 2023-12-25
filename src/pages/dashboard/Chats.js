@@ -1,8 +1,11 @@
-import { Box, IconButton, Typography, Stack, InputBase, Divider, Button } from '@mui/material';
+import { Box, Typography, Stack, InputBase, Divider, Button } from '@mui/material';
 import { CircleDashed, MagnifyingGlass, ArchiveBox } from 'phosphor-react';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import ChatElement from './ChatElement';
 import { ChatList } from '../../data';
+import SearchHeader from '../../components/SearchHeader';
+import PinnedConversations from '../../components/PinnedConversations';
+import AllConversations from '../../components/AllConversations';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -49,36 +52,9 @@ const Chats = () => {
         }}
     >
         <Stack p={3} spacing={2}  sx={{height: "100vh"}} >
-            <Stack 
-                direction={"row"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-            >
-                <Typography 
-                    variant="h5"
-                    letterSpacing={1}
-                >
-                    Chats
-                </Typography>
-                <IconButton>
-                    <CircleDashed size={32} />
-                </IconButton>
-            </Stack>
-            <Stack
-                sx={{
-                    width: "100%"
-                }}
-            >
-                <Search>
-                    <SearchIconWrapper>
-                        <MagnifyingGlass color="#709CE6" size={32}/>
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                        placeholder="Search…"
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
-                </Search>
-            </Stack>
+            
+            <SearchHeader header={"Chats"} />
+            
             <Stack spacing={1}>  
                 <Stack
                     direction={"row"}
@@ -101,37 +77,9 @@ const Chats = () => {
                 spacing={2}
             >
                 
-                <Stack 
-                    spacing={2.4}
-                >
-                    <Typography 
-                        variant='subtitle'
-                        sx={{
-                            color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
-                        }}
-                    >
-                        Pinned
-                    </Typography>
-                    {ChatList.filter((el) => el.pinned).map((el) => {
-                        return <ChatElement {...el} key={el.id} />
-                    })}                    
-                </Stack>  
-                <Stack 
-                    spacing={2.4}
-                    marginTop={2}
-                >
-                    <Typography 
-                        variant='subtitle'
-                        sx={{
-                            color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
-                        }}
-                    >
-                        All Chats
-                    </Typography>
-                    {ChatList.filter((el) => !el.pinned).map((el) => {
-                        return <ChatElement {...el} key={el.id} />
-                    })}                    
-                </Stack> 
+                <PinnedConversations chatType="pinnedChat" />
+
+                <AllConversations chatType="chats" />
                
             </Stack>
         </Stack>
