@@ -1,13 +1,21 @@
+import { useState } from 'react';
 import { Stack, Box, Button, Divider, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import SearchHeader from '../../components/SearchHeader';
 import { Plus } from '@phosphor-icons/react';
 import PinnedConversations from '../../components/PinnedConversations';
 import AllConversations from '../../components/AllConversations';
+import CreateNewGroup from '../../sections/creategroup/CreateNewGroup';
 
 const Group = () => {
 
     const theme = useTheme();
+
+    const [openGroupBlock, setGroupBlock] = useState(false);
+
+    const handleCloseGroupBlock = () => {
+        setGroupBlock(false);
+    }
 
   return (
     <>
@@ -34,13 +42,17 @@ const Group = () => {
                             direction={"row"}
                             alignItems={"center"} 
                             justifyContent={'space-between'}   
-                            spacing={1.5}           
+                            spacing={2}           
                         >
                             <Typography>
                                 Create New Group
                             </Typography>            
-                            <Button>
-                                <Plus size={24} /> 
+                            <Button
+                                onClick={() => {
+                                    setGroupBlock(true);                                
+                                }}
+                            >
+                                <Plus size={24} style={{color: theme.palette.primary.main }}/> 
                             </Button>                   
                         </Stack>
                         <Divider />
@@ -73,9 +85,10 @@ const Group = () => {
                 
             >
                 {/* Conversation */}
-       
+                
             </Box>
         </Stack>
+        {openGroupBlock && <CreateNewGroup open={openGroupBlock} handleClose={handleCloseGroupBlock} />}
     </>
   )
 }

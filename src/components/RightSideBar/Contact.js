@@ -68,8 +68,7 @@ const Contact = () => {
     const dispatch = useDispatch();
 
     const handleCloseBlock = () => {
-        setOpenBlock(false);
-    }
+        setOpenBlock(false);    }
 
     const handleDeleteBlock = () => {
         setOpenDelete(false);
