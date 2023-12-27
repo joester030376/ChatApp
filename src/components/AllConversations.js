@@ -17,16 +17,16 @@ const AllConversations = ({chatType}) => {
                 color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
             }}
         >
-            All Chats
+            { chatType === 'Chat' ? 'All Chats' : 'Group Chats' }
         </Typography>
         <>
             {(() => {
                 switch (chatType) {
 
-                    case "chats":        
+                    case "Chat":        
                         return ChatList.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> ); 
 
-                    case "groupChats": 
+                    case "Group": 
                         return ChatList.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> );      
 
                     default: 

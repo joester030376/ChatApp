@@ -24,10 +24,10 @@ const PinnedConversations = ({chatType}) => {
                     {(() => {
                         switch (chatType) {
 
-                            case "pinnedChat":        
+                            case "Chat":        
                                 return ChatList.filter((el) => el.pinned).map((el) => <ChatElement {...el} key={el.id} /> ); 
 
-                            case "groupPinnedChat": 
+                            case "Group": 
                                 return ChatList.filter((el) => el.pinned).map((el) => <ChatElement {...el} key={el.id} /> );      
    
                             default: 

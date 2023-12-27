@@ -68,9 +68,9 @@ const Group = () => {
                         spacing={2}
                     >
 
-                        <PinnedConversations chatType="groupPinnedChat" />
+                        <PinnedConversations chatType="Group" />
 
-                        <AllConversations chatType="groupChats" />
+                        <AllConversations chatType="Group" />
 
                     </Stack>
                 </Stack>

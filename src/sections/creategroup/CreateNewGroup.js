@@ -8,43 +8,48 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material/styles';
+import RHFAutocomplete from '../../components/hook-form/RHFAutocomplete';
+
+const MEMBERS = ["Name 1", "Name 2", "Name 3"];
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });  
-
-const CreateNewGroup = ({open, handleClose}) => {
-
+  
+ const CreateGroupForm = () => {
+     
     const theme = useTheme();
 
-    const [groupChatName, setGroupChatName] = useState();
-
-    const GroupNameSchema = Yup.object().shape({
-        groupName: Yup.string().required("Group name is required"),        
+    const NewGroupSchema = Yup.object().shape({
+        title: Yup.string().required("Title is required"), 
+        members: Yup.array().min(2, "Must have at least 2 members")
     });
 
     const defaultValues = {
-        groupName: "",       
+        title: "",    
+        members: []
     };
 
     const methods = useForm({
-        resolver: yupResolver(GroupNameSchema),
+        resolver: yupResolver(NewGroupSchema),
         defaultValues,
     });
 
     const {
         reset, 
+        watch,
         setError, 
         handleSubmit, 
-        formState: {errors, isSubmitting, isSubmitSuccessful},
+        formState: {errors, isSubmitting, isSubmitSuccessful, isValid},
     } = methods;
 
-    const onSubmit = async () => {
+    const onSubmit = async (data) => {
         try {
             // submit data to backend
+            console.log("DATA", data)
         }
         catch(error) {
-            console.log(error);
+            console.log("error", error);
             reset();
             setError("afterSubmit", {
                 ...error, 
@@ -52,8 +57,32 @@ const CreateNewGroup = ({open, handleClose}) => {
             })
         }
     };
+    
+    return (
+        <FormProvider
+            methods={methods} 
+            onSubmit={handleSubmit(onSubmit)}        
+        >
+            <Stack
+                direction="column"
+                spacing={3}
+                alignItems={"center"}
+                p={3}
+            >
+                <RHFTextField name="title" label="Title" />
+                <RHFAutocomplete name="members" label="Members" multiple freeSolo option={MEMBERS.map((option) => option)}/>
+            
+            </Stack>
+        
+        </FormProvider>
+    );
+     
+ }
+ 
+  
+const CreateNewGroup = ({open, handleClose}) => {
 
-  return (
+    return (
     <>
         <Dialog
             maxWidth="md" 
@@ -74,11 +103,12 @@ const CreateNewGroup = ({open, handleClose}) => {
                         direction={"row"}
                         alignItems={"center"}
                         justifyContent={"space-between"}
-                        sx={{
-                            width: "100%"
-                        }}
+                       
                     >
-                        <Typography>
+                        <Typography
+                            p={3}
+                            variant="h4"
+                        >
                             Create New Group
                         </Typography>
                         <Button onClick={handleClose}>
@@ -87,78 +117,7 @@ const CreateNewGroup = ({open, handleClose}) => {
                     </Stack>
                 </DialogTitle>
                 <DialogContent>                    
-                    <FormProvider
-                        methods={methods}
-                        onSubmit={handleSubmit(onSubmit)} 
-                    >
-                        <Stack
-                            direction={"column"}
-                            alignItems={"center"}
-                            sx={{
-                                width: "100%"
-                            }}
-                            spacing={3}
-                            p={3}
-                        >
-
-                            {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
-
-                            <RHFTextField 
-                                name={"groupChatName"} 
-                                label={"Name"} 
-                            />
-
-                            <Box 
-                                component="fieldset"
-                                p={1}
-                                sx={{
-                                    width: "100%",
-                                    borderRadius: "10px",
-                                    height: "200px",
-                                    overflowY: "scroll"
-                                }}
-                            >
-                                <legend><span style={{ padding: "1px 8px", fontSize: "12px"}}>Members</span></legend>
-                                
-                                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>                                     
-                                    {
-                                        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map((el) => {
-
-                                            return (
-                                                <>
-                                                    <Grid item >
-                                                        <Box
-                                                            sx={{
-                                                                height: 30,                                                
-                                                            }}
-                                                        >
-                                                            <Stack
-                                                                direction={"row"}
-                                                                alignItems={"center"}
-                                                                sx={{
-                                                                    backgroundColor: "lightgray",
-                                                                    borderRadius: "50px",                                                    
-                                                                    height: "24px",
-                                                                    border: "1px solid",
-                                                                    borderColor: "black"
-                                                                }}               
-                                                            >
-                                                                <Avatar src={faker.image.avatar()} alt={faker.name.fullName()} sx={{height: 24, width: 24}} />
-                                                                <Typography variant='caption' p={0.5}>
-                                                                    {faker.name.firstName()}
-                                                                </Typography>
-                                                                <XCircle size={24}/>
-                                                            </Stack>
-                                                        </Box>
-                                                    </Grid>
-                                                </>
-                                            );
-                                        })
-                                    }                                   
-                                </Grid>
-                            </Box>
-                        </Stack>
-                    </FormProvider>                                      
+                    <CreateGroupForm />      
                 </DialogContent>    
                 <DialogActions>                            
                     <Button variant='contained' onClick={handleClose}>Apply</Button>

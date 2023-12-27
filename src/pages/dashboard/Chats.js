@@ -77,9 +77,9 @@ const Chats = () => {
                 spacing={2}
             >
                 
-                <PinnedConversations chatType="pinnedChat" />
+                <PinnedConversations chatType="Chat" />
 
-                <AllConversations chatType="chats" />
+                <AllConversations chatType="Chat" />
                
             </Stack>
         </Stack>

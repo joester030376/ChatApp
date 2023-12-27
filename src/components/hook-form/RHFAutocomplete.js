@@ -2,15 +2,20 @@ import { PropTypes } from 'prop-types';
 // form
 import {useFormContext, Controller} from 'react-hook-form';
 // @mui 
-import { TextField } from "@mui/material";
+import { TextField, Autocomplete } from "@mui/material";
+import {useState} from 'React';
 
-RHFTextField.propTypes = {
+RHFAutocomplete.propTypes = {
     name: PropTypes.string,
     label: PropTypes.string,
     helperText: PropTypes.node,
 };
 
-export default function RHFTextField({name, helperText, ...other}) {
+export default function RHFAutocomplete({name, label, helperText, ...other}) {
+    
+    const [name, setValue] = useState();
+    
+    
     const { control } = useFormContext();
 
     return (
@@ -19,7 +24,7 @@ export default function RHFTextField({name, helperText, ...other}) {
             control={control}
             render={({field, fieldState: {error}}) => {
                 return (
-                    <TextField 
+                    <Autocomplete 
                         {...field} 
                         fullWidth 
                         value={
@@ -27,9 +32,15 @@ export default function RHFTextField({name, helperText, ...other}) {
                                 ? ""
                                 : field.value
                         }
+                        onChange={(event, newValue) => setValue(name, newValue, {shouldValidate: true})}
                         error={!!error} 
-                        helperText={error ? error.message : helperText}
                         {...other}
+                        renderInput={({params}) => (
+                            <Textfield 
+                                label={label} error={!!error}  
+                                helperText={error ? error.message : helperText} {...params}/>
+                        )}
+                           
                     />                
                 )
             }}  
