@@ -2,8 +2,7 @@ import { PropTypes } from 'prop-types';
 // form
 import {useFormContext, Controller} from 'react-hook-form';
 // @mui 
-import { TextField, Autocomplete } from "@mui/material";
-import {useState} from 'React';
+import { TextField, Autocomplete, Chip } from "@mui/material";
 
 RHFAutocomplete.propTypes = {
     name: PropTypes.string,
@@ -12,11 +11,7 @@ RHFAutocomplete.propTypes = {
 };
 
 export default function RHFAutocomplete({name, label, helperText, ...other}) {
-    
-    const [name, setValue] = useState();
-    
-    
-    const { control } = useFormContext();
+    const { control, setValue } = useFormContext();
 
     return (
         <Controller 
@@ -24,24 +19,27 @@ export default function RHFAutocomplete({name, label, helperText, ...other}) {
             control={control}
             render={({field, fieldState: {error}}) => {
                 return (
-                    <Autocomplete 
-                        {...field} 
+                    <Autocomplete
+                        {...field}
                         fullWidth 
                         value={
                             typeof field.value === "number" && field.value === 0 
                                 ? ""
                                 : field.value
-                        }
+                        }                        
+                        id="tags-filled"
                         onChange={(event, newValue) => setValue(name, newValue, {shouldValidate: true})}
-                        error={!!error} 
-                        {...other}
-                        renderInput={({params}) => (
-                            <Textfield 
-                                label={label} error={!!error}  
-                                helperText={error ? error.message : helperText} {...params}/>
+                        error={!!error}                         
+                        {...other}                        
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}                               
+                                label={label}
+                                error={!!error}
+                                helperText={error ? error.message : helperText}                                
+                            />
                         )}
-                           
-                    />                
+                    />    
                 )
             }}  
         />

@@ -16,7 +16,7 @@ const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });  
   
- const CreateGroupForm = () => {
+ const CreateGroupForm = ({handleClose}) => {
      
     const theme = useTheme();
 
@@ -70,15 +70,22 @@ const Transition = forwardRef(function Transition(props, ref) {
                 p={3}
             >
                 <RHFTextField name="title" label="Title" />
-                <RHFAutocomplete name="members" label="Members" multiple freeSolo option={MEMBERS.map((option) => option)}/>
-            
+                <RHFAutocomplete name="members" label="Members" multiple freeSolo options={MEMBERS.map((option) => option)} ChipProps={{size:"medium"}} />
             </Stack>
-        
+            <Stack 
+                direction={"row"}
+                spacing={3}
+                p={3}
+                alignItems={"center"}
+                justifyContent={"end"}
+            >
+                <Button onClick={handleClose}>Cancel</Button> 
+                <Button type="submit" variant='contained'>Create</Button>
+            </Stack>
         </FormProvider>
     );
      
  }
- 
   
 const CreateNewGroup = ({open, handleClose}) => {
 
@@ -110,18 +117,12 @@ const CreateNewGroup = ({open, handleClose}) => {
                             variant="h4"
                         >
                             Create New Group
-                        </Typography>
-                        <Button onClick={handleClose}>
-                            <XCircle size={32} weight="fill" /> 
-                        </Button> 
+                        </Typography>                        
                     </Stack>
                 </DialogTitle>
                 <DialogContent>                    
-                    <CreateGroupForm />      
-                </DialogContent>    
-                <DialogActions>                            
-                    <Button variant='contained' onClick={handleClose}>Apply</Button>
-                </DialogActions>                  
+                    <CreateGroupForm handleClose={handleClose} />      
+                </DialogContent>  
             </Box>
         </Dialog>
     </>
