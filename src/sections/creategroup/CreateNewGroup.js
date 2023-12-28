@@ -1,12 +1,10 @@
-import { useState, forwardRef } from 'react';
-import {Box, Dialog, DialogActions, DialogContent, DialogTitle, Typography, Stack, Slide, Button, Alert, IconButton, Grid, Avatar} from '@mui/material';
+import { forwardRef } from 'react';
+import {Box, Dialog, DialogContent, DialogTitle, Typography, Stack, Slide, Button, Alert, IconButton, Grid, Avatar} from '@mui/material';
 import FormProvider from '../../components/hook-form/FormProvider';
-import { XCircle } from '@phosphor-icons/react';
 import RHFTextField from '../../components/hook-form/RHFTextField';
 import * as Yup from 'yup';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material/styles';
 import RHFAutocomplete from '../../components/hook-form/RHFAutocomplete';
 

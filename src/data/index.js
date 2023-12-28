@@ -126,7 +126,7 @@ const CallLogs = [
     id: 0,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
-    pinned: false,
+    pinned: true,
     online: false,
     missed: true,
     incoming: false, 
@@ -135,7 +135,7 @@ const CallLogs = [
     id: 1,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
-    pinned: true,
+    pinned: false,
     online: true,
     missed: false,
     incoming: true, 
@@ -144,7 +144,7 @@ const CallLogs = [
     id: 2,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
-    pinned: true,
+    pinned: false,
     online: false,
     missed: true,
     incoming: true, 
@@ -168,6 +168,46 @@ const CallLogs = [
     incoming: false, 
   },
 ];
+
+const MembersList = [
+
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName()
+  },
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName()
+  },
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName()
+  },
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName()
+  },
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName()
+  },
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName()
+  },
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName()
+  },
+
+]
 
 const Chat_History = [
   {
@@ -342,5 +382,6 @@ export {
   Message_options,
   SHARED_DOCUMENTS,
   SHARED_LINKS,
-  CallLogs
+  CallLogs,
+  MembersList
 };

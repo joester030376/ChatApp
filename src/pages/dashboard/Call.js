@@ -1,15 +1,21 @@
-import {Box, Button, Divider, IconButton, Stack, Typography} from '@mui/material';
+import { useState } from 'react';
+import {Box, Divider, IconButton, Stack, Typography} from '@mui/material';
 import {useTheme} from '@mui/material/styles';
 import SearchHeader from '../../components/SearchHeader';
 import { Phone } from '@phosphor-icons/react';
-import { CallLogElement } from '../../components/CallElement';
-import { CallLogs } from '../../data';
 import PinnedConversations from '../../components/PinnedConversations';
 import AllConversations from '../../components/AllConversations';
+import StartCall from '../../sections/call/StartCall';
 
 const Call = () => {
 
     const theme = useTheme();
+
+    const [openCallBlock, setOpenCallBlock] = useState(false);
+
+    const handleOpenCallBlock = () => {
+        setOpenCallBlock(false);
+    }
 
   return (
     <Box 
@@ -34,7 +40,11 @@ const Call = () => {
                     <Typography>
                         Start new conversation
                     </Typography>               
-                    <IconButton>
+                    <IconButton
+                        onClick={() => {
+                            setOpenCallBlock(true);                                
+                        }}
+                    >
                         <Phone size={24} color={theme.palette.primary.main} />
                     </IconButton>       
                 </Stack>
@@ -56,6 +66,7 @@ const Call = () => {
                
             </Stack>
         </Stack>
+        {openCallBlock && <StartCall open={openCallBlock} handleClose={handleOpenCallBlock} />}
     </Box>
   )
 }
