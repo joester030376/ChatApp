@@ -120,6 +120,55 @@ const ChatList = [
   }
 ];
 
+const CallLogs = [
+
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    pinned: false,
+    online: false,
+    missed: true,
+    incoming: false, 
+  },
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    pinned: true,
+    online: true,
+    missed: false,
+    incoming: true, 
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    pinned: true,
+    online: false,
+    missed: true,
+    incoming: true, 
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    pinned: false,
+    online: true,
+    missed: true,
+    incoming: false, 
+  },
+  {
+    id: 4,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    pinned: false,
+    online: false,
+    missed: true,
+    incoming: false, 
+  },
+];
+
 const Chat_History = [
   {
     type: "msg",
@@ -292,5 +341,6 @@ export {
   Chat_History,
   Message_options,
   SHARED_DOCUMENTS,
-  SHARED_LINKS
+  SHARED_LINKS,
+  CallLogs
 };

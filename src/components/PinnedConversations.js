@@ -1,7 +1,8 @@
-import {Stack, Typography, Box} from '@mui/material';
-import ChatElement from '../pages/dashboard/ChatElement';
-import { ChatList } from '../data/index';
+import {Stack, Typography } from '@mui/material';
+import ChatElement from './ChatElement';
+import { CallLogs, ChatList } from '../data/index';
 import { useTheme } from '@mui/material/styles';
+import { CallLogElement } from './CallElement';
 
 const PinnedConversations = ({chatType}) => {
 
@@ -29,7 +30,10 @@ const PinnedConversations = ({chatType}) => {
 
                             case "Group": 
                                 return ChatList.filter((el) => el.pinned).map((el) => <ChatElement {...el} key={el.id} /> );      
-   
+                            
+                            case "Call":
+                                return CallLogs.filter((el) => el.pinned).map((el) => <CallLogElement{...el} key={el.id} /> );
+
                             default: 
                                 break;
                     }})()}   

@@ -1,7 +1,8 @@
 import { Stack, Typography} from '@mui/material';
-import { ChatList } from '../data';
-import ChatElement from '../pages/dashboard/ChatElement';
+import { CallLogs, ChatList } from '../data';
+import ChatElement from './ChatElement';
 import { useTheme } from '@mui/material/styles';
+import { CallLogElement } from './CallElement';
 
 const AllConversations = ({chatType}) => {
 
@@ -17,7 +18,7 @@ const AllConversations = ({chatType}) => {
                 color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
             }}
         >
-            { chatType === 'Chat' ? 'All Chats' : 'Group Chats' }
+            {chatType} Conversations
         </Typography>
         <>
             {(() => {
@@ -28,6 +29,9 @@ const AllConversations = ({chatType}) => {
 
                     case "Group": 
                         return ChatList.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> );      
+
+                    case "Call":
+                        return CallLogs.filter((el) => !el.pinned).map((el) => <CallLogElement {...el} key={el.id} /> ); 
 
                     default: 
                         break;
