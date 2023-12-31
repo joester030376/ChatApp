@@ -28,7 +28,7 @@ const Call = () => {
     >
         <Stack p={3} spacing={2}  sx={{height: "100vh"}} >
             
-            <SearchHeader header={"Chats"} />
+            <SearchHeader header={"Call Log"} />
             
             <Stack spacing={1}>  
                 <Stack

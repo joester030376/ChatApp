@@ -1,8 +1,15 @@
 import { Container, Stack } from "@mui/material";
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import Logo from '../../assets/Images/logo.ico';
 
+const isAuthenticated = true;
+
 const AuthLayout = () => {
+
+  if(isAuthenticated) {
+    return <Navigate to="/app" />
+  }
+
   return (
     <>
       <Container 

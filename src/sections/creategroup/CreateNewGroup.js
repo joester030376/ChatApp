@@ -82,7 +82,6 @@ const Transition = forwardRef(function Transition(props, ref) {
             </Stack>
         </FormProvider>
     );
-     
  }
   
 const CreateNewGroup = ({open, handleClose}) => {

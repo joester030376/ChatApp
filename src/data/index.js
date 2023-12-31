@@ -12,16 +12,19 @@ import {
 
 const Profile_Menu = [
   {
+    id: 0,
     title: "Profile",
     icon: <User />,
   },
   {
+    id: 1,
     title: "Settings",
-    icon: <Gear />,
+    icon: <Gear />,    
   },
   {
-    title: "Profile",
-    icon: <SignOut />,
+    id: 2,
+    title: "Logout",
+    icon: <SignOut />,    
   },
 ];
 
@@ -29,14 +32,17 @@ const Nav_Buttons = [
   {
     index: 0,
     icon: <ChatCircleDots />,
+    route: "/app"    
   },
   {
     index: 1,
     icon: <Users />,
+    route: "/group"
   },
   {
     index: 2,
     icon: <Phone />,
+    route: "/call"
   },
 ];
 
@@ -177,32 +183,32 @@ const MembersList = [
     name: faker.name.firstName()
   },
   {
-    id: 0,
+    id: 1,
     img: faker.image.avatar(),
     name: faker.name.firstName()
   },
   {
-    id: 0,
+    id: 2,
     img: faker.image.avatar(),
     name: faker.name.firstName()
   },
   {
-    id: 0,
+    id: 3,
     img: faker.image.avatar(),
     name: faker.name.firstName()
   },
   {
-    id: 0,
+    id: 4,
     img: faker.image.avatar(),
     name: faker.name.firstName()
   },
   {
-    id: 0,
+    id: 5,
     img: faker.image.avatar(),
     name: faker.name.firstName()
   },
   {
-    id: 0,
+    id: 6,
     img: faker.image.avatar(),
     name: faker.name.firstName()
   },

@@ -82,7 +82,6 @@ const Settings = () => {
         }
       ];
        
-
   return (
     <>
         <Stack
@@ -92,7 +91,7 @@ const Settings = () => {
             {/* Left Panel */}
             <Box
                 sx={{
-                    overflowY: "scroll",
+                    //overflowY: "scroll",
                     height: "100vh",
                     width: 320,
                     backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
@@ -109,7 +108,7 @@ const Settings = () => {
                         <CaretLeft size={32} />
                     </IconButton>
                     <Typography variant='h5'>
-                        Settings
+                       Settings
                     </Typography>
                 </Stack>
                 <Stack

@@ -51,7 +51,6 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
     },
   }));
   
-
 const SideBar = () => {
 
     const theme = useTheme();
@@ -64,6 +63,7 @@ const SideBar = () => {
     
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
+           //navigate();      
     };
     
     const handleClose = () => {
@@ -74,6 +74,24 @@ const SideBar = () => {
         console.log(el);
         navigate(el);
     } 
+    
+    const getMenuPath = (index) => {
+      switch(index) {
+        case 0:
+          console.log(index);
+          return "/profile";
+
+        case 1: 
+          return "/settings";
+
+        case 2:
+          // TODO => Update token and set isAuth
+          return "auth/login";
+
+        default:
+          break;
+      }
+    }
 
 
     return (
@@ -94,13 +112,18 @@ const SideBar = () => {
               spacing={3} 
             >
               <Stack alignItems={"center"} spacing={4}>
-                <Box sx={{
-                  backgroundColor: theme.palette.primary.main,
-                  height: 64,
-                  width: 64,
-                  borderRadius: 1.5,
-                }}>
-                    <img src={appimages.images.logo} alt="chat app logo" />  
+                <Box 
+                    
+                    sx={{
+                      backgroundColor: theme.palette.primary.main,
+                      height: 64,
+                      width: 64,
+                      borderRadius: 1.5,
+                    }}>
+                    <img 
+                      src={appimages.images.logo} 
+                      alt="chat app logo"                      
+                    />  
                 </Box> 
                 <Stack 
                   spacing={3} 
@@ -128,7 +151,8 @@ const SideBar = () => {
                     </Box>          
                     : <IconButton 
                         onClick={() => {
-                          setSelected(el.index)
+                          setSelected(el.index);
+                          navigate(el.route);
                         }}
                         key={el.index}
                         sx={{
@@ -148,7 +172,7 @@ const SideBar = () => {
                         borderRadius: 1.5
                       }}
                     >
-                      <IconButton
+                      <IconButton                       
                         sx={{
                           width: "max-content",
                           color: "#fff"
@@ -161,7 +185,7 @@ const SideBar = () => {
                     <IconButton                  
                       onClick={() => {
                         setSelected(3);
-                        handleOnClick("/settings");
+                        navigate("/settings");
                       }}  
                       sx={{
                         width: "max-content",
@@ -205,9 +229,16 @@ const SideBar = () => {
                     }}
 
                   >
-                    {Profile_Menu.map((el) => (
-                      <MenuItem onClick={handleClick}>
-                        <Stack sx={{width: 100}} direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
+                    {Profile_Menu.map((el, index) => (
+                      <MenuItem onClick={() => {
+                        handleClick(el);                        
+                      }}>
+                        <Stack 
+                          onClick={() => navigate(getMenuPath(index))}
+                          sx={{width: 100}} 
+                          direction={"row"} 
+                          alignItems={"center"} 
+                          justifyContent={"space-between"}>
                             <span>{el.title}</span>
                             {el.icon}
                         </Stack>

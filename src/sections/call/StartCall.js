@@ -9,7 +9,6 @@ import { XCircle, MagnifyingGlass } from '@phosphor-icons/react';
 import { Search, SearchIconWrapper, StyledInputBase} from '../../components/Search';
 import { CallElement } from '../../components/CallElement';
 import { MembersList } from '../../data';
-import Call from '../../pages/dashboard/Call';
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -48,10 +47,13 @@ const StartCall = ({open, handleClose}) => {
                 </Stack>
             </DialogTitle>
             <DialogContent> 
-                <Stack
+            <Stack
                     direction={"row"}
                     alignItems={"center"}
                     spacing={2}
+                    sx={{
+                        mb: "20px"
+                    }}
                 >
                     <Search>
                         <SearchIconWrapper>
@@ -69,15 +71,16 @@ const StartCall = ({open, handleClose}) => {
                     </IconButton>                
                 </Stack>   
                 {/* Call List */}                
-               <Box
+               <Box                    
                     width={"100%"}                    
                     sx={{
                         maxHeight: "500px",
                         overflowY: "scroll"
                     }}
                >
-                     { MembersList.map((el) => <CallElement {...el} key={el.id} />) }
-
+                   
+                    { MembersList.map((el) => <CallElement {...el} key={el.id} />) }
+                    
                </Box>
             </DialogContent>  
         </Box>

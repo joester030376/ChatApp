@@ -132,9 +132,9 @@ import StyledBadge from './StyledBadge';
                     </Stack>                  
                 </Stack> 
                     <Stack
-                        spacing={2}
+                        
                         alignItems={"center"}
-                        direction={"row"}
+                        direction={"row"}                        
                     >
                         <IconButton>
                             <Phone size={24} color="green"/>
