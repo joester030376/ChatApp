@@ -12,6 +12,8 @@ import {
 } from '@phosphor-icons/react';
 import { faker } from '@faker-js/faker';
 import AdminDashboard from '../../components/Admin/dashboard/AdminDashboard';
+import BasicTable from '../../components/Admin/dashboard/AdminViewMessages';
+import DenseTable from '../../components/Admin/dashboard/AdminViewMessages';
 
     
 const Admin = () => {  
@@ -120,8 +122,7 @@ const Admin = () => {
                             spacing={2} 
                             sx={{cursor: "pointer"}}
                         >
-                            <Stack 
-                                onClick={() => setMenuOption(index)}
+                            <Stack                                
                                 direction={"row"} 
                                 spacing={2} 
                                 alignItems={"center"}
@@ -141,12 +142,14 @@ const Admin = () => {
             {/* Right Panel */}
             <Box
                 sx={{
-                    height: "100%",
+                    height: "100vh",
                     width: "calc(100vw - 420px)",
                     backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
-                }}
-            >     
-                <AdminDashboard />                  
+                    
+                }}               
+            >   
+                <AdminDashboard />  
+                              
             </Box>
         </Stack>
         </>
