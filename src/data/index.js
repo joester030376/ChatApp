@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import {
   ChatCircleDots,
   Gear,
@@ -32,17 +33,26 @@ const Nav_Buttons = [
   {
     index: 0,
     icon: <ChatCircleDots />,
-    route: "/app"    
+    route: "/app",
+    title: "Chats"    
   },
   {
     index: 1,
     icon: <Users />,
-    route: "/group"
+    route: "/group",
+    title: "Group Chats" 
   },
   {
     index: 2,
     icon: <Phone />,
-    route: "/call"
+    route: "/call",
+    title: "Voice and Video Calling" 
+  },
+  {
+    index: 3,
+    icon: <AdminPanelSettingsOutlinedIcon />,
+    route: "/admin",
+    title: "Admin"
   },
 ];
 

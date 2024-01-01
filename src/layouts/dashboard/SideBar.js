@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { Box, Stack, IconButton, Divider, Avatar, Switch, Menu, MenuItem} from "@mui/material";
+import { Box, Stack, IconButton, Divider, Avatar, Switch, Menu, MenuItem, Tooltip} from "@mui/material";
 import appimages from "../../assets/Images/AppImages";
 import { Nav_Buttons } from "../../data";
 import { faker } from "@faker-js/faker";
@@ -140,6 +140,7 @@ const SideBar = () => {
                         borderRadius: 1.5
                       }}
                     >
+                      <Tooltip title={el.title}>
                       <IconButton key={el.index}
                         sx={{
                           width: "max-content",
@@ -148,23 +149,27 @@ const SideBar = () => {
                       >
                         {el.icon}
                       </IconButton> 
+
+                      </Tooltip>
                     </Box>          
-                    : <IconButton 
+                    : <Tooltip title={el.title}>
+                        <IconButton 
                         onClick={() => {
-                          setSelected(el.index);
-                          navigate(el.route);
+                        setSelected(el.index);
+                        navigate(el.route);
                         }}
                         key={el.index}
                         sx={{
-                          width: "max-content",
-                          color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
+                        width: "max-content",
+                        color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
                         }}
-                      >
+                    >
                         {el.icon}
-                      </IconButton>               
+                    </IconButton>
+                    </Tooltip>
                   ))}
                   <Divider flexItem />   
-                  { selected === 3 ? 
+                  { selected === 4 ? 
                     <Box
                       p={1}
                       sx={{                     
@@ -172,29 +177,33 @@ const SideBar = () => {
                         borderRadius: 1.5
                       }}
                     >
-                      <IconButton                       
-                        sx={{
-                          width: "max-content",
-                          color: "#fff"
-                        }}
-                      >
-                        <SettingsOutlinedIcon />
-                      </IconButton>  
+                      <Tooltip title="Settings">
+                        <IconButton                       
+                            sx={{
+                            width: "max-content",
+                            color: "#fff"
+                            }}
+                        >
+                            <SettingsOutlinedIcon />
+                        </IconButton> 
+                      </Tooltip>
                   </Box>
                   :
-                    <IconButton                  
-                      onClick={() => {
-                        setSelected(3);
-                        navigate("/settings");
-                      }}  
-                      sx={{
-                        width: "max-content",
-                        color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
-                      }}                  
-                    >
-                      <SettingsOutlinedIcon />                    
+                    <Tooltip title="Settings">
+                        <IconButton                  
+                            onClick={() => {
+                                setSelected(3);
+                                navigate("/settings");
+                            }}  
+                            sx={{
+                                width: "max-content",
+                                color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
+                            }}                  
+                        >
+                            <SettingsOutlinedIcon />                    
                     
-                    </IconButton> 
+                        </IconButton> 
+                    </Tooltip>
                   }                           
                 </Stack> 
               </Stack>  
