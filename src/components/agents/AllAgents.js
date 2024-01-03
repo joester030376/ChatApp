@@ -1,57 +1,64 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useTheme } from '@mui/material/styles';
-
-const columns = [
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-];
-
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
+import { rows } from './data/Rows';
+import { fields } from './data/Fields';
+import { Stack, IconButton } from '@mui/material';
+import { PencilSimple, Trash, Eye } from '@phosphor-icons/react';
 
 const AllAgents = () => {
 
+    const [data, setRows] = useState(rows);
+    const [columns, setColumns] = useState(fields);
     const theme = useTheme();
+
+    const actionColumn = [
+        {field: "action", headerName: "Action", width: 230,
+            renderCell: (params)=> {
+                return (
+                    <>
+                        <Stack
+                            direction={"row"}
+                            p={2}
+                            spacing={2}
+                        >
+                            <IconButton>
+                                <Eye size={32} color={theme.palette.primary.main} />                                   
+                            </IconButton>
+                            <IconButton>
+                                <PencilSimple size={32} color={theme.palette.success.main}/>                                
+                            </IconButton>
+                            <IconButton>
+                                <Trash size={32} color={theme.palette.error.main} />
+                            </IconButton>
+                            
+                        </Stack>
+                    
+                    </>                    
+                );
+            }        
+        }
+    ] 
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
+      <DataGrid 
+      autoHeight {...data}
+        rows={data}
+        columns={columns.concat(actionColumn)}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
+            paginationModel: { page: 0, pageSize: 10 },
           },
         }}
         pageSizeOptions={[5, 10]} 
         sx={{
+            p: "16px",
             backgroundColor: theme.palette.background.paper,
-            boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)" 
+            boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)",
+            "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                outline: "none !important",
+             },
         }}       
       />
     </div>
