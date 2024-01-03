@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { MagnifyingGlass, UploadSimple, Plus } from '@phosphor-icons/react';
+import { MagnifyingGlass, UploadSimple, Plus, DownloadSimple } from '@phosphor-icons/react';
 import { Box, Stack, Typography, Tab, Tabs, TextField, InputAdornment, Button} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import AllAgents from './AllAgents';
@@ -50,60 +50,63 @@ export default function BasicTabs() {
   return (
     <Box sx={{ width: '100%' }} >
         <Box
-            sx={{
-                boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
-            }}
+           ml={3} 
+           mr={3}
         >
-        <Box
-            height={"125px"}
-            p={2}
-            sx={{
-                backgroundColor: theme.palette.background.paper,
-                
-            }}
-        >
-            <Stack
-                direction={"column"}
-            >
-                <Stack
-                    direction={"row"}
-                    alignItems={"center"}
-                    mb={2}
+            <Box
+                sx={{
+                    boxShadow: "0 0 2px rgba(0, 0, 0, 0.5)"
+                }}
+            >   
+                <Box
+                    height={"100px"}
+                    p={2}            
+                    sx={{
+                        backgroundColor: theme.palette.background.paper,                
+                    }}
                 >
-                    <Typography variant='article' fontSize={24}>Agents</Typography>
-                </Stack>
                 <Stack
-                    direction={"row"}
-                    alignItems={"center"}
+                    direction={"column"}
                 >
-                    <Typography variant='caption' fontSize={18} fontWeight={400} fontStyle={"italic"}>An agent is a person who provides support services and with the admin role, they can also supervise and configure the system.</Typography>
-                </Stack>
+                    <Stack
+                        direction={"row"}
+                        alignItems={"center"}
+                        mb={2}
+                    >
+                        <Typography variant='article' fontSize={24}>Agents</Typography>
+                    </Stack>
+                    <Stack
+                        direction={"row"}
+                        alignItems={"center"}
+                    >
+                        <Typography variant='caption' fontSize={18} fontWeight={400} fontStyle={"italic"}>An agent is a person who provides support services and with the admin role, they can also supervise and configure the system.</Typography>
+                    </Stack>
 
-            </Stack>
-        </Box>
-        <Box 
-            sx={{ 
-                borderBottom: 1, 
-                borderColor: 'divider' ,
-                backgroundColor: theme.palette.background.paper
-            }} >
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab sx={{fontSize: "16px"}} label="All" {...a11yProps(0)} />
-            <Tab sx={{fontSize: "16px"}} label="Admin" {...a11yProps(1)} />
-            <Tab sx={{fontSize: "16px"}} label="Agents" {...a11yProps(2)} />
-            </Tabs>
-        </Box>
-        </Box>
+                </Stack>
+            </Box>
+            <Box             
+                sx={{          
+                    backgroundColor: theme.palette.background.paper
+                }} >
+                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Tab sx={{fontSize: "16px"}} label="All" {...a11yProps(0)} />
+                <Tab sx={{fontSize: "16px"}} label="Admin" {...a11yProps(1)} />
+                <Tab sx={{fontSize: "16px"}} label="Agents" {...a11yProps(2)} />
+                </Tabs>
+            </Box>
+
+                </Box>
+            </Box>
         <Box
             width={"100%"}            
         >
             <Stack
                 direction={"row"}
                 alignItems={'center'}
-                justifyContent={"end"}  
-                mt={1}
-                p={1.5}
-                        
+                justifyContent={"space-between"}  
+                mt={2}
+                ml={2}
+                p={1}                        
             >
                 <Stack
                     mr={2}
@@ -112,8 +115,11 @@ export default function BasicTabs() {
                         id="outlined-search" 
                         label="Search field" 
                         type="search"
+                        color="secondary"
                         sx={{
-                            width: "300px"
+                            width: "300px",
+                            backgroundColor: "white",
+                            borderRadius: "10px",                            
                         }} 
                         InputProps={{
                             startAdornment: (
@@ -125,21 +131,33 @@ export default function BasicTabs() {
                     />
                 </Stack>
                 <Stack
-                    mr={2}
+                    direction={"row"}
+                    alignItems={"center"}
                 >
-                    <Button variant='contained' size='large' startIcon={<Plus size={24} />}>Create Agent</Button>
-                </Stack>
-                <Stack
-                    mr={2}
-                >
-                    <Button variant='outlined' size='large' startIcon={<UploadSimple size={24} />}>Export as CSV</Button>
+                    <Stack
+                        mr={2}
+                    >
+                        <Button variant='contained' size='large' startIcon={<Plus size={24} />}>Create Agent</Button>
+                    </Stack>
+                    <Stack
+                        mr={2}
+                    >
+                        <Button 
+                            variant='outlined' 
+                            size='large' 
+                            startIcon={<DownloadSimple size={24} />}                           
+                        >
+                            Import from CSV
+                        </Button>
+                    </Stack>
+                    <Stack
+                        mr={2}
+                    >
+                        <Button variant='outlined' size='large' startIcon={<UploadSimple size={24} />}>Export as CSV</Button>
+                    </Stack>
                 </Stack>
             </Stack>
         </Box>
-
-
-
-
         <CustomTabPanel value={value} index={0}>
            <AllAgents />
         </CustomTabPanel>

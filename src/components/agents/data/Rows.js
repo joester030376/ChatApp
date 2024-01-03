@@ -21,6 +21,7 @@ const rows = [
         role: "agent",      
         status: "active",
         email: faker.internet.exampleEmail(),
+        password: faker.date.recent(),
         age :40
     },
     {
@@ -31,6 +32,7 @@ const rows = [
         role: "admin",       
         status: "active",
         email: faker.internet.exampleEmail(),
+        password: faker.date.recent(),
         age :65
     },
     {
@@ -41,6 +43,7 @@ const rows = [
         role: "agent",       
         status: "active",
         email: faker.internet.exampleEmail(),
+        password: faker.date.recent(),
         age :20
     },
     {
@@ -51,6 +54,7 @@ const rows = [
         role: "agent",      
         status: "active",
         email: faker.internet.exampleEmail(),
+        password: faker.date.recent(),
         age :19
     },
     {
@@ -61,6 +65,7 @@ const rows = [
         role: "agent",       
         status: "active",
         email: faker.internet.exampleEmail(),
+        password: faker.date.recent(),
         age :45
     },
     {
@@ -71,6 +76,7 @@ const rows = [
         role: "agent",      
         status: "active",
         email: faker.internet.exampleEmail(),
+        password: faker.date.recent(),
         age :40
     },
     {
@@ -81,6 +87,7 @@ const rows = [
         role: "agent",       
         status: "active",
         email: faker.internet.exampleEmail(),
+        password: faker.date.recent(),
         age :65
     },
     {
@@ -91,6 +98,7 @@ const rows = [
         role: "agent",      
         status: "active",
         email: faker.internet.exampleEmail(),
+        password: faker.date.recent(),
         age :20
     },
     {
@@ -101,6 +109,7 @@ const rows = [
         role: "agent",       
         status: "active",
         email: faker.internet.exampleEmail(),
+        password: faker.date.recent(),
         age :19
     }
   ];

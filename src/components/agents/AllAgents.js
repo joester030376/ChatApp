@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useTheme } from '@mui/material/styles';
 import { rows } from './data/Rows';
 import { fields } from './data/Fields';
-import { Stack, IconButton } from '@mui/material';
+import { Stack, IconButton, Tooltip } from '@mui/material';
 import { PencilSimple, Trash, Eye } from '@phosphor-icons/react';
 
 const AllAgents = () => {
@@ -22,18 +22,22 @@ const AllAgents = () => {
                             p={2}
                             spacing={2}
                         >
-                            <IconButton>
-                                <Eye size={32} color={theme.palette.primary.main} />                                   
-                            </IconButton>
-                            <IconButton>
-                                <PencilSimple size={32} color={theme.palette.success.main}/>                                
-                            </IconButton>
-                            <IconButton>
-                                <Trash size={32} color={theme.palette.error.main} />
-                            </IconButton>
-                            
-                        </Stack>
-                    
+                            <Tooltip title="View">
+                                <IconButton>
+                                    <Eye size={32} color={theme.palette.primary.main} />                                   
+                                </IconButton>
+                            </Tooltip>
+                           <Tooltip title="Edit">
+                                <IconButton>
+                                    <PencilSimple size={32} color={theme.palette.success.main}/>                                
+                                </IconButton>
+                           </Tooltip>
+                            <Tooltip title="Delete">
+                                <IconButton>
+                                    <Trash size={32} color={theme.palette.error.main} />
+                                </IconButton>
+                            </Tooltip>                            
+                        </Stack>                    
                     </>                    
                 );
             }        
