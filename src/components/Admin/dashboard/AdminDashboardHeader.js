@@ -24,7 +24,10 @@ const AdminDashboardHeader = () => {
 
     return (
         <>
-           
+            <Stack
+                direction={"row"}
+                width={200}
+            >
                 <FormControl sx={{ m: 1, minWidth: 300}}>
                     <InputLabel id="demo-simple-select-helper-label">Select Team</InputLabel>
                         <Select
@@ -38,8 +41,42 @@ const AdminDashboardHeader = () => {
                             <MenuItem value={"Team B"}>Team B</MenuItem>
                             <MenuItem value={"Team C"}>Team C</MenuItem>
                         </Select>
-                </FormControl>    
-            
+                </FormControl> 
+            </Stack>
+            <Stack>
+                <Stack
+                    direction={"row"}
+                    alignItems={"center"}
+                    justifyContent={"flex-start"}
+                    p={1}
+                    m={1}
+                    sx={{
+                        borderBottom: "1px solid lightGrey"
+                    }}         
+            >
+                    <Box
+                        width={"25%"}                    
+                    >
+                        <Typography variant='overline'>
+                            Agent
+                        </Typography>
+                    </Box>
+                    <Box
+                        width={"25%"}
+                    >
+                        <Typography variant='overline'>
+                        Live Call
+                        </Typography>
+                    </Box>
+                    <Box
+                        width={"50%"}
+                    >
+                        <Typography variant='overline'>
+                            IM Tasks
+                        </Typography>
+                    </Box>
+                </Stack>                      
+            </Stack> 
         </>
     );
 }

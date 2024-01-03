@@ -8,12 +8,12 @@ import {
     PencilSimple,
     FadersHorizontal,
     Lock,
-    Gear
+    Gear,
+    UsersFour
 } from '@phosphor-icons/react';
 import { faker } from '@faker-js/faker';
-import AdminDashboard from '../../components/Admin/dashboard/AdminDashboard';
-import BasicTable from '../../components/Admin/dashboard/AdminViewMessages';
-import DenseTable from '../../components/Admin/dashboard/AdminViewMessages';
+import Agents from '../../components/agents/AgentsDisplay';
+import AgentsDisplay from '../../components/agents/AgentsDisplay';
 
     
 const Admin = () => {  
@@ -45,14 +45,20 @@ const Admin = () => {
             divider: true
         },
         {
+            icon: <UsersFour size={24} />,
+            title: 'Agents',
+            divider: true
+        },
+        {
             icon: <FadersHorizontal size={24} />,
             title: 'Configuration',
             divider: true
-        },
+        },        
         {
             icon: <Gear size={24} />,
             title: 'General Settings',
         },
+        
     ]    
 
     const theme = useTheme();
@@ -148,8 +154,9 @@ const Admin = () => {
                     
                 }}               
             >   
-                <AdminDashboard />  
-                              
+
+                <AgentsDisplay />
+
             </Box>
         </Stack>
         </>
