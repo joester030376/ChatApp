@@ -39,8 +39,7 @@ export default function Router() {
         { path: "notifications", element: <Notifications />}, 
         { path: "group", element: <GroupPage />},    
         { path: "call", element: <CallPage />},  
-        { path: "profile", element: <ProfilePage /> },
-        { path: "admin", element: <AdminPage /> },
+        { path: "profile", element: <ProfilePage /> },     
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
       ],
@@ -55,7 +54,6 @@ const Notifications = Loadable(lazy(() => import("../pages/dashboard/Notificatio
 const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group.js")),);
 const CallPage = Loadable(lazy(() => import("../pages/dashboard/Call.js")),);
 const ProfilePage = Loadable(lazy(() => import("../pages/dashboard/Profile.js")),);
-const AdminPage = Loadable(lazy(() => import("../pages/dashboard/Admin.js")),);
 const LoginPage = Loadable(lazy(() => import("../pages/auth/Login")),);
 const Register = Loadable(lazy(() => import("../pages/auth/Register")),);
 const ResetPasswordPage = Loadable(lazy(() => import("../pages/auth/ResetPassword")),);

@@ -9,8 +9,12 @@ import RHFTextField from '../../components/hook-form/RHFTextField';
 import {Eye, EyeSlash} from '@phosphor-icons/react';
 import { useTheme } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
+import { LoginUser } from '../../redux/slices/auth';
+import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
+
+    const dispatch = useDispatch();
 
     const theme = useTheme();
     const [showPassword, setShowPassword] = useState(false);
@@ -37,9 +41,11 @@ const LoginForm = () => {
         formState: {errors, isSubmitting, isSubmitSuccessful},
 } = methods;
 
-const onSubmit = async () => {
+const onSubmit = async (data) => {
     try {
         // submit data to backend
+        dispatch(LoginUser(data));
+
     }
     catch(error) {
         console.log(error);

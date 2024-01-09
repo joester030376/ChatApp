@@ -1,3 +1,5 @@
+import { LogoutUser } from '../../redux/slices/auth';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { Box, Stack, IconButton, Divider, Avatar, Switch, Menu, MenuItem, Tooltip} from "@mui/material";
@@ -8,6 +10,7 @@ import { useTheme, styled } from "@mui/material/styles";
 import useSettings from "../../hooks/useSettings";
 import { Profile_Menu } from '../../data';
 import {useNavigate} from 'react-router-dom';
+
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 40,
@@ -52,6 +55,8 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   }));
   
 const SideBar = () => {
+
+    const dispatch = useDispatch();
 
     const theme = useTheme();
     const [selected, setSelected] = useState(0);  
@@ -211,7 +216,7 @@ const SideBar = () => {
                 <AntSwitch 
                   defaultChecked 
                   onChange={() => {
-                    onToggleMode();
+                   onToggleMode();
                   }}
                 />
                 <Avatar src={faker.image.avatar()} 
@@ -240,7 +245,10 @@ const SideBar = () => {
                   >
                     {Profile_Menu.map((el, index) => (
                       <MenuItem onClick={() => {
-                        handleClick(el);                        
+                        //if idx = 2 then signout
+                        if(index === 2) {
+                          dispatch(LogoutUser());
+                        }    
                       }}>
                         <Stack 
                           onClick={() => navigate(getMenuPath(index))}
