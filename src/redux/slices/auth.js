@@ -110,4 +110,23 @@ export function NewPassword(formValues) {
     }
 }
 
+export function VerifyOTP(formValues) {
+    return async(dispatch, getState) => {
+        axios.post('/auth/verify', 
+            {
+                ...formValues
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json", 
+                },
+            }      
+        ).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+}
+
 
