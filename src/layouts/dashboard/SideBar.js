@@ -244,14 +244,18 @@ const SideBar = () => {
 
                   >
                     {Profile_Menu.map((el, index) => (
-                      <MenuItem onClick={() => {
-                        //if idx = 2 then signout
-                        if(index === 2) {
-                          dispatch(LogoutUser());
-                        }    
+                      <MenuItem onClick={() => {                      
+                        handleClick();
                       }}>
                         <Stack 
-                          onClick={() => navigate(getMenuPath(index))}
+                          onClick={() => {
+                            if (index === 2) {
+                               //if idx = 2 then signout
+                              dispatch(LogoutUser());
+                            } else {
+                              navigate(getMenuPath(index));
+                            }
+                          }}
                           sx={{width: 100}} 
                           direction={"row"} 
                           alignItems={"center"} 
