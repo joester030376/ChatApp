@@ -40,13 +40,13 @@ const slice = createSlice({
 export default slice.reducer;
 
 export function ToggleSideBar() {
-  return async () => {
+  return async (dispatch) => {
     dispatch(slice.actions.toggleSideBar());
   };
 }
 
 export function UpdateSidebarType(type) {
-  return async () => {
+  return async (dispatch) => {
     dispatch(
       slice.actions.updateSideBarType({
         type,
@@ -70,7 +70,7 @@ export function ShowSnackbar({ severity, message }) {
 };
 
 export function closeSnackbar() {
-    return async () => {
+    return async (dispatch) => {
         dispatch(slice.actions.closeSnackbar());
     }
 };
