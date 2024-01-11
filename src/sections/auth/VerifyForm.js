@@ -1,16 +1,18 @@
-
 import * as Yup from 'yup';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import FormProvider from "../../components/hook-form/FormProvider";
 import { Stack, Button } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import RHFCodes from '../../components/hook-form/RHFCodes';
+import { VerifyEmail } from '../../redux/slices/auth';
 
 const VerifyForm = () => {
 
     const dispatch = useDispatch();
+
+    const {email} = useSelector((state) => state.auth);
 
     const theme = useTheme();
     
@@ -47,8 +49,11 @@ const VerifyForm = () => {
 const onSubmit = async (data) => {
     try {
         // submit data to backend
-        
+        dispatch(VerifyEmail({
+            email,
+            otp: `${data.code1}${data.code2}${data.code3}${data.code4}${data.code5}${data.code6}`
 
+        }));
     }
     catch(error) {
         console.log(error);
