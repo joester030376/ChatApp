@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
+import { ShowSnackbar } from "./app";
 
 const initialState = {
     isLoading: false,
@@ -48,17 +49,17 @@ export function LoginUser(formValues) {
                     "Content-Type": "application/json", 
                 },
             }
-        ).then(function (response) {
-            console.log(response);
-
+        ).then(function (response) {        
+            
             dispatch(slice.actions.logIn({
                 isLoggedIn: true,
                 token: response.data.token,
             }));
-
-
+            
+            dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
+            
         }).catch(function(error) {
-            console.log(error);
+            dispatch(ShowSnackbar({severity: "error", message: error.response.data.message}));
         });
     };
 }
@@ -83,9 +84,10 @@ export function ForgotPassword(formValues) {
                 },
             }
         ).then((response) => {
-            console.log(response);
+            dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
+
         }).catch((error) => {
-            console.log(error);
+            dispatch(ShowSnackbar({severity: "error", message: error.response.data.message}));
         });
     }
 }
@@ -110,8 +112,10 @@ export function NewPassword(formValues) {
                 token: response.data.token,
             }));
 
+            dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
+
         }).catch((error) => {
-            console.log(error);
+            dispatch(ShowSnackbar({severity: "error", message: error.response.data.message}));
         });
     }
 }
@@ -129,12 +133,14 @@ export function RegisterUser (formValues) {
             },
         } 
         ).then((response) => {
-            console.log(response);
             dispatch(slice.actions.updateRegisterEmail({email: formValues.email}));
             dispatch(slice.actions.updateIsLoading({isLoading: false, error: false}));
+            dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
+
         }).catch((error) => {
-            console.log(error);
-            dispatch(slice.actions.updateIsLoading({isLoading: false, error: true}));
+            dispatch(slice.actions.updateIsLoading({isLoading: false, error: true}));   
+            dispatch(ShowSnackbar({severity: "error", message: error.response.data.message}));
+         
         }).finally(() => {
             if(!getState().auth.error) {               
                 window.location.href = "/auth/verify";
@@ -155,13 +161,15 @@ export function VerifyEmail (formValues) {
                 },
             }        
         ).then((response) => {
-            console.log(response);
             dispatch(slice.actions.logIn({
                 isLoggedIn: true,
                 token: response.data.token,
             }));
+
+            dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
+
         }).catch((error) => {
-            console.log(error);
+            dispatch(ShowSnackbar({severity: "error", message: error.response.data.message}));
         })
     }
 }
