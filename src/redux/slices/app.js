@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-//
 import { dispatch } from "../store";
 
 const initialState = {
@@ -71,7 +70,7 @@ export function ShowSnackbar({ severity, message }) {
   };
 };
 
-export function CloseSnackbar() {
+export function closeSnackbar() {
     return async () => {
         dispatch(slice.actions.closeSnackbar());
     }

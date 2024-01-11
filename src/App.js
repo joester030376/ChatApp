@@ -8,7 +8,7 @@ import ThemeSettings from './components/settings';
 import { Snackbar } from "@mui/material";
 import MuiAlert from '@mui/material/Alert';
 import { useSelector, useDispatch } from "react-redux";
-import { CloseSnackbar } from "./redux/slices/app";
+import { closeSnackbar } from "./redux/slices/app";
 
 const vertical = "bottom";
 const horizontal = "center";
@@ -39,11 +39,11 @@ function App() {
     autoHideDuration={4000}
     key={vertical + horizontal}
     onClose={() => {
-      dispatch(CloseSnackbar());
+      dispatch(closeSnackbar());
     }}  
   >
     <Alert onClose={() => {
-      dispatch(CloseSnackbar());
+      dispatch(closeSnackbar());
     }}
       severity={severity}
       sx={{
