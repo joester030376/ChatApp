@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 const initialState = {
   sidebar: {
@@ -90,7 +90,7 @@ export function closeSnackbar() {
 
 export function FetchUsers () {
   return async (dispatch, getState) => {
-      await axios.get("http://localhost:3001/user/get-users",          
+      await axios.get("/user/get-users",          
           {
               headers: {
                   "Content-Type": "application/json", 
