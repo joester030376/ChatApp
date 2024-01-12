@@ -89,7 +89,7 @@ const CreateNewGroup = ({open, handleClose}) => {
     return (
     <>
         <Dialog
-            maxWidth="md" 
+            maxWidth="xs" 
             open={open} 
             onClose={handleClose}
             keepMounted

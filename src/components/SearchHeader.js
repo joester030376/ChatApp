@@ -12,7 +12,7 @@ const SearchHeader = ({header, }) => {
 
   return (
     <>
-        <Stack 
+            <Stack 
                 direction={"row"}
                 alignItems={"center"}
                 justifyContent={"space-between"}
