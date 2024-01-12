@@ -90,7 +90,7 @@ export function closeSnackbar() {
 
 export function FetchUsers () {
   return async (dispatch, getState) => {
-      await axios.get("/user/get-users",          
+      await axios.get("http://localhost:3001/user/get-users",          
           {
               headers: {
                   "Content-Type": "application/json", 
