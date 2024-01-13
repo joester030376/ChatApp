@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import {Box, Dialog, DialogContent, DialogTitle, Typography, Stack, Slide, Button, Alert, IconButton, Grid, Avatar} from '@mui/material';
+import {Box, Dialog, DialogContent, DialogTitle, Typography, Stack, Slide, Button} from '@mui/material';
 import FormProvider from '../../components/hook-form/FormProvider';
 import RHFTextField from '../../components/hook-form/RHFTextField';
 import * as Yup from 'yup';
@@ -15,9 +15,7 @@ const Transition = forwardRef(function Transition(props, ref) {
   });  
   
  const CreateGroupForm = ({handleClose}) => {
-     
-    const theme = useTheme();
-
+    
     const NewGroupSchema = Yup.object().shape({
         title: Yup.string().required("Title is required"), 
         members: Yup.array().min(2, "Must have at least 2 members")

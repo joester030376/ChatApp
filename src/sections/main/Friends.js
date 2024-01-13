@@ -1,13 +1,10 @@
 import {useState, forwardRef, useEffect} from 'react';
 import {
     Slide,
-    Tab,
-    Box,
+    Tab,   
     Dialog,
     Stack,
-    Tabs,
-    Typography,
-    DialogTitle,
+    Tabs,   
     DialogContent,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,7 +18,7 @@ const UsersList = () => {
 
     useEffect(() => {
         dispatch(FetchUsers());
-    }, []);
+    });
 
     const {users} = useSelector((state) => state.app);
 
@@ -41,7 +38,7 @@ const FriendsList = () => {
 
     useEffect(() => {
         dispatch(FetchFriends());
-    }, []);
+    });
 
     const {friends} = useSelector((state) => state.app);
 
@@ -61,7 +58,7 @@ const FriendsRequestList = () => {
 
     useEffect(() => {
         dispatch(FetchFriendRequests());
-    }, []);
+    });
 
     const {friendRequests} = useSelector((state) => state.app);
 
