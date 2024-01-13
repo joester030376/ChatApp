@@ -55,6 +55,8 @@ export function LoginUser(formValues) {
                 isLoggedIn: true,
                 token: response.data.token,
             }));
+
+            window.localStorage.setItem("user_id", response.data.user_id);
             
             dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
             
@@ -67,7 +69,8 @@ export function LoginUser(formValues) {
 // Sign out
 export function LogoutUser() {
     return async (dispatch, getState) => {
-        dispatch(slice.actions.signOut());
+        window.localStorage.removeItem("user_id");
+        dispatch(slice.actions.signOut());   
     };
 }
 
@@ -165,6 +168,8 @@ export function VerifyEmail (formValues) {
                 isLoggedIn: true,
                 token: response.data.token,
             }));
+
+            window.localStorage.setItem("user_id", response.data.user_id)
 
             dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
 
