@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { Box, Stack, Divider, Button, IconButton, Typography,  } from '@mui/material';
 import { ArchiveBox } from 'phosphor-react';
 import { useTheme } from '@mui/material/styles';
@@ -7,19 +7,36 @@ import AllConversations from '../../components/AllConversations';
 import { Search, SearchIconWrapper, StyledInputBase } from '../../components/Search';
 import { Users, CircleDashed, MagnifyingGlass } from '@phosphor-icons/react';
 import Friends from '../../sections/main/Friends';
+import { socket } from '../../utils/socket';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchDirectConversations } from '../../redux/slices/conversation';
+
+
+const user_id = window.localStorage.getItem("user_id");
 
 const Chats = () => {
+
+    const dispatch = useDispatch();
 
     const [openDialog, setOpenDialog] = useState(false);
     const theme = useTheme();
 
+//    const {conversations} = useSelector((state) => state.direct_chat.conversations);
+  
+//     useEffect(() => {
+//         socket.emit("get_direct_conversations", {user_id}, (data) => {
+//             // data => list of conversations
+
+//         })
+//     }, []);
+
     const handleOpenDialog = () => {
         setOpenDialog(true);
-    }
+    };
 
     const handleCloseDialog = () => {
         setOpenDialog(false);
-    }
+    };
 
   return (
 

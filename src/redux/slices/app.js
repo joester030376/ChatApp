@@ -46,7 +46,7 @@ const slice = createSlice({
       state.friends = action.payload.friends;
     },
     updateFriendRequests(state, action) {
-      state.friendRequests = action.payload.request;
+      state.friendRequests = action.payload.friendRequests;
     },
     selectConversation(state, action) {
       state.chat_type = "individual";
@@ -105,7 +105,7 @@ export function FetchUsers () {
           }        
       ).then((response) => {
          console.log(response);
-          dispatch(slice.actions.updateUsers({users: response.data.data}));
+         dispatch(slice.actions.updateUsers({users: response.data.data}));
       }).catch((error) => {
           console.log(error);
       })

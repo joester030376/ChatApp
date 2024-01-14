@@ -23,7 +23,7 @@ const UserComponent = ({firstName, lastName, _id, online, img}) => {
   return (
     <StyledChatBox
         sx={{
-            width: "100%",
+            width: "400px",
             borderRadius: 1,
             backgroundColor: theme.palette.background.paper,
         }}
@@ -34,6 +34,11 @@ const UserComponent = ({firstName, lastName, _id, online, img}) => {
             alignItems={"center"} 
             justifyContent={"space-between"}
         >
+            <Stack
+                spacing={2}
+                direction={"row"}
+                alignItems={"center"}                
+            >
             {" "}
             {online ? (
                 <StyledBadge
@@ -49,8 +54,9 @@ const UserComponent = ({firstName, lastName, _id, online, img}) => {
             <Stack spacing={0.3}>
                 <Typography variant='subtitle2'>{name}</Typography>
             </Stack>
-        </Stack>
-        <Stack direction="row" spacing={2} alignItems={"center"}>
+
+            </Stack>
+            <Stack direction="row" spacing={2} alignItems={"center"}>
             <Button
                 onClick={() => {
                    socket.emit("friend_request", {to: _id, from: user_id}, () => {
@@ -61,6 +67,8 @@ const UserComponent = ({firstName, lastName, _id, online, img}) => {
                 Send Request
             </Button>
         </Stack>
+        </Stack>
+        
     </StyledChatBox>
   )
 }
@@ -73,7 +81,7 @@ const FriendRequestComponent = ({firstName, lastName, _id, online, img, id}) => 
   return (
     <StyledChatBox
         sx={{
-            width: "100%",
+            width: "400px",
             borderRadius: 1,
             backgroundColor: theme.palette.background.paper,
         }}
@@ -84,23 +92,28 @@ const FriendRequestComponent = ({firstName, lastName, _id, online, img, id}) => 
             alignItems={"center"} 
             justifyContent={"space-between"}
         >
-            {" "}
-            {online ? (
-                <StyledBadge
-                    overLap="circular"
-                    anchorOrigin={{vertical: "bottom", horizontal: "right"}}
-                    variant="dot"
-                >
+            <Stack
+                direction={"row"}
+                alignItems={"center"} 
+                spacing={2}           
+            >
+                {" "}
+                {online ? (
+                    <StyledBadge
+                        overLap="circular"
+                        anchorOrigin={{vertical: "bottom", horizontal: "right"}}
+                        variant="dot"
+                    >
+                        <Avatar alt={name} src={img} />
+                    </StyledBadge>
+                ) : (
                     <Avatar alt={name} src={img} />
-                </StyledBadge>
-            ) : (
-                <Avatar alt={name} src={img} />
-            )}
-            <Stack spacing={0.3}>
-                <Typography variant='subtitle2'>{name}</Typography>
+                )}
+                <Stack spacing={0.3}>
+                    <Typography variant='subtitle2'>{name}</Typography>
+                </Stack>
             </Stack>
-        </Stack>
-        <Stack direction="row" spacing={2} alignItems={"center"}>
+            <Stack direction="row" spacing={2} alignItems={"center"}>
             <Button
                 onClick={() => {
                    socket.emit("accept_request", {request_id: id}, () => {
@@ -111,6 +124,8 @@ const FriendRequestComponent = ({firstName, lastName, _id, online, img, id}) => 
                 Accept Request
             </Button>
         </Stack>
+        </Stack>
+        
     </StyledChatBox>
   )
 }
@@ -123,7 +138,7 @@ const FriendComponent = ({firstName, lastName, _id, online, img}) => {
   return (
     <StyledChatBox
         sx={{
-            width: "100%",
+            width: "400px",
             borderRadius: 1,
             backgroundColor: theme.palette.background.paper,
         }}
@@ -134,31 +149,37 @@ const FriendComponent = ({firstName, lastName, _id, online, img}) => {
             alignItems={"center"} 
             justifyContent={"space-between"}
         >
-            {" "}
-            {online ? (
-                <StyledBadge
-                    overLap="circular"
-                    anchorOrigin={{vertical: "bottom", horizontal: "right"}}
-                    variant="dot"
-                >
-                    <Avatar alt={name} src={img} />
-                </StyledBadge>
-            ) : (
-                <Avatar alt={name} src={img} />
-            )}
-            <Stack spacing={0.3}>
-                <Typography variant='subtitle2'>{name}</Typography>
-            </Stack>
-        </Stack>
-        <Stack direction="row" spacing={2} alignItems={"center"}>
-            <IconButton
-                onClick={(() => {
-                    // Start a new conversation
-                })}
+            <Stack
+                direction={"row"}
+                alignItems={"center"}
+                spacing={2}
             >
+                {" "}
+                {online ? (
+                    <StyledBadge
+                        overLap="circular"
+                        anchorOrigin={{vertical: "bottom", horizontal: "right"}}
+                        variant="dot"
+                    >
+                        <Avatar alt={name} src={img} />
+                    </StyledBadge>
+                ) : (
+                    <Avatar alt={name} src={img} />
+                )}
+                <Stack spacing={0.3}>
+                    <Typography variant='subtitle2'>{name}</Typography>
+                </Stack>
+            </Stack>
+            <Stack direction="row" spacing={2} alignItems={"center"}>
+                <IconButton
+                    onClick={(() => {
+                        // Start a new conversation
+                    })}
+                >
                 <Chat />
-            </IconButton>
-        </Stack>
+                </IconButton>
+            </Stack>
+        </Stack>        
     </StyledChatBox>
   )
 }

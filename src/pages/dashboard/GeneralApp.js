@@ -20,7 +20,7 @@ const GeneralApp = () => {
       }}
     >
       {/* Chats */}     
-      <Chats room_id={room_id} chat_type={chat_type} />
+      <Chats  />
      
       <Box
         sx={{

@@ -11,14 +11,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FetchFriendRequests, FetchFriends, FetchUsers } from '../../redux/slices/app';
 import { FriendComponent, FriendRequestComponent, UserComponent } from '../../components/Friends';
 
-const UsersList = () => {
-    
+const UsersList = () => {   
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(FetchUsers());
-    });
+    }, []);
 
     const {users} = useSelector((state) => state.app);
 
@@ -38,7 +37,7 @@ const FriendsList = () => {
 
     useEffect(() => {
         dispatch(FetchFriends());
-    });
+    }, []);
 
     const {friends} = useSelector((state) => state.app);
 
@@ -58,16 +57,15 @@ const FriendsRequestList = () => {
 
     useEffect(() => {
         dispatch(FetchFriendRequests());
-    });
+    }, []);
 
-    const {friendRequests} = useSelector((state) => state.app);
+    const {friendRequests} = useSelector((state) => state.app);   
 
     return (
         <>
             {friendRequests.map((el, idx) => {
                 return <FriendRequestComponent key={el._id} {...el.sender} id={el._id} />
-            })};
-        
+            })};        
         </>
     )    
 }
@@ -87,7 +85,7 @@ const Friends = ({open, handleClose}) => {
 
   return (
     <Dialog
-            maxWidth="md" 
+            maxWidth="lg" 
             open={open} 
             onClose={handleClose}
             keepMounted
@@ -99,7 +97,7 @@ const Friends = ({open, handleClose}) => {
            <Stack
                 p={2}
                 sx={{
-                    width: "100%"
+                    width: "400px"
                 }}
            >
                 <Tabs value={value} onChange={handleChange} centered>
