@@ -21,14 +21,16 @@ const Chats = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const theme = useTheme();
 
-//    const {conversations} = useSelector((state) => state.direct_chat.conversations);
-  
-//     useEffect(() => {
-//         socket.emit("get_direct_conversations", {user_id}, (data) => {
-//             // data => list of conversations
+   const {conversations} = useSelector((state) => state.conversation.direct_chat);
 
-//         })
-//     }, []);
+   console.log(conversations);
+  
+    useEffect(() => {
+        socket.emit("get_direct_conversations", {user_id}, (data) => {
+            // data => list of conversations
+
+        })
+    }, []);
 
     const handleOpenDialog = () => {
         setOpenDialog(true);
@@ -114,9 +116,9 @@ const Chats = () => {
                     spacing={2}
                 >
                     
-                    <PinnedConversations chatType="Chat" />
+                    {/* <PinnedConversations chatType="Chat" /> */}
 
-                    <AllConversations chatType="Chat" />
+                    <AllConversations chatType="Chat" conversations={conversations} />
                 
                 </Stack>
             </Stack>

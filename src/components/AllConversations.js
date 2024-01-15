@@ -4,11 +4,9 @@ import ChatElement from './ChatElement';
 import { useTheme } from '@mui/material/styles';
 import { CallLogElement } from './CallElement';
 
-const AllConversations = ({chatType}) => {
+const AllConversations = ({chatType, conversations}) => {
 
-    const theme = useTheme();
-
-    
+    const theme = useTheme();    
 
   return (
     <Stack 
@@ -27,7 +25,7 @@ const AllConversations = ({chatType}) => {
                 switch (chatType) {
 
                     case "Chat":        
-                        return ChatList.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> ); 
+                        return conversations.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> ); 
 
                     case "Group": 
                         return ChatList.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> );      
