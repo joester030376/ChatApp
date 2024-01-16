@@ -10,7 +10,8 @@ const DashboardLayout = () => {
 
   const dispatch = useDispatch();
 
-  const {isLoggedIn} = useSelector((state) => state.auth);
+  // const {isLoggedIn} = useSelector((state) => state.auth);
+  const isLoggedIn = true;
 
   const user_id = window.localStorage.getItem("user_id");
 
