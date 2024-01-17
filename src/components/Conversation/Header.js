@@ -1,4 +1,4 @@
-import { VideoCamera, Phone, MagnifyingGlass, CaretDown} from "@phosphor-icons/react";
+import { VideoCamera, Phone, MagnifyingGlass, CaretDown, TextIndent} from "@phosphor-icons/react";
 import { Box, Stack, Badge, Avatar, Typography, IconButton, Divider} from "@mui/material";
 import { styled, useTheme } from '@mui/material/styles';
 import { faker } from "@faker-js/faker";
@@ -43,7 +43,7 @@ const Header = () => {
     <Box
             p={2}
             sx={{
-                height: 100,
+                height: 64,
                 width: "100%",
                 backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
                 boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
@@ -63,6 +63,9 @@ const Header = () => {
                     alignItems={"center"}
                     spacing={3}
                 >
+                    <IconButton>
+                        <TextIndent size={32} />
+                    </IconButton>
                     <StyledBadge
                     onClick={() => {
                         dispatch(ToggleSideBar())

@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { Box, Stack, Divider, Button, IconButton, Typography,  } from '@mui/material';
+import { Box, Stack, Divider, Button, IconButton, Typography } from '@mui/material';
 import { ArchiveBox } from 'phosphor-react';
 import { useTheme } from '@mui/material/styles';
 import PinnedConversations from '../../components/PinnedConversations';
@@ -10,6 +10,7 @@ import Friends from '../../sections/main/Friends';
 import { socket } from '../../utils/socket';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDirectConversations } from '../../redux/slices/conversation';
+import OnlineStatus from '../../components/OnlineStatus';
 
 
 const user_id = window.localStorage.getItem("user_id");
@@ -46,13 +47,14 @@ const Chats = () => {
         <Box 
             sx={{
                 position: "relative", 
-                width: 320,
+                height: "calc(100vh - 104px)",              
+                width: 400,
                 backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
                 boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
             }}
         >
 
-            <Stack p={3} spacing={2}  sx={{height: "100vh"}} >
+            <Stack p={3} spacing={2}  sx={{height: "calc(100vh - 64px)"}} >
             
             <Stack 
                     direction={"row"}
@@ -107,21 +109,29 @@ const Chats = () => {
                 </Stack>
                 <Stack
                     direction={"column"}
-                    sx={{
-                        flexGrow: 1,                    
-                        height: "100%",
-                        overflowX: "hidden",
-                        scrollbarColor: theme.palette.primary.dark,
-                    }}
-                    spacing={2}
+                    height={"calc(100vh - 64px)"}
                 >
-                    
-                    {/* <PinnedConversations chatType="Chat" /> */}
+                    <Stack
+                         sx={{
+                            flexGrow: 1,                    
+                            height: "75%",
+                            overflowX: "hidden",
+                            scrollbarColor: theme.palette.primary.dark,
+                        }}
+                        spacing={2}     
+                    >
+                        {/* <PinnedConversations chatType="Chat" /> */}
 
-                    <AllConversations chatType="Chat" conversations={conversations} />
-                
+                        <AllConversations chatType="Chat" conversations={conversations} />      
+
+                    </Stack>                    
                 </Stack>
+                <Stack>
+                    <OnlineStatus />
+                </Stack>
+                
             </Stack>
+            
         </Box>
 
         { openDialog && <Friends open={openDialog} handleClose={handleCloseDialog} />}

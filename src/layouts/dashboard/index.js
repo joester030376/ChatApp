@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { Stack } from "@mui/material";
+import { Stack, Box, Container} from "@mui/material";
 import { Navigate, Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { ShowSnackbar } from "../../redux/slices/app";
 import { socket, connectSocket } from '../../utils/socket';
+import PrimaryAppBar from "../../components/appbar/PrimaryAppbar";
 
 const DashboardLayout = () => {
 
@@ -57,10 +58,60 @@ const DashboardLayout = () => {
   }
 
   return (   
-    <Stack direction={"row"}>    
-      <SideBar />
-      <Outlet />
-    </Stack>   
+      <Box
+          width={"100%"}
+          height={"100vh"} 
+          sx={{
+            backgroundColor: "rgb(250, 250, 250)"
+          }}
+      >
+        <Stack
+          direction={"row"}          
+        >
+          <SideBar />
+          <Stack
+            direction={"column"}
+            width={"calc(100vw - 100px)"}
+          >
+            <Stack>
+              <PrimaryAppBar />
+            </Stack>
+            <Stack>
+              <Container
+                maxWidth={"xl"} 
+                sx={{
+                  padding: "20px"
+                }}
+              >
+                <Outlet />
+              </Container>
+            </Stack>
+          </Stack>
+        </Stack>
+
+
+
+
+
+
+      </Box>
+    //   width={}
+    //   direction={"row"}>    
+    //   <SideBar />     
+    //   <Stack 
+    //     direction={"column"}
+    //     height={"100vh"}
+    //     width={"100%"}
+    //   >
+    //     <Box>
+    //       <PrimaryAppBar />
+    //     </Box>
+    //     <Box>
+    //       <Outlet />
+    //     </Box>         
+    //   </Stack>
+     
+    // </Stack>   
   );
 };
 

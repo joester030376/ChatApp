@@ -1,6 +1,6 @@
 import Conversation from "../../components/Conversation";
 import Chats from "./Chats";
-import { Stack, Box, Typography } from '@mui/material';
+import { Stack, Box, Typography, Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Contact from "../../components/RightSideBar/Contact";
 import { useSelector } from "react-redux";
@@ -13,60 +13,62 @@ const GeneralApp = () => {
   const {sidebar, room_id, chat_type} = useSelector((store) => store.app); 
 
   return (
-    <Stack
-      direction={"row"}
-      sx={{
-        width: "100%"
-      }}
-    >
-      {/* Chats */}     
-      <Chats  />
-     
-      <Box
+      <Stack
+        direction={"row"}
+        height={"calc(100vh - 104px)"}
         sx={{
-          height: "100%",
-          width: sidebar.open ? "calc(100vw - 740px)" : "calc(100vw - 420px)",
-          backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
+          width: "100%",          
         }}
       >
-        {room_id !== null && chat_type === "individual" ? <Conversation /> :  
 
-          <Stack
-            spacing={2}
-            sx={{ height: "100%", width: "100%"}}
-            alignItems={"center"}
-            justifyContent={"center"}   
-          >
-            <NoChatSVG />
-              <Typography
-                variant="subtitle2"
-              >
-                  Select a conversation or start a new one
-              </Typography>
-          </Stack>
-        }
+      {/* Chats */}     
+        <Chats  />
+     
+        <Box
+          sx={{
+            height: "calc(100vh - 100px)",
+            width: sidebar.open ? "calc(100vw - 720px)" : "calc(100vw - 420px)",
+            backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
+          }}
+        >
+          {room_id !== null && chat_type === "individual" ? <Conversation /> :  
+
+            <Stack
+              spacing={2}
+              sx={{ height: "100%", width: "100%"}}
+              alignItems={"center"}
+              justifyContent={"center"}   
+            >
+              <NoChatSVG />
+                <Typography
+                  variant="subtitle2"
+                >
+                    Select a conversation or start a new one
+                </Typography>
+            </Stack>
+          }
         
-      </Box>
+        </Box>
 
-      {/* Contact */}
-      {sidebar.open && (() => {
-        switch (sidebar.type) {
-          case "CONTACT":            
-            return <Contact />;
-                      
-          case "STARRED":
+        {/* Contact */}
+        {sidebar.open && (() => {
+          switch (sidebar.type) {
+            case "CONTACT":            
+              return <Contact />;
+                        
+            case "STARRED":
 
-            return <StarredMessages />
-          
-          case "SHARED":
+              return <StarredMessages />
+            
+            case "SHARED":
 
-            return <SharedMessages />;
+              return <SharedMessages />;
 
-          default: 
-            break;
-        }
+            default: 
+              break;
+          }
 
-      })()}
+        })()}
       
     </Stack>
   );

@@ -75,7 +75,7 @@ const Contact = () => {
     }
 
   return (
-    <Box sx={{width: 320, height: "100vh"}}>
+    <Box sx={{width: 320, height: "calc(100vh - 64px)"}}>
         <Stack
             sx={{
                 height: "100%"

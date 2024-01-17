@@ -25,7 +25,7 @@ const AllConversations = ({chatType, conversations}) => {
                 switch (chatType) {
 
                     case "Chat":        
-                        return conversations.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> ); 
+                        return ChatList.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> ); 
 
                     case "Group": 
                         return ChatList.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> );      
