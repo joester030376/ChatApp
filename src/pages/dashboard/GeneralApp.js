@@ -13,18 +13,23 @@ const GeneralApp = () => {
   const {sidebar, room_id, chat_type} = useSelector((store) => store.app); 
 
   return (
-      <Stack
-        direction={"row"}
-        height={"calc(100vh - 104px)"}
-        sx={{
-          width: "100%",          
-        }}
+      <Box
+        width={"100%"}
+        height={"100%"}        
+      >
+          <Stack
+            direction={"row"}
+            height={"100%"}
+            sx={{
+              width: "320px",
+              border: "1px solid black"       
+          }}
       >
 
-      {/* Chats */}     
-        <Chats  />
+         
+        {/* <Chats  /> */}
      
-        <Box
+      {/*  <Box
           sx={{
             height: "calc(100vh - 100px)",
             width: sidebar.open ? "calc(100vw - 720px)" : "calc(100vw - 420px)",
@@ -51,7 +56,7 @@ const GeneralApp = () => {
         </Box>
 
         {/* Contact */}
-        {sidebar.open && (() => {
+        {/* {sidebar.open && (() => {
           switch (sidebar.type) {
             case "CONTACT":            
               return <Contact />;
@@ -68,9 +73,13 @@ const GeneralApp = () => {
               break;
           }
 
-        })()}
+        })()} */} 
       
     </Stack>
+
+
+
+      </Box>
   );
 };
 
