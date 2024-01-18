@@ -106,7 +106,7 @@ const SideBar = () => {
             backgroundColor: theme.palette.background.paper,
             boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)",
             height: "100vh",
-            width: 100,
+            width: 60,
           }}
         >
             <Stack 
@@ -121,8 +121,8 @@ const SideBar = () => {
                     
                     sx={{
                       backgroundColor: theme.palette.primary.main,
-                      height: 64,
-                      width: 64,
+                      height: 50,
+                      width: 50,
                       borderRadius: 1.5,
                     }}>
                     <img 
@@ -139,7 +139,7 @@ const SideBar = () => {
                     el.index === selected ?
                     <Box
                     key={el.index}
-                      p={1}
+                      p={0.5}
                       sx={{
                         backgroundColor: theme.palette.primary.main,
                         borderRadius: 1.5
@@ -176,7 +176,7 @@ const SideBar = () => {
                   <Divider flexItem />   
                   { selected === 4 ? 
                     <Box
-                      p={1}
+                       p={0.5}
                       sx={{                     
                         backgroundColor: theme.palette.primary.main,
                         borderRadius: 1.5

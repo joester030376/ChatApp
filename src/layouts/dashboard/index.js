@@ -62,56 +62,44 @@ const DashboardLayout = () => {
           width={"100%"}
           height={"100vh"} 
           sx={{
-            backgroundColor: "rgb(250, 250, 250)"
+            backgroundColor: "rgb(250, 250, 250)",             
           }}
       >
         <Stack
-          direction={"row"}          
+            direction={"row"}  
         >
-          <SideBar />
-          <Stack
-            direction={"column"}
-            width={"calc(100vw - 100px)"}
-          >
-            <Stack>
-              <PrimaryAppBar />
+            <Stack width={"60px"} height={"100vh"}>
+                <SideBar />
             </Stack>
-            <Stack>
-              <Container
-                maxWidth={"xl"} 
-                sx={{
-                  padding: "20px"
-                }}
-              >
-                <Outlet />
-              </Container>
+            <Stack
+                direction={"column"}
+            >
+                <Box
+                  width={"calc(100vw - 60px)"}
+                  height={"60px"}                  
+                >
+                    <PrimaryAppBar />
+                </Box>
+                <Container
+                  maxWidth="xl"                           
+                >
+                    <Box sx={{padding: "20px", height: 'calc(100vh - 60px)'}}>
+                        <Box                    
+                          height={"100%"}
+                          width={"100%"}
+                          sx={{
+                            border: "1px solid black",
+                          }}
+                        >
+                          <Outlet />
+                        </Box>
+                    </Box>
+                </Container>
             </Stack>
-          </Stack>
         </Stack>
-
-
-
-
-
-
+       
       </Box>
-    //   width={}
-    //   direction={"row"}>    
-    //   <SideBar />     
-    //   <Stack 
-    //     direction={"column"}
-    //     height={"100vh"}
-    //     width={"100%"}
-    //   >
-    //     <Box>
-    //       <PrimaryAppBar />
-    //     </Box>
-    //     <Box>
-    //       <Outlet />
-    //     </Box>         
-    //   </Stack>
-     
-    // </Stack>   
+    
   );
 };
 

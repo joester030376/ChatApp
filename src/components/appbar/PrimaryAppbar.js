@@ -166,8 +166,8 @@ const PrimaryAppBar = () => {
   );
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <AppBar position="static" color='transparent' >
+    <Box sx={{ width: "100%"}}>
+      <AppBar position="static" color='transparent' sx={{height: "60px"}} >
         <Toolbar>
           <IconButton
             size="large"
