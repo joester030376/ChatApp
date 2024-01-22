@@ -15,48 +15,63 @@ const GeneralApp = () => {
   return (
       <Box
         width={"100%"}
-        height={"100%"}        
+        height={"100%"} 
+        sx={{
+          border: "1px solid red"
+        }}       
       >
           <Stack
             direction={"row"}
-            height={"100%"}
-            sx={{
-              width: "320px",
-              border: "1px solid black"       
-          }}
-      >
-
-         
-        {/* <Chats  /> */}
-     
-      {/*  <Box
-          sx={{
-            height: "calc(100vh - 100px)",
-            width: sidebar.open ? "calc(100vw - 720px)" : "calc(100vw - 420px)",
-            backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
-          }}
-        >
-          {room_id !== null && chat_type === "individual" ? <Conversation /> :  
-
-            <Stack
-              spacing={2}
-              sx={{ height: "100%", width: "100%"}}
-              alignItems={"center"}
-              justifyContent={"center"}   
-            >
-              <NoChatSVG />
-                <Typography
-                  variant="subtitle2"
-                >
-                    Select a conversation or start a new one
-                </Typography>
-            </Stack>
-          }
+            height={"inherit"}
+          >
+              <Stack
+                  direction={"row"}
+                  height={"100%"}
+                  sx={{
+                  width: "320px",
+                  border: "1px solid black"       
+                }}
+              >
         
-        </Box>
+                  <Chats  />
+              </Stack>
+              <Stack
+                width={"100%"}
+              >
+                <Box
+                    sx={{
+                      height: "calc(100vh - 100px)",
+                      //width: sidebar.open ? "calc(100vw - 720px)" : "calc(100vw - 420px)",
+                      width: sidebar.open ? "calc(100%)" : "100%",
+                      backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
+                    }}
+                >
+                  {room_id !== null && chat_type === "individual" ? <Conversation /> :  
 
-        {/* Contact */}
-        {/* {sidebar.open && (() => {
+                    <Stack
+                      spacing={2}
+                      sx={{ height: "100%", width: "100%"}}
+                      alignItems={"center"}
+                      justifyContent={"center"}   
+                    >
+                      <NoChatSVG />
+                        <Typography
+                          variant="subtitle2"
+                        >
+                            Select a conversation or start a new one
+                        </Typography>
+                    </Stack>
+                  }                
+                </Box>
+            </Stack>
+            <Box 
+              width={320}
+              sx={{
+                display: sidebar.open ? "block" : "none"
+              }}
+            >
+                
+                {sidebar.open && (() => {
           switch (sidebar.type) {
             case "CONTACT":            
               return <Contact />;
@@ -73,12 +88,41 @@ const GeneralApp = () => {
               break;
           }
 
-        })()} */} 
+        })()}
+            
+            
+            
+            
+            
+            </Box>
+
+        {/* Contact */}
+       {/*  {sidebar.open && (() => {
+          switch (sidebar.type) {
+            case "CONTACT":            
+              return <Contact />;
+                        
+            case "STARRED":
+
+              return <StarredMessages />
+            
+            case "SHARED":
+
+              return <SharedMessages />;
+
+            default: 
+              break;
+          }
+
+        })()} */}
       
     </Stack>
 
 
 
+
+
+         
       </Box>
   );
 };

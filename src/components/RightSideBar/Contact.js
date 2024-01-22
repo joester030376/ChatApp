@@ -75,7 +75,10 @@ const Contact = () => {
     }
 
   return (
-    <Box sx={{width: 320, height: "calc(100vh - 64px)"}}>
+    <Box
+        height={"inherit"} 
+        width={"inherit"}       
+    >
         <Stack
             sx={{
                 height: "100%"
@@ -89,7 +92,7 @@ const Contact = () => {
                 p={3}
                 spacing={3}
                 sx={{
-                    height: "100%",
+                    height: "inherit",
                     position: "relative",
                     flexGrow: 1,
                     overflowY: "scroll"

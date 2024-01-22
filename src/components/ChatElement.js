@@ -3,6 +3,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import StyledBadge from '../components/StyledBadge';
 import { useDispatch } from 'react-redux';
 import { SelectConversation } from '../redux/slices/app';
+import { faker } from '@faker-js/faker';
 
 const ChatElement = ({id, name, img, msg, time, unread, online}) => {
 
@@ -10,70 +11,54 @@ const ChatElement = ({id, name, img, msg, time, unread, online}) => {
 
     const theme = useTheme();
     return (
-        <Box 
+        <Box
             onClick={() => {
                 dispatch(SelectConversation({room_id: id}));
             }}
+            width={"100%"}                       
+            p={1.5}
             sx={{
-                width: "100%",
-                borderRadius: 1,
-                backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,                
+                borderBottom: "1px solid rgba(145, 158, 171, 0.24)"
             }}
-            p={2}
-        >     
+        >
             <Stack
                 direction={"row"}
-                spacing={2}
-                alignItems={"center"}
                 justifyContent={"space-between"}
-            > 
-                    <Stack
-                        direction={"row"}
-                        spacing={2}
-                        alignItems={"center"}
-                        justifyContent={"space-between"}                        
-                    >
-                        <Stack>
-                            <StyledBadge
-                                overlap="circular"
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}  
-                                variant={online ? "dot" : ""}                          
-                            >
-                                <Avatar src={img}    />   
-                            </StyledBadge>      
-                        </Stack>  
-                        <Stack
-                            spacing={0.3}
-                            direction={"column"}
-                        >
-                            <Typography variant='subtitle2'>
-                                {name}
-                            </Typography>
-                            <Typography variant='caption'>
-                                {msg}
-                            </Typography>    
-                        </Stack>                  
-                    </Stack> 
+            >
                 <Stack
-                    spacing={2}
+                    direction="row"
                     alignItems={"center"}
+                    spacing={1}
                 >
-                    <Typography
-                        sx={{
-                            fontWeight: 600
-                        }}
-                        variant='caption'
+                    <StyledBadge
+                        overlap="circular"
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}  
+                        variant={online ? "dot" : ""}                          
                     >
-                        {time}
-                    </Typography>
-                    <Badge
-                        color="primary" 
-                        badgeContent={unread}
-                    />                    
+                        <Avatar src={img} alt={faker.name.fullName()} />   
+                    </StyledBadge>      
+                    <Stack
+                        direction={"column"}                                                                 
+                    >
+                        <Typography variant='subtitle2'>{name}</Typography>
+                        <Typography variant='caption'>{msg}</Typography>
+                    </Stack>
                 </Stack>
-            </Stack>
+                <Stack
+                    direction={"column"}
+                    alignItems={"center"}
+                    spacing={1.5}
+                >
+                    <Typography variant='caption'>{time}</Typography>
+                        <Badge
+                            color="primary" 
+                            badgeContent={unread}
+                        />  
+                </Stack>
+             </Stack>
         </Box>
     )
 }
 
 export default ChatElement;
+

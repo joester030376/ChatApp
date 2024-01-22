@@ -5,11 +5,14 @@ const initialState = {
   sidebar: {
     open: false,
     type: "CONTACT", // can be CONTACT, STARRED, SHARED
-  },
+  },  
   snackbar: {
     open: null,
     message: null,
     severity: null,
+  },
+  sidenav: { 
+    open: false,
   },
   users: [],
   friends: [],
@@ -25,6 +28,9 @@ const slice = createSlice({
     // Toggle Sidebar
     toggleSideBar(state, action) {
       state.sidebar.open = !state.sidebar.open;
+    },
+    toggleSideNav(state, action) {
+      state.sidenav.open = !state.sidenav.open;
     },
     updateSideBarType(state, action) {
       state.sidebar.type = action.payload.type;
@@ -61,6 +67,12 @@ export default slice.reducer;
 export function ToggleSideBar() {
   return async (dispatch) => {
     dispatch(slice.actions.toggleSideBar());
+  };
+}
+
+export function ToggleSideNavBar() {
+  return async (dispatch) => {
+    dispatch(slice.actions.toggleSideNav());
   };
 }
 

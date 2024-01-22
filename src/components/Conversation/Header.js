@@ -62,14 +62,11 @@ const Header = () => {
                     direction={"row"}
                     alignItems={"center"}
                     spacing={3}
-                >
-                    <IconButton>
-                        <TextIndent size={32} />
-                    </IconButton>
+                >                   
                     <StyledBadge
-                    onClick={() => {
-                        dispatch(ToggleSideBar())
-                    }}
+                        onClick={() => {
+                            dispatch(ToggleSideBar())
+                        }}
                         overlap="circular"
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                         variant="dot"

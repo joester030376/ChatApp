@@ -32,25 +32,25 @@ const Profile_Menu = [
 const Nav_Buttons = [
   {
     index: 0,
-    icon: <ChatCircleDots />,
+    icon: <ChatCircleDots size={24} />,
     route: "/app",
     title: "Chats"    
   },
   {
     index: 1,
-    icon: <Users />,
+    icon: <Users size={24} />,
     route: "/group",
     title: "Group Chats" 
   },
   {
     index: 2,
-    icon: <Phone />,
+    icon: <Phone size={24} />,
     route: "/call",
     title: "Voice and Video Calling" 
   },
   {
     index: 3,
-    icon: <AdminPanelSettingsOutlinedIcon />,
+    icon: <AdminPanelSettingsOutlinedIcon  size={32}/>,
     route: "/admin",
     title: "Admin"
   },
@@ -59,7 +59,7 @@ const Nav_Buttons = [
 const Nav_Setting = [
   {
     index: 3,
-    icon: <GearSix />,
+    icon: <GearSix  size={32}/>,
   },
 ];
 
@@ -135,7 +135,7 @@ const ChatList = [
     online: true,
   },
   {
-    id: 0,
+    id: 7,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
     msg: faker.music.songName(),
@@ -145,13 +145,43 @@ const ChatList = [
     online: true,
   },
   {
-    id: 0,
+    id: 8,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
     msg: faker.music.songName(),
     time: "9:36",
     unread: 0,
     pinned: true,
+    online: true,
+  },
+  {
+    id: 9,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    msg: faker.music.songName(),
+    time: "10:35",
+    unread: 3,
+    pinned: false,
+    online: true,
+  },
+  {
+    id: 10,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    msg: faker.music.songName(),
+    time: "10:35",
+    unread: 3,
+    pinned: false,
+    online: true,
+  },
+  {
+    id: 11,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    msg: faker.music.songName(),
+    time: "10:35",
+    unread: 3,
+    pinned: false,
     online: true,
   },
 ];

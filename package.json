@@ -1,8 +1,7 @@
 {
   "name": "chat",
   "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:3001",
+  "private": true,  
   "dependencies": {
     "@emoji-mart/data": "^1.0.6",
     "@emoji-mart/react": "^1.0.1",
