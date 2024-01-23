@@ -15,10 +15,7 @@ const GeneralApp = () => {
   return (
       <Box
         width={"100%"}
-        height={"100%"} 
-        sx={{
-          border: "1px solid red"
-        }}       
+        height={"100%"}       
       >
           <Stack
             direction={"row"}
@@ -36,13 +33,12 @@ const GeneralApp = () => {
                   <Chats  />
               </Stack>
               <Stack
-                width={"100%"}
+                width={"100%"}                
               >
                 <Box
                     sx={{
                       height: "calc(100vh - 100px)",
-                      //width: sidebar.open ? "calc(100vw - 720px)" : "calc(100vw - 420px)",
-                      width: sidebar.open ? "calc(100%)" : "100%",
+                      width: "100%",                      
                       backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
                     }}
                 >
@@ -64,67 +60,39 @@ const GeneralApp = () => {
                   }                
                 </Box>
             </Stack>
-            <Box 
-              width={320}
-              sx={{
-                display: sidebar.open ? "block" : "none"
-              }}
-            >
-                
-                {sidebar.open && (() => {
-          switch (sidebar.type) {
-            case "CONTACT":            
-              return <Contact />;
+            <Stack
+                  direction={"row"}
+                  height={"100%"}                  
+              >
+                  <Box
+                      sx={{
+                        display: sidebar.open ? "block" : "none"
+                      }}
+                  >
+                      {sidebar.open && (() => {
+                        switch (sidebar.type) {
+                          case "CONTACT":            
+                            return <Contact />;
                         
-            case "STARRED":
-
-              return <StarredMessages />
+                          case "STARRED":
+                            return <StarredMessages />
             
-            case "SHARED":
+                          case "SHARED":
+                            return <SharedMessages />;
 
-              return <SharedMessages />;
-
-            default: 
-              break;
-          }
-
-        })()}
-            
-            
-            
-            
-            
-            </Box>
-
-        {/* Contact */}
-       {/*  {sidebar.open && (() => {
-          switch (sidebar.type) {
-            case "CONTACT":            
-              return <Contact />;
-                        
-            case "STARRED":
-
-              return <StarredMessages />
-            
-            case "SHARED":
-
-              return <SharedMessages />;
-
-            default: 
-              break;
-          }
-
-        })()} */}
-      
-    </Stack>
-
-
-
-
-
-         
-      </Box>
+                          default: 
+                            break;
+                        }
+                    })()}
+                  </Box>   
+              </Stack>
+            </Stack>
+          </Box>
   );
 };
 
 export default GeneralApp;
+
+
+                  
+        

@@ -53,7 +53,7 @@ const Chats = () => {
                 boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
             }}
         >
-            <Stack p={3} spacing={2}  sx={{height: "100%", border: "1px solid black"}} >
+            <Stack p={3} spacing={2}  sx={{height: "100%"}} >
                 <Stack 
                     direction={"column"}
                     width={"100%"}  

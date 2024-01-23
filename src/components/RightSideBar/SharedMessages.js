@@ -6,48 +6,58 @@ import { useState } from 'react';
 import { faker } from '@faker-js/faker';
 import { SHARED_DOCUMENTS, SHARED_LINKS } from '../../data';
 import { DocMsg, LinkMsg } from '../Conversation/MsgTypes';
+import { useTheme } from '@mui/material/styles';
 
 
 
 const SharedMessages = () => {    
 
     const [value, setValue] = useState(0);
+    const theme = useTheme();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
     return (
-        <Box sx={{width: 320, height: "100vh"}}>
-            <Stack
-                sx={{
-                    height: "100%"
-                }}
-            >   
-                {/* Header */}
-                <Header />
+        <Box
+            sx={{
+                position: "relative", 
+                height: "100%",              
+                width: 320,
+                backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,               
+            }}
+        >
 
-                <Tabs value={value} onChange={handleChange} centered>
-                    <Tab label="Media" />
-                    <Tab label="Links" />
-                    <Tab label="Docs" />
-                </Tabs>
-           
-                {/* Body */}
-                <Stack
+        <Header />
+
+        <Stack
+            p={1}
+            direction={"column"}
+            width={"100%"}             
+            spacing={2}  
+            sx={{
+                height: "calc(100% - 64px)",
+                overflowY: "scroll",
+                overflowX: "hidden",
+                scrollbarWidth: "thin",
+                scrollbarColor: theme.palette.primary.dark,
+            }}  
+        >
+            <Tabs value={value} onChange={handleChange} centered>
+                <Tab label="Media" />
+                <Tab label="Links" />
+                <Tab label="Docs" />
+            </Tabs>
+
+            <Stack
                 alignItems={"center"}
                     p={3}
                     spacing={value === 1 ? 1 : 3}                    
                     sx={{
-                        height: "100%",
-                        position: "relative",
-                        flexGrow: 1,
-                        overflowY: "scroll",
-                        overflowX: "hidden"                        
+                        height: "100%",                                             
                     }}
                 >
-
-        
 {(() => {
 
     switch (value) {
@@ -82,14 +92,15 @@ const SharedMessages = () => {
 
 
 })()}
-                   
 
-                    
-                    
-                </Stack>
+
+
+
+
+                </Stack>             
         </Stack>        
     </Box>
-      )
+    )
 }
 
 export default SharedMessages;

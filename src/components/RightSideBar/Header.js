@@ -17,8 +17,8 @@ const Header = ({SidebarHeaderTitle}) => {
             sx={{
                 height: 64,
                 width: "100%",
-                backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
-                boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
+                backgroundColor: theme.palette.mode === "light" ? "rgb(50, 143, 168)" : "rgb(30, 30, 30)",
+                borderBottom: "1px solid rgba(145, 158, 171, 0.24)"
             }}
         >
             <Stack                
@@ -40,7 +40,7 @@ const Header = ({SidebarHeaderTitle}) => {
                             dispatch(ToggleSideBar());
                         }}
                     >
-                        <XCircle size={24}  />
+                        <XCircle size={24} color={theme.palette.mode === 'light' ? "#000" : "#fff"}  />
                     </IconButton>        
                 </>
             ) : (

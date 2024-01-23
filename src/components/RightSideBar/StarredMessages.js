@@ -9,35 +9,33 @@ const StarredMessages = () => {
     const dispatch = useDispatch(); 
 
     return (    
-      
-      <Box sx={{width: 320, height: "100vh"}}>
-      <Stack
+      <Box
           sx={{
-              height: "100%"
+            position: "relative", 
+            height: "100%",              
+            width: 320,
+            backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,               
           }}
-      >   
-          {/* Header */}
-          <Header />
-         
-          {/* Body */}
-          <Stack
-              p={3}
-              spacing={3}                    
-              sx={{
-                  height: "100%",
-                  position: "relative",
-                  flexGrow: 1,
-                  overflowY: "scroll",
-                  overflowX: "hidden"
-              }}
-          >
-            <Message />
+      >
 
-                
-          </Stack>  
-        </Stack>
+        <Header />
+
+        <Stack
+            p={1}
+            direction={"column"}
+            width={"100%"}             
+            spacing={2}  
+            sx={{
+                height: "calc(100% - 64px)",
+                overflowY: "scroll",
+                overflowX: "hidden",
+                scrollbarWidth: "thin",
+                scrollbarColor: theme.palette.primary.dark,
+            }}  
+        >          
+            <Message />
+        </Stack>        
     </Box>
-   
     )
 }
 

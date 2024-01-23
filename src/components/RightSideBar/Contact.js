@@ -6,6 +6,8 @@ import { faker } from "@faker-js/faker";
 import { VideoCamera, Phone, CaretRight, Star, Bell, Flag, Trash} from '@phosphor-icons/react';
 import AntSwitch from '../AntSwitch';
 import { UpdateSidebarType } from "../../redux/slices/app";
+import { useTheme } from '@mui/material/styles';
+
 
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -64,6 +66,7 @@ const Contact = () => {
 
     const [openBlock, setOpenBlock] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
+    const theme = useTheme();
     
     const dispatch = useDispatch();
 
@@ -76,110 +79,101 @@ const Contact = () => {
 
   return (
     <Box
-        height={"inherit"} 
-        width={"inherit"}       
+        sx={{
+            position: "relative", 
+            height: "100%",              
+            width: 320,
+            backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,               
+        }}
     >
-        <Stack
-            sx={{
-                height: "100%"
-            }}
-        >   
-        {/* Header */}
+
         <Header />
-           
-            {/* Body */}
+
+        <Stack
+            p={1}
+            direction={"column"}
+            width={"100%"}             
+            spacing={2}  
+            sx={{
+                height: "calc(100% - 64px)",
+                overflowY: "scroll",
+                overflowX: "hidden",
+                scrollbarWidth: "thin",
+                scrollbarColor: theme.palette.primary.dark,
+            }}  
+        >
             <Stack
+                direction={"row"}
                 p={3}
                 spacing={3}
-                sx={{
-                    height: "inherit",
-                    position: "relative",
-                    flexGrow: 1,
-                    overflowY: "scroll"
-                }}
             >
-                    <Stack
-                        alignItems={"center"}
-                        direction={"row"}
-                        spacing={2}
-                    >   
-                        <Avatar src={faker.image.avatar()} alt={faker.name.firstName()} sx={{height: 64, width: 64}}/>
-                        <Stack 
-                            direction={"column"}
-                            spacing={0.5}
-                        >
-                            <Typography variant="article" fontWeight={600}>
-                                {faker.name.fullName()}
-                            </Typography>
-                            <Typography variant="body2" fontWeight={500}>
-                                {faker.phone.number()}
-                            </Typography>
-                        </Stack> 
-                    </Stack>
-                    <Stack
-                        direction={"row"}
-                        alignItems={"center"}
-                        justifyContent={"space-evenly"}
+                <Avatar src={faker.image.avatar()} alt={faker.name.fullName()} sx={{height: 64, width: 64}} />
+
+                <Stack
+                    direction={"column"}               
+                    spacing={2}
+                >
+                    <Typography variant="article">{faker.name.fullName()}</Typography>
+                    <Typography variant="body2">{faker.phone.number()}</Typography>
+                </Stack>
+            </Stack>
+            <Stack
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"space-evenly"}
+            >
+                <Stack
+                    direction={"column"}    
+                    p={1}
+                    alignItems={"center"}   
+                >
+                    <IconButton>
+                        <VideoCamera size={32} />
+                    </IconButton>
+                    <Typography variant="overline">Audio</Typography>
+                </Stack>
+                <Stack
+                    direction={"column"}   
+                    p={1}  
+                    alignItems={"center"}           
+                >
+                    <IconButton>
+                        <Phone size={32} />
+                    </IconButton>
+                    <Typography variant="overline">Phone</Typography>
+                </Stack>               
+            </Stack>
+            <Divider />
+            <Stack
+                direction={"column"}
+                p={2}
+                spacing={1}
+            >
+                <Typography variant="article">About</Typography>
+                <Typography variant="body2">Hi, this is Joe.</Typography>
+            </Stack>
+            <Divider />
+            <Stack
+                direction={"column"}
+                spacing={3}
+                p={2}
+            >
+                <Stack
+                    direction={"row"}
+                    justifyContent={"space-between"}
+                    alignItems={"center"}
+                >
+                    <Typography variant="subtitle1">Media, Links and Docs</Typography>
+                    <Button 
+                        endIcon={<CaretRight />} 
+                        onClick={() => {
+                            dispatch(UpdateSidebarType("SHARED"));
+                        }}
                     >
-                        <Stack
-                            spacing={1}
-                            alignItems={"center"}
-                        >
-                            <IconButton>
-                                <VideoCamera />
-                            </IconButton>
-                            <Typography variant="overLine">
-                                Video
-                            </Typography>
-
-                        </Stack>
-                        <Stack
-                            spacing={1}
-                            alignItems={"center"}
-                        >
-                            <IconButton>
-                                <Phone />
-                            </IconButton>
-                            <Typography variant="overLine">
-                                Voice
-                            </Typography>
-                        </Stack> 
-                    </Stack>
-
-                    <Divider />
-
-                    <Stack
-                        spacing={0.5}
-                    >
-                        <Typography variant="article">
-                                About
-                        </Typography>
-                        <Typography variant="body2">
-                                Hi, this is Joe.
-                        </Typography>
-                    </Stack>
-
-                    <Divider />
-
-                    <Stack
-                        direction={"row"}
-                        justifyContent={"space-between"}                        
-                        alignItems={"center"}
-                    >
-                        <Typography variant="subtitle1">
-                            Media, links and docs
-                        </Typography>                                    
-                            <Button 
-                                endIcon={<CaretRight />} 
-                                onClick={() => {
-                                    dispatch(UpdateSidebarType("SHARED"));
-
-                                }}
-                            >
-                                201
-                            </Button>
-                    </Stack>
-                    <Stack
+                        201
+                    </Button>                    
+                </Stack>
+                <Stack
                         direction={"row"}
                         spacing={2}
                         alignItems={"center"}
@@ -190,27 +184,25 @@ const Contact = () => {
                                 <img src={faker.image.food()} alt={faker.name.fullName()} />
                             </Box>
                         ))}
-                    </Stack>
-
-                    <Divider />
-
-                    <Stack
-                        direction={"row"}
-                        alignItems={"center"}
-                        justifyContent={"space-between"}
-                        spacing={2}                                   
-                    >
-                        <Stack
-                            direction={"row"}
-                            alignItems={"center"}
-                            spacing={1}
-                        >
-                            <Star size={24} color="grey"/>
-                            <Typography variant="subtitle2">
-                                Starred Messages
-                            </Typography>  
-                        </Stack>  
-                        
+                </Stack>
+            </Stack>
+            <Divider />
+            <Stack
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"space-between"}                                               
+            >
+                <Stack
+                    direction={"row"}
+                    alignItems={"center"}
+                    spacing={1}
+                    p={2}
+                >
+                    <Star size={24} color="grey"/>
+                        <Typography variant="subtitle2">
+                            Starred Messages
+                        </Typography>  
+                    </Stack>                          
                         <IconButton
                             onClick={() => {
                                 dispatch(UpdateSidebarType("STARRED"))
@@ -218,63 +210,49 @@ const Contact = () => {
                         >
                             <CaretRight size={18}/>
                         </IconButton>
-
-                    </Stack>
-
-                    <Divider />
-                    
+                </Stack>
+                <Divider />
+                <Stack
+                    direction={"row"}
+                    alignItems={"center"}
+                    justifyContent={"space-between"}
+                >
                     <Stack
                         direction={"row"}
                         alignItems={"center"}
-                        justifyContent={"space-between"}
-                        spacing={2}                                   
+                        spacing={1}
+                        p={2}
                     >
-                        <Stack
-                            direction={"row"}
-                            alignItems={"center"}
-                            spacing={1}
-                        >
-                            <Bell size={24} color="grey"/>
-                            <Typography variant="subtitle2">
-                               Mute Notifications
-                            </Typography>  
-                        </Stack>  
-                        
-                        <IconButton>
-                            <AntSwitch />
-                        </IconButton>
-
-                    </Stack>
-
-                    <Divider />
-
-                    <Stack
-                        direction={"column"}                        
-                        spacing={2}                    
-                    >
-                        <Typography variant="caption">
-                            1 group in common
-                        </Typography>
-                        <Stack
-                            direction={"row"}
-                            spacing={2}
-                            alignItems={"center"}
-                        >
-                            <Avatar src={faker.image.avatar()} alt={faker.name.fullName()} />
-                            <Stack 
-                                direction={"column"}     
-                                spacing={0.5}                           
-                            >
-                                <Typography variant="article">
-                                    Camel's Gang
-                                </Typography>
-                                <Typography variant="caption">
-                                    Owl, Parrot, Rabbit, You
-                                </Typography>
-                            </Stack>
-                        </Stack>
-                    </Stack>
+                        <Bell size={24} color="grey"/>
+                        <Typography variant="subtitle2">
+                            Mute Notifications
+                        </Typography>  
+                    </Stack>                          
+                    <IconButton>
+                        <AntSwitch />
+                    </IconButton>
+                </Stack>
+                <Divider />
+                <Stack
+                    direction={"row"}
+                    spacing={2}
+                    alignItems={"center"}
+                    p={3}                    
+                >
+                    <Avatar src={faker.image.avatar()} alt={faker.name.fullName()} />
                     <Stack 
+                        direction={"column"}     
+                        spacing={0.5}                           
+                    >
+                        <Typography variant="article">
+                            Camel's Gang
+                        </Typography>
+                        <Typography variant="caption">
+                            Owl, Parrot, Rabbit, You
+                        </Typography>
+                    </Stack>
+                </Stack>
+                <Stack 
                         direction={"row"}
                         spacing={2}
                         alignItems={"center"}
@@ -299,8 +277,7 @@ const Contact = () => {
                         >
                             Delete
                         </Button>
-                    </Stack>
-                </Stack>
+                    </Stack>                                   
         </Stack>
         {openBlock && <BlockDialog open={openBlock} handleClose={handleCloseBlock} />}
         {openDelete && <DeleteDialog open={openDelete} handleClose={handleDeleteBlock} />}
