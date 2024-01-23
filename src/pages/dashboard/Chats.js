@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
-import { Box, Stack, Divider, Button, IconButton, Typography, Avatar, Badge} from '@mui/material';
+import { Box, Stack, Divider, Button, IconButton, Typography, Avatar, Badge, Tabs, Tab, Tooltip} from '@mui/material';
 import { ArchiveBox } from 'phosphor-react';
 import { useTheme } from '@mui/material/styles';
 // import PinnedConversations from '../../components/PinnedConversations';
 import AllConversations from '../../components/AllConversations';
-import { Users, CircleDashed, MagnifyingGlass } from '@phosphor-icons/react';
+import { Users, CircleDashed, MagnifyingGlass, Chat, UsersThree, Phone } from '@phosphor-icons/react';
 import Friends from '../../sections/main/Friends';
 import { socket } from '../../utils/socket';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,11 +13,14 @@ import { Search, SearchIconWrapper, StyledInputBase } from '../../components/Sea
 import SearchIcon from '@mui/icons-material/Search';
 import { faker } from '@faker-js/faker';
 import StyledBadge from '../../components/StyledBadge';
+import PhoneIcon from '@mui/icons-material/Phone';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
 
 const user_id = window.localStorage.getItem("user_id");
 
 const Chats = () => {
-
+    const [value, setValue] = useState(0);
     const dispatch = useDispatch();
 
     const [openDialog, setOpenDialog] = useState(false);
@@ -39,6 +42,10 @@ const Chats = () => {
 
     const handleCloseDialog = () => {
         setOpenDialog(false);
+    };
+    
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
 
   return (
@@ -92,6 +99,19 @@ const Chats = () => {
                         </Search> 
                     </Stack>
                     <Divider />
+                    <Stack>
+                        <Tabs value={value} onChange={handleChange} aria-label="icon tabs example" centered>
+                            <Tooltip title="Messages">
+                                <Tab icon={<Chat size={32} />} aria-label="phone" />
+                            </Tooltip>
+                            <Tooltip title="Group Chat">
+                                <Tab icon={<UsersThree size={32} />} aria-label="phone" />
+                            </Tooltip>
+                            <Tooltip title="Voice and Video">
+                                <Tab icon={<Phone size={32} />} aria-label="phone" />
+                            </Tooltip>
+                        </Tabs>
+                    </Stack>
                 </Stack>
                 <Stack
                     direction={"column"}
@@ -104,7 +124,20 @@ const Chats = () => {
                         scrollbarColor: theme.palette.primary.dark,
                     }}  
                 >
-                     <AllConversations chatType="Chat" />     
+                    {(() => {
+                        switch (value) {
+                            case 0:
+                                return <AllConversations chatType="Chat" /> 
+                            case 1: 
+                                return <AllConversations chatType="Group" />           
+                                    
+                            case 2: 
+                                return <AllConversations chatType="Call" />; 
+                                            
+                            default: 
+                                break;
+                        }
+                    })()}
                 </Stack>
             </Stack>
             
@@ -118,6 +151,9 @@ const Chats = () => {
 }
 
 export default Chats;
+
+
+//  <AllConversations chatType="Chat" />  
 
 {/* <Stack 
 direction={"row"}

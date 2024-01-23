@@ -34,7 +34,7 @@ const Nav_Buttons = [
     index: 0,
     icon: <ChatCircleDots size={24} />,
     route: "/app",
-    title: "Chats"    
+    title: "Chats",
   },
   {
     index: 1,
