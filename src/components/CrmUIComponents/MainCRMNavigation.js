@@ -23,6 +23,7 @@ import { ToggleSideNavBar } from '../../redux/slices/app';
 import { useDispatch } from 'react-redux';
 import MainAppBarAvatar from '../CrmUIComponents/MainAppBarAvatar';
 import { Search, SearchIconWrapper, StyledInputBase } from '../Search';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 300;
 
@@ -92,6 +93,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const MainCRMNavigation = ({outlet}) => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const {onToggleMode} = useSettings();
@@ -262,6 +264,9 @@ const MainCRMNavigation = ({outlet}) => {
                         '&:hover': {
                             background: "none"
                         }
+                    }}
+                    onClick={() => {
+                      navigate("/settings")
                     }}
                 >                            
                     <Gear size={24} color={ theme.palette.mode === 'light' ? "#000" : null}/>         
