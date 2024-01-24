@@ -49,11 +49,11 @@ export default function Router() {
   ]);
 }
 
-const GeneralApp = Loadable(lazy(() => import("../pages/dashboard/GeneralApp")),);
+const GeneralApp = Loadable(lazy(() => import("../pages/dashboard/GeneralChat/GeneralApp.js")),);
 const Settings = Loadable(lazy(() => import("../pages/dashboard/Settings")),);
 const Notifications = Loadable(lazy(() => import("../pages/dashboard/Notifications")),);
-const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group.js")),);
-const CallPage = Loadable(lazy(() => import("../pages/dashboard/Call.js")),);
+const GroupPage = Loadable(lazy(() => import("../pages/dashboard/GroupChats/Group.js")),);
+const CallPage = Loadable(lazy(() => import("../pages/dashboard/CallVideoChat/CallVideoChat.js")),);
 const ProfilePage = Loadable(lazy(() => import("../pages/dashboard/Profile.js")),);
 const LoginPage = Loadable(lazy(() => import("../pages/auth/Login")),);
 const Register = Loadable(lazy(() => import("../pages/auth/Register")),);

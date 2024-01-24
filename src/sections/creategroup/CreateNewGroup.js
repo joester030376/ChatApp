@@ -87,7 +87,7 @@ const CreateNewGroup = ({open, handleClose}) => {
     return (
     <>
         <Dialog
-            maxWidth="xs" 
+            maxWidth="lg"
             open={open} 
             onClose={handleClose}
             keepMounted
@@ -98,7 +98,7 @@ const CreateNewGroup = ({open, handleClose}) => {
             }}  
         >
             <Box 
-                width={600}
+                width={800}
             >
                 <DialogTitle>
                     <Stack

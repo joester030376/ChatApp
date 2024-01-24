@@ -1,12 +1,12 @@
-import Conversation from "../../components/Conversation";
+import Conversation from "../../../components/Conversation";
 import Chats from "./Chats";
-import { Stack, Box, Typography, Container } from '@mui/material';
+import { Stack, Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import Contact from "../../components/RightSideBar/Contact";
+import Contact from "../../../components/RightSideBar/Contact";
 import { useSelector } from "react-redux";
-import SharedMessages from "../../components/RightSideBar/SharedMessages";
-import StarredMessages from "../../components/RightSideBar/StarredMessages";
-import NoChatSVG from "../../assets/Illustration/NoChat";
+import SharedMessages from "../../../components/RightSideBar/SharedMessages";
+import StarredMessages from "../../../components/RightSideBar/StarredMessages";
+import NoChatSVG from "../../../assets/Illustration/NoChat";
 
 const GeneralApp = () => {
   const theme = useTheme();

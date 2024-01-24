@@ -13,7 +13,7 @@ const initialState = {
   },
   sidenav: { 
     open: false,
-  },
+  },  
   users: [],
   friends: [],
   friendRequests: [],
@@ -31,7 +31,7 @@ const slice = createSlice({
     },
     toggleSideNav(state, action) {
       state.sidenav.open = !state.sidenav.open;
-    },
+    },    
     updateSideBarType(state, action) {
       state.sidebar.type = action.payload.type;
     },

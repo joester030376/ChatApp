@@ -11,15 +11,7 @@ const AllConversations = ({chatType, conversations}) => {
   return (
     <Stack 
         spacing={2.4}
-    >
-        <Typography 
-            variant='subtitle'
-            sx={{
-                color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
-            }}
-        >
-            {chatType} Conversations
-        </Typography>
+    >        
         <>
             {(() => {
                 switch (chatType) {

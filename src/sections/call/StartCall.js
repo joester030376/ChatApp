@@ -1,14 +1,10 @@
 import { forwardRef } from 'react';
-import {Box, Dialog, DialogContent, DialogTitle, Typography, Stack, Slide, Button, Alert, IconButton, Grid, Avatar} from '@mui/material';
-import FormProvider from '../../components/hook-form/FormProvider';
-import * as Yup from 'yup';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import { useTheme } from '@mui/material/styles';
-import { XCircle, MagnifyingGlass } from '@phosphor-icons/react';
+import {Box, Dialog, DialogContent, DialogTitle, Typography, Stack, Slide, IconButton } from '@mui/material';
+import { XCircle } from '@phosphor-icons/react';
 import { Search, SearchIconWrapper, StyledInputBase} from '../../components/Search';
 import { CallElement } from '../../components/CallElement';
 import { MembersList } from '../../data';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -56,14 +52,15 @@ const StartCall = ({open, handleClose}) => {
                     }}
                 >
                     <Search>
-                        <SearchIconWrapper>
-                            <MagnifyingGlass color="#709CE6" size={32}/>
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search'                                
+                            }}              
+                            />
+                        </Search> 
                     <IconButton
                         onClick={handleClose}
                     >

@@ -1,21 +1,13 @@
 import {useEffect, useState} from 'react';
-import { Box, Stack, Divider, Button, IconButton, Typography, Avatar, Badge, Tabs, Tab, Tooltip} from '@mui/material';
-import { ArchiveBox } from 'phosphor-react';
+import { Box, Stack, Divider, IconButton, Typography, Tooltip} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-// import PinnedConversations from '../../components/PinnedConversations';
-import AllConversations from '../../components/AllConversations';
-import { Users, CircleDashed, MagnifyingGlass, Chat, UsersThree, Phone } from '@phosphor-icons/react';
-import Friends from '../../sections/main/Friends';
-import { socket } from '../../utils/socket';
+import AllConversations from '../../../components/AllConversations';
+import { Plus } from '@phosphor-icons/react';
+import Friends from '../../../sections/main/Friends';
+import { socket } from '../../../utils/socket';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchDirectConversations } from '../../redux/slices/conversation';
-import { Search, SearchIconWrapper, StyledInputBase } from '../../components/Search';
+import { Search, SearchIconWrapper, StyledInputBase } from '../../../components/Search';
 import SearchIcon from '@mui/icons-material/Search';
-import { faker } from '@faker-js/faker';
-import StyledBadge from '../../components/StyledBadge';
-import PhoneIcon from '@mui/icons-material/Phone';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
 
 const user_id = window.localStorage.getItem("user_id");
 
@@ -42,12 +34,8 @@ const Chats = () => {
 
     const handleCloseDialog = () => {
         setOpenDialog(false);
-    };
-    
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
+    };    
+ 
   return (
 
     <>
@@ -70,21 +58,38 @@ const Chats = () => {
                         height={"50px"}
                         direction={"row"}
                         alignItems={"center"}
+                        justifyContent={"space-between"}
                         spacing={1}
                     >
-                        <Typography variant="h5">Messages</Typography>
-                        <Typography 
-                            variant="subtitle2"
-                            sx={{
-                                width: "25px", 
-                                lineHeight: "25px", 
-                                borderRadius: "50%", 
-                                textAlign: "center", 
-                                backgroundColor: "rgb(50, 143, 168)",
-                                color: "white",
-                            }}
-                        
-                        >6</Typography>
+                        <Stack
+                            direction={"row"}
+                            alignItems={"center"}
+                            spacing={1}
+                        >
+                            <Typography variant="h6">Messages</Typography>
+                            <Typography 
+                                variant="subtitle2"
+                                sx={{
+                                    width: "25px", 
+                                    lineHeight: "25px", 
+                                    borderRadius: "50%", 
+                                    textAlign: "center", 
+                                    backgroundColor: "rgb(50, 143, 168)",
+                                    color: "white",
+                                }}                            
+                            >
+                            6   
+                            </Typography>
+                        </Stack>
+                        <Stack>
+                            <Tooltip title="Add Contact">
+                                <IconButton
+                                    onClick={handleOpenDialog}
+                                >
+                                    <Plus size={32} />  
+                                </IconButton>
+                            </Tooltip>
+                        </Stack>
                     </Stack>
                     <Stack>
                         <Search>
@@ -98,20 +103,7 @@ const Chats = () => {
                             />
                         </Search> 
                     </Stack>
-                    <Divider />
-                    <Stack>
-                        <Tabs value={value} onChange={handleChange} aria-label="icon tabs example" centered>
-                            <Tooltip title="Messages">
-                                <Tab icon={<Chat size={32} />} aria-label="phone" />
-                            </Tooltip>
-                            <Tooltip title="Group Chat">
-                                <Tab icon={<UsersThree size={32} />} aria-label="phone" />
-                            </Tooltip>
-                            <Tooltip title="Voice and Video">
-                                <Tab icon={<Phone size={32} />} aria-label="phone" />
-                            </Tooltip>
-                        </Tabs>
-                    </Stack>
+                    <Divider />                  
                 </Stack>
                 <Stack
                     direction={"column"}
@@ -124,20 +116,7 @@ const Chats = () => {
                         scrollbarColor: theme.palette.primary.dark,
                     }}  
                 >
-                    {(() => {
-                        switch (value) {
-                            case 0:
-                                return <AllConversations chatType="Chat" /> 
-                            case 1: 
-                                return <AllConversations chatType="Group" />           
-                                    
-                            case 2: 
-                                return <AllConversations chatType="Call" />; 
-                                            
-                            default: 
-                                break;
-                        }
-                    })()}
+                    <AllConversations chatType={"Chat"} />
                 </Stack>
             </Stack>
             

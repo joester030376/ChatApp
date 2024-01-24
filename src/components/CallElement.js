@@ -6,69 +6,68 @@ import StyledBadge from './StyledBadge';
 
   const CallLogElement = ({id,  img, name, online, incoming, missed}) => {
 
-    const theme = useTheme();
+    const theme = useTheme();   
 
     return (
 
         <Box 
             sx={{
-                width: "100%",
-                borderRadius: 1,
-                backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,                
+                width: "100%",   
+                borderBottom: "1px solid rgba(145, 158, 171, 0.24)" 
             }}
-            p={2}
+            p={1.5}
         >     
-            
-            //     direction={"row"}
-            //     spacing={2}
-            //     alignItems={"center"}
-            //     justifyContent={"space-between"}
-            // > 
-            //     <Stack
-            //         direction={"row"}
-            //         spacing={1}
-            //         alignItems={"center"}
-            //         justifyContent={"space-between"}                        
-            //     >
-            //         <Stack>
-            //             <StyledBadge
-            //                 overlap="circular"
-            //                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}  
-            //                 variant={online ? "dot" : ""}                          
-            //             >
-            //                 <Avatar src={img} alt={name}  />   
-            //             </StyledBadge>      
-            //         </Stack>  
-            //         <Stack
-            //             spacing={0.3}
-            //             direction={"column"}
-            //         >
-            //             <Typography variant='subtitle2'>
-            //                 {faker.name.fullName()}
-            //             </Typography>
-            //             <Stack
-            //                 direction={"row"}
-            //                 alignItems={"center"}
-            //                 spacing={0.5}
-            //             >                                
-            //                 {incoming ? <ArrowDownLeft size={24} color={missed ? "red" : "green"} /> : <ArrowUpRight size={24} color={missed ? "red" : "green"}/>}
-            //                 <Typography
-            //                     variant='caption'
-            //                 >
-            //                   Yesterday, 16:36
-            //                 </Typography>
-            //             </Stack>                  
-            //         </Stack> 
-            //             <Stack
-            //                 spacing={2}
-            //                 alignItems={"center"}
-            //             >
-            //                 <IconButton>
-            //                     <Phone size={24} color="green"/>
-            //                 </IconButton>                             
-            //             </Stack>
-            //     </Stack>
-           
+            <Stack
+               direction={"row"}
+              
+               alignItems={"center"}
+               justifyContent={"space-between"} 
+            >
+                <Stack
+                    direction={"row"}
+                    alignItems={"center"}
+                    spacing={1}
+                >
+                    <StyledBadge
+                        overlap="circular"
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}  
+                        variant={online ? "dot" : ""}                          
+                    >
+                        <Avatar src={img} alt={name}  />   
+                    </StyledBadge> 
+                    <Stack
+                        direction={"column"}
+                        alignItems={"center"}
+                        spacing={0.3}
+                    >
+                        <Typography variant='subtitle2'>
+                            {faker.name.fullName()}
+                        </Typography>
+                            <Stack
+                                direction={"row"}
+                                alignItems={"center"}
+                                spacing={0.5}
+                            >                                
+                                {incoming ? <ArrowDownLeft size={24} color={missed ? "red" : "green"} /> : <ArrowUpRight size={24} color={missed ? "red" : "green"}/>}
+                                <Typography
+                                    variant='caption'
+                                >
+                                Yesterday, 16:36
+                                </Typography>
+                            </Stack>    
+                        </Stack>
+                </Stack>
+                <Stack
+                    alignItems={"center"}
+                    direction={"row"}
+                    spacing={2}
+                >
+                    <IconButton>
+                        <Phone size={24} color="green"/>
+                    </IconButton>   
+                </Stack>
+
+            </Stack>
         </Box>
 
     );
@@ -117,51 +116,3 @@ import StyledBadge from './StyledBadge';
 }
 
 export { CallLogElement, CallElement };
-
-
-// <Stack
-//                 direction={"row"}
-//                 alignItems={"center"}
-//             >
-//                 <Stack>
-//                     <StyledBadge
-//                         overlap="circular"
-//                         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}  
-//                         variant={"dot"}                          
-//                     >
-//                         <Avatar src={img} alt={name}  />   
-//                     </StyledBadge>      
-//                 </Stack>  
-//                 <Stack
-//                     spacing={0.3}
-//                     direction={"column"}
-//                 >
-//                     <Typography variant='subtitle2'>
-//                         {name}
-//                     </Typography>
-//                     <Stack
-//                         direction={"row"}
-//                         alignItems={"center"}
-//                         spacing={0.5}
-//                     >                                
-                        
-//                         <Typography
-//                             variant='caption'
-//                         >
-//                           Yesterday, 16:36
-//                         </Typography>
-//                     </Stack>                  
-//                 </Stack> 
-//                     <Stack
-                        
-//                         alignItems={"center"}
-//                         direction={"row"}                        
-//                     >
-//                         <IconButton>
-//                             <Phone size={24} color="green"/>
-//                         </IconButton>   
-//                         <IconButton>
-//                             <VideoCamera size={24} color="green"/>
-//                         </IconButton>                                
-//                     </Stack>
-//             </Stack>
