@@ -1,13 +1,13 @@
-import {Avatar, Box, IconButton, Stack, Typography, Divider, Button } from '@mui/material';
+import React, {useState} from 'react';
+import { Box, Stack, Divider, Typography, Avatar} from '@mui/material';
+import { Bell, Lock, Key, Sliders, Image, ClipboardText, Keyboard, Info } from '@phosphor-icons/react';
 import { useTheme } from '@mui/material/styles';
-import { CaretLeft, Bell, Lock, Key, Sliders, Image, ClipboardText, Keyboard, Info } from '@phosphor-icons/react';
 import { faker } from '@faker-js/faker';
-import Shortcuts from '../../sections/settings/Shortcuts';
-import { useState } from 'react';
-import ThemeDialog from '../../sections/settings/ThemeDialog';
+import ThemeDialog from '../../../sections/settings/ThemeDialog';
+import Shortcuts from '../../../sections/settings/Shortcuts';
 
-const Settings = () => {    
-
+const SettingsList = () => {
+    
     const theme = useTheme();
 
     const [openShortCuts, setOpenShortCuts] = useState(false);
@@ -27,7 +27,7 @@ const Settings = () => {
 
     const handleCloseThemeDialog = () => {
         setOpenThemeDialog(false);
-    }
+    }    
 
     const SettingsMenu = [
 
@@ -81,53 +81,53 @@ const Settings = () => {
           onclick: () => {},
         }
       ];
-       
+
   return (
     <>
-        <Stack
-            direction={"row"}
-            width={"100%"}
-        >
-            {/* Left Panel */}
-            <Box
-                sx={{
-                    //overflowY: "scroll",
-                    height: "100vh",
-                    width: 320,
-                    backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
-                    boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
-                }}
+    <Box 
+        sx={{
+            position: "relative", 
+            height: "100%",              
+            width: 400,
+            backgroundColor: theme.palette.mode === "light" ? "#fff" : "rgb(30, 30, 30)",
+            boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
+        }}
+    >
+        <Stack p={3} spacing={2}  sx={{height: "100%"}} >
+            <Stack 
+                direction={"column"}
+                width={"100%"}  
+                spacing={2}                  
             >
-                <Stack
-                    direction={"row"}
-                    alignItems={"center"}
-                    spacing={3}
-                    p={3}
+                <Stack 
+                     direction={"column"}
                 >
-                    <IconButton>
-                        <CaretLeft size={32} />
-                    </IconButton>
-                    <Typography variant='h5'>
-                       Settings
-                    </Typography>
-                </Stack>
-                <Stack
-                    direction={"row"}
-                    alignItems={"center"}
-                    spacing={3}
-                    p={3}
-                >
-                    <Avatar 
-                        src={faker.image.avatar()} 
-                        alt={faker.name.fullName()} 
-                        sx={{
-                            height: 75,
-                            width: 75
-                        }}
-                    
-                    />
-
                     <Stack
+                        direction={"row"}
+                        alignItems={"center"}
+                        spacing={3}
+                        p={1}
+                    >                        
+                        <Typography variant='h5'>
+                            Settings
+                        </Typography>
+                    </Stack>  
+                    <Divider />
+                    <Stack
+                        direction={"row"}
+                        alignItems={"center"}
+                        spacing={3}
+                        p={3}
+                    >
+                        <Avatar 
+                            src={faker.image.avatar()} 
+                            alt={faker.name.fullName()} 
+                            sx={{
+                                height: 75,
+                                width: 75
+                            }}                    
+                        />
+                        <Stack
                             spacing={0.2}
                             direction={"column"}
                         >
@@ -137,8 +137,21 @@ const Settings = () => {
                             <Typography variant='caption'>
                                 Exploring
                             </Typography>    
-                    </Stack> 
-                </Stack>
+                        </Stack> 
+                    </Stack>
+                </Stack>         
+            </Stack>
+            <Stack
+                direction={"column"}
+                width={"100%"} 
+                height={"100%"} 
+                spacing={2}  
+                sx={{
+                    overflowX: "hidden",
+                    scrollbarWidth: "thin",
+                    scrollbarColor: theme.palette.primary.dark,
+                }}  
+            >
                 <Stack spacing={4} p={3}>        
                 {
                     SettingsMenu.map((el) => <>
@@ -156,22 +169,14 @@ const Settings = () => {
                         {el.divider && <Divider variant='middle'/>}
                     </>)}
                 </Stack>  
-            </Box>
-            {/* Right Panel */}
-            <Box
-                sx={{
-                    height: "100%",
-                    width: "calc(100vw - 420px)",
-                    backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
-                }}
-            >                
-
-            </Box>
-        </Stack>
-        { openShortCuts && <Shortcuts open={openShortCuts} handleClose={handleCloseShortcuts} />}
+            </Stack>
+        </Stack>        
+    </Box>
+    { openShortCuts && <Shortcuts open={openShortCuts} handleClose={handleCloseShortcuts} />}
         { openThemeDialog && <ThemeDialog open={openThemeDialog} handleClose={handleCloseThemeDialog} /> }
-     </>
+</>
+
   )
 }
 
-export default Settings;
+export default SettingsList;

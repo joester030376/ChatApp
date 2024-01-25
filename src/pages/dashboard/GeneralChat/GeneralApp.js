@@ -25,9 +25,9 @@ const GeneralApp = () => {
                   direction={"row"}
                   height={"100%"}
                   sx={{
-                  width: "320px",
-                  border: "1px solid black"       
-                }}
+                    width: "320px",
+                    border: "1px solid black"       
+                  }}
               >
         
                   <Chats  />
