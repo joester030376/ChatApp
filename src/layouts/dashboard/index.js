@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Stack, Box, Container} from "@mui/material";
+import { Box } from "@mui/material";
 import { Navigate, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ShowSnackbar } from "../../redux/slices/app";
@@ -16,6 +16,8 @@ const DashboardLayout = () => {
   const user_id = window.localStorage.getItem("user_id");
 
   useEffect(() => {
+    
+    alert(user_id);
 
     if(isLoggedIn) {
       window.onload = function () {
@@ -25,7 +27,7 @@ const DashboardLayout = () => {
         }
       }
 
-      //window.reload();
+     window.reload();
 
       if(!socket) {
         connectSocket(user_id);
@@ -44,6 +46,7 @@ const DashboardLayout = () => {
       });
     }
 
+   
     return () => {
       socket.off("new_friend_request");
       socket.off("request_accepted");

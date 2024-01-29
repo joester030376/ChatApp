@@ -57,6 +57,7 @@ export function LoginUser(formValues) {
             }));
 
             window.localStorage.setItem("user_id", response.data.user_id);
+            console.log(response.data.user_id);
             
             dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
             
