@@ -8,6 +8,7 @@ import {
   SignOut,
   User,
   Users,
+  ChatsCircle,
   
 } from "phosphor-react";
 
@@ -35,31 +36,27 @@ const Nav_Buttons = [
     icon: <ChatCircleDots size={24} />,
     route: "/app",
     title: "Chats",
-    childer: [
+    children: [
       {
-        
+        index: 0,
+        icon: <ChatsCircle size={32} />,
+        route: "/chat",
+        title: "Chat"
       },
       {
-        
+        index: 1,
+        icon: <Users size={24} />,
+        route: "/group",
+        title: "Group Chats" 
       },
       {
-        
+        index: 2,
+        icon: <Phone size={24} />,
+        route: "/call",
+        title: "Voice and Video Calling" 
       }
-    ]
-      
-  },
-  {
-    index: 1,
-    icon: <Users size={24} />,
-    route: "/group",
-    title: "Group Chats" 
-  },
-  {
-    index: 2,
-    icon: <Phone size={24} />,
-    route: "/call",
-    title: "Voice and Video Calling" 
-  },
+    ]      
+  },    
   {
     index: 3,
     icon: <AdminPanelSettingsOutlinedIcon  size={32}/>,
