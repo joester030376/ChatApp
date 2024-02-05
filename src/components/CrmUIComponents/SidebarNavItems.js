@@ -1,12 +1,12 @@
 import { LogoutUser } from '../../redux/slices/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { ListItem, ListItemButton, ListItemText, ListItemIcon, Tooltip, Box, IconButton, Stack, Typography, Menu, MenuItem } from "@mui/material";
+import { ListItem, ListItemButton, ListItemText, ListItemIcon, Tooltip, Box, IconButton, Stack, Typography, Menu, MenuItem, Button } from "@mui/material";
 import { Nav_Buttons } from "../../data";
 import { useTheme  } from "@mui/material/styles";
 import useSettings from "../../hooks/useSettings";
 import {useNavigate} from 'react-router-dom';
-
+import { Circle } from 'phosphor-react';
   
 const SidebarNavItems = () => {
     
@@ -20,7 +20,9 @@ const SidebarNavItems = () => {
     const openMenu = Boolean(anchorEl);
 
     const handleClick = (event) => {       
-        setAnchorEl(event.currentTarget);
+        if (anchorEl !== event.currentTarget) {
+            setAnchorEl(event.currentTarget);
+        }
       };
 
     const handleClose = () => {
@@ -64,25 +66,46 @@ const SidebarNavItems = () => {
                         p={0.5}
                         sx={{
                             backgroundColor: "rgb(219, 219, 219)",    
-                            color: "#000"                        
+                            color: "#000",
+                            position: "relative"                  
                         }}
                     >
-                      <Tooltip title={ open ? "" : el.title}>
-                        <Stack direction={"row"} alignItems={"center"} >
-                            <IconButton key={el.index}
-                                sx={{
-                                width: "max-content",
-                                color: "#000"    
-                                }}
-                            >
-                                {el.icon}
-                                
-                            </IconButton>
-                                {
-                                    open ? <Typography sx={{ cursor: "pointer"}}> {el.title} </Typography> : null 
-                                }                                  
-                        </Stack>
-                      </Tooltip>                                                           
+                        <Tooltip title={ open ? "" : el.title}>
+                            <Stack direction={"row"} alignItems={"center"} sx={{ position: "relative"}} >
+                                <IconButton key={el.index}
+                                    sx={{
+                                        width: "max-content",
+                                        color: "#000"    
+                                    }}
+                                    aria-owns={anchorEl ? "simple-menu" : undefined}
+                                    aria-haspopup="true"
+                                    onClick={handleClick}
+                                    onMouseOver={handleClick}
+                                >
+                                    {el.icon}                                    
+                                </IconButton>
+                                    {
+                                        open ? <Typography sx={{ cursor: "pointer"}}> {el.title} </Typography> : null 
+                                    }                                                 
+                            </Stack>
+                        </Tooltip> 
+                        <Menu
+                            anchorOrigin={{ vertical: "middle", horizontal: "right" }}
+                            transformOrigin={{ vertical: "middle", horizontal: "left" }}
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                            MenuListProps={{ onMouseLeave: handleClose }}
+                            getContentAnchorEl={null}
+                            sx={{
+                                ml: "10px"
+                            }}
+                        >
+                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <MenuItem onClick={handleClose}>My account</MenuItem>
+                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                         </Menu>                         
                     </Box>  
                     : <Tooltip title={ open ? "" : el.title}>
                     <Stack direction={"row"} alignItems={"center"} spacing={1} sx={{cursor: "pointer"}}  onClick={() => {

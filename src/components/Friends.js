@@ -59,7 +59,7 @@ const UserComponent = ({firstName, lastName, _id, online, img}) => {
             <Button
                 onClick={() => {
                    socket.emit("friend_request", {to: _id, from: user_id}, () => {
-                        alert("request sent");
+                        //alert("request sent");
                    });
                 }}
             >
@@ -116,7 +116,7 @@ const FriendRequestComponent = ({firstName, lastName, _id, online, img, id}) => 
             <Button
                 onClick={() => {
                    socket.emit("accept_request", {request_id: id}, () => {
-                        alert("request sent");
+                        //alert("request sent");
                    });
                 }}
             >

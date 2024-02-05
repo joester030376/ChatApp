@@ -19,7 +19,7 @@ const DashboardLayout = () => {
 
   useEffect(() => {
     
-    alert(user_id);
+    //alert(user_id);
 
     if(isLoggedIn) {
       window.onload = function () {
