@@ -30,41 +30,6 @@ const Profile_Menu = [
   },
 ];
 
-const Nav_Buttons = [
-  {
-    index: 0,
-    icon: <ChatCircleDots size={24} />,
-    route: "/app",
-    title: "Chats",
-    submenu: [
-      {
-        index: 0,
-        icon: <ChatsCircle size={32} />,
-        route: "/chat",
-        title: "Chat"
-      },
-      {
-        index: 1,
-        icon: <Users size={24} />,
-        route: "/group",
-        title: "Group Chats" 
-      },
-      {
-        index: 2,
-        icon: <Phone size={24} />,
-        route: "/call",
-        title: "Voice and Video Calling" 
-      }
-    ]      
-  },    
-  {
-    index: 3,
-    icon: <AdminPanelSettingsOutlinedIcon  size={32}/>,
-    route: "/admin",
-    title: "Admin"
-  },
-];
-
 const Nav_Setting = [
   {
     index: 3,
@@ -451,7 +416,6 @@ const SHARED_DOCUMENTS = [
 export {
   Profile_Menu,
   Nav_Setting,
-  Nav_Buttons,
   ChatList,
   Chat_History,
   Message_options,

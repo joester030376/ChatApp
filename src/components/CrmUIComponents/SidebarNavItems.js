@@ -2,11 +2,12 @@ import { LogoutUser } from '../../redux/slices/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { ListItem, ListItemButton, ListItemText, ListItemIcon, Tooltip, Box, IconButton, Stack, Typography, Menu, MenuItem, Button } from "@mui/material";
-import { Nav_Buttons } from "../../data";
+import { Nav_Buttons } from "../../data/navmenudata";
 import { useTheme  } from "@mui/material/styles";
 import useSettings from "../../hooks/useSettings";
 import {useNavigate} from 'react-router-dom';
 import { Circle } from 'phosphor-react';
+import FullOpenNavList from './FullOpenNavList';
   
 const SidebarNavItems = () => {
     
@@ -19,7 +20,7 @@ const SidebarNavItems = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const openMenu = Boolean(anchorEl);
 
-    const handleClick = (event) => {       
+    const handleOpen = (event) => {       
         if (anchorEl !== event.currentTarget) {
             setAnchorEl(event.currentTarget);
         }
@@ -79,33 +80,16 @@ const SidebarNavItems = () => {
                                     }}
                                     aria-owns={anchorEl ? "simple-menu" : undefined}
                                     aria-haspopup="true"
-                                    onClick={handleClick}
-                                    onMouseOver={handleClick}
+                                    //onMouseOver={handleOpen}
                                 >
-                                    {el.icon}                                    
+                                                             
                                 </IconButton>
                                     {
-                                        open ? <Typography sx={{ cursor: "pointer"}}> {el.title} </Typography> : null 
+                                        open ? <FullOpenNavList /> : null 
                                     }                                                 
                             </Stack>
                         </Tooltip> 
-                        <Menu
-                            anchorOrigin={{ vertical: "middle", horizontal: "right" }}
-                            transformOrigin={{ vertical: "middle", horizontal: "left" }}
-                            id="simple-menu"
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                            MenuListProps={{ onMouseLeave: handleClose }}
-                            getContentAnchorEl={null}
-                            sx={{
-                                ml: "10px"
-                            }}
-                        >
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={handleClose}>My account</MenuItem>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
-                         </Menu>                         
+                                           
                     </Box>  
                     : <Tooltip title={ open ? "" : el.title}>
                     <Stack direction={"row"} alignItems={"center"} spacing={1} sx={{cursor: "pointer"}}  onClick={() => {
@@ -120,7 +104,6 @@ const SidebarNavItems = () => {
                             onClick={(event) => {
                                 setSelected(el.index);
                                 navigate(el.route);
-                                handleClick(event);
                             }}
                                 key={el.index}
                                 sx={{
