@@ -36,7 +36,7 @@ const Nav_Buttons = [
     icon: <ChatCircleDots size={24} />,
     route: "/app",
     title: "Chats",
-    children: [
+    submenu: [
       {
         index: 0,
         icon: <ChatsCircle size={32} />,

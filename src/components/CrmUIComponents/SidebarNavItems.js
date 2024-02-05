@@ -1,7 +1,7 @@
 import { LogoutUser } from '../../redux/slices/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { ListItem, ListItemButton, ListItemText, ListItemIcon, Tooltip, Box, IconButton, Stack, Typography } from "@mui/material";
+import { ListItem, ListItemButton, ListItemText, ListItemIcon, Tooltip, Box, IconButton, Stack, Typography, Menu, MenuItem } from "@mui/material";
 import { Nav_Buttons } from "../../data";
 import { useTheme  } from "@mui/material/styles";
 import useSettings from "../../hooks/useSettings";
@@ -14,20 +14,19 @@ const SidebarNavItems = () => {
 
     const theme = useTheme();
     const [selected, setSelected] = useState(0); 
-    const navigate = useNavigate();
-
+    const navigate = useNavigate(); 
+    
     const [anchorEl, setAnchorEl] = useState(null);
-    //const open = Boolean(anchorEl);
-    
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-           //navigate();      
-    };
-    
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+    const openMenu = Boolean(anchorEl);
 
+    const handleClick = (event) => {       
+        setAnchorEl(event.currentTarget);
+      };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+       
     const handleOnClick = (el) => {
         console.log(el);
         navigate(el);
@@ -51,7 +50,6 @@ const SidebarNavItems = () => {
       }
     }
 
-
     return (
         <>
             <Stack
@@ -59,8 +57,8 @@ const SidebarNavItems = () => {
                 direction="column"
                 alignItems={ !open ? "center" : null}  
             >
-                {Nav_Buttons.map((el) => (  
-                    el.index === selected ?
+                {Nav_Buttons.map((el) => (                      
+                    el.index === selected ?                    
                     <Box
                         key={el.index}                    
                         p={0.5}
@@ -78,22 +76,28 @@ const SidebarNavItems = () => {
                                 }}
                             >
                                 {el.icon}
+                                
                             </IconButton>
                                 {
                                     open ? <Typography sx={{ cursor: "pointer"}}> {el.title} </Typography> : null 
-                                }                    
+                                }                                  
                         </Stack>
-                      </Tooltip>
-                    </Box>          
+                      </Tooltip>                                                           
+                    </Box>  
                     : <Tooltip title={ open ? "" : el.title}>
                     <Stack direction={"row"} alignItems={"center"} spacing={1} sx={{cursor: "pointer"}}  onClick={() => {
                         setSelected(el.index);
                         navigate(el.route);
                     }}>
-                         <IconButton 
-                            onClick={() => {
+                        <IconButton 
+                            id="demo-positioned-button"
+                            aria-controls={openMenu ? 'demo-positioned-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={openMenu ? 'true' : undefined}
+                            onClick={(event) => {
                                 setSelected(el.index);
                                 navigate(el.route);
+                                handleClick(event);
                             }}
                                 key={el.index}
                                 sx={{
@@ -101,11 +105,11 @@ const SidebarNavItems = () => {
                                 color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
                             }}
                         >
-                        {el.icon}
-                    </IconButton>
+                            {el.icon}
+                        </IconButton>
                         {
                             open ? <Typography sx={{ cursor: "pointer"}}> {el.title} </Typography> : null 
-                        }   
+                        }                                                  
                     </Stack>
                         </Tooltip>
                   ))} 
