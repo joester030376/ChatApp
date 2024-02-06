@@ -53,4 +53,4 @@ const SideNavLink = ({el}) => {
   );
 }
 
-export default 
+export default SideNavLink;

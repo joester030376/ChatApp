@@ -8,7 +8,7 @@ import SharedMessages from "../../../components/RightSideBar/SharedMessages";
 import StarredMessages from "../../../components/RightSideBar/StarredMessages";
 import NoChatSVG from "../../../assets/Illustration/NoChat";
 
-const GeneralApp = () => {
+const GeneralChats = () => {
   const theme = useTheme();
   const {sidebar, room_id, chat_type} = useSelector((store) => store.app); 
 
@@ -30,7 +30,7 @@ const GeneralApp = () => {
                   }}
               >
         
-                  <Chats  />
+                  <Chats />
               </Stack>
               <Stack
                 width={"100%"}                
@@ -91,7 +91,7 @@ const GeneralApp = () => {
   );
 };
 
-export default GeneralApp;
+export default GeneralChats;
 
 
                   

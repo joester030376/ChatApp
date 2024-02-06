@@ -38,6 +38,7 @@ export default function Router() {
         { path: "app", element: <GeneralApp /> },
         { path: "settings", element: <Settings />},  
         { path: "notifications", element: <Notifications />}, 
+        { path: "generalchat", element: <GeneralChat />},
         { path: "group", element: <GroupPage />},    
         { path: "call", element: <CallPage />},  
         { path: "profile", element: <ProfilePage /> },     
@@ -49,11 +50,12 @@ export default function Router() {
   ]);
 }
 
-const GeneralApp = Loadable(lazy(() => import("../pages/dashboard/GeneralChat/GeneralApp.js")),);
+const GeneralApp = Loadable(lazy(() => import("../pages/dashboard/GeneralChat/GeneralChats.js")),);
 const Settings = Loadable(lazy(() => import("../pages/dashboard/Settings/Settings.js")),);
 const Notifications = Loadable(lazy(() => import("../pages/dashboard/Notifications")),);
 const GroupPage = Loadable(lazy(() => import("../pages/dashboard/GroupChats/Group.js")),);
 const CallPage = Loadable(lazy(() => import("../pages/dashboard/CallVideoChat/CallVideoChat.js")),);
+const GeneralChat = Loadable(lazy(() => import("../pages/dashboard/GeneralChat/GeneralChats.js") ));
 const ProfilePage = Loadable(lazy(() => import("../pages/dashboard/Profile/Profile.js")),);
 const LoginPage = Loadable(lazy(() => import("../pages/auth/Login")),);
 const Register = Loadable(lazy(() => import("../pages/auth/Register")),);

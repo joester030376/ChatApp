@@ -1,11 +1,8 @@
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import {
   ChatCircleDots,
-  Gear,
-  GearSix,
+  UserCircleGear,
   Phone,
-  SignOut,
-  User,
   Users,
   ChatsCircle,
   
@@ -15,14 +12,14 @@ const Nav_Buttons = [
   {
     index: 0,
     menu_name: "chats-menu",
-    icon: <ChatCircleDots size={24} />,
+    icon: <ChatCircleDots size={32} />,
     route: "/app",
     title: "Chats",
-    submenu: [
+    items: [
       {
         index: 0,
-        icon: <ChatsCircle size={32} />,
-        route: "/chat",
+        icon: <ChatsCircle size={24} />,
+        route: "/generalchat",
         title: "Chat"
       },
       {
@@ -41,7 +38,7 @@ const Nav_Buttons = [
   },    
   {
     index: 3,
-    icon: <AdminPanelSettingsOutlinedIcon  size={32}/>,
+    icon: <UserCircleGear size={32} />,
     route: "/admin",
     title: "Admin"
   },
