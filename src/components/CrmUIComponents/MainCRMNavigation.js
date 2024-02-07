@@ -344,7 +344,7 @@ const MainCRMNavigation = ({outlet}) => {
         <DrawerHeader />
         <Container maxWidth="xl" sx={{ height: "calc(100vh - 113px)" }}>
             <Box sx={{ 
-                    bgcolor: theme.palette.mode === 'light' ? "#fff" : 'rgb(30, 30, 30)', 
+                    bgcolor: theme.palette.mode === 'light' ? "#f5f5f5" : 'rgb(30, 30, 30)', 
                     height: '85vh' 
                     }}>
                { outlet }

@@ -56,7 +56,27 @@ const Nav_Buttons = [
     index: 3,
     icon: <UserCircleGear size={32} />,
     route: "/admin",
-    title: "Admin"
+    title: "Admin",
+    items: [
+      {
+        index: 0,
+        icon: <ChatsCircle size={24} />,
+        route: "/generalchat",
+        title: "Chat"
+      },
+      {
+        index: 1,
+        icon: <Users size={24} />,
+        route: "/group",
+        title: "Group Chats" 
+      },
+      {
+        index: 2,
+        icon: <Phone size={24} />,
+        route: "/call",
+        title: "Voice and Video Calling" 
+      }
+    ]      
   },
 ];
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Nav_Buttons } from '../../data/navmenudata';
 import { hasChildren } from "../../utils/hasChildren";
 import { useNavigate } from 'react-router-dom';
-import { Collapse, Box, Tooltip, Stack, IconButton, Button, Menu, MenuItem, Popover } from '@mui/material';
+import { ListItemText, ListItemIcon, MenuList, Typography, Collapse, Box, Tooltip, Stack, IconButton, Button, Menu, MenuItem, Popover, Popper, Fade, Paper } from '@mui/material';
 
 const NavItem = ({ item }) => {
     const Component = hasChildren(item) ? MultiLevel : SingleLevel;
@@ -37,19 +37,32 @@ const MultiLevel = ({ item }) => {
 
     const navigate = useNavigate();
     const { items: children } = item;
-    const [open, setOpen] = useState(false);
+    //const [open, setOpen] = useState(false);
+    
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleClick = () => {
-        setOpen((prev) => !prev);
+    const handlePopoverOpen = (event) => {
+        setAnchorEl(event.currentTarget);
     };
+
+    const handlePopoverClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
 
     return (
         <>
         
-            <Stack direction={"column"} >
+            <Stack direction={"column"} 
+                aria-owns={open ? 'mouse-over-popover' : undefined}
+                        aria-haspopup="true"
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
+            >
                 <Tooltip title={item.title} placement='right'>
                     <IconButton
-                        onClick={handleClick}
+                        
                         sx={{
                             width: "max-content",
                             color: "#000",
@@ -59,29 +72,43 @@ const MultiLevel = ({ item }) => {
                         {item.icon}
                     </IconButton>
                 </Tooltip>
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                    <Stack> 
+            
+             <Popper
+        // Note: The following zIndex style is specifically for documentation purposes and may not be necessary in your application.
+        sx={{ 
+            zIndex: 1200,
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        placement="right-start"
+        transition
+      >
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={350}>
+            <Paper elevation={1} onMouseLeave={handlePopoverClose}
+                sx={{ ml: "10px"}}
+            >
+                <MenuList>
                     {children.map((child, key) => (  
-                            <Tooltip title={child.title} placement='right'>
-                                <IconButton
-                                sx={{
-                            
-                            color: "#000",
-                            borderRadius: "10px"
-                        }}   
-                                    key={child.index}
-                                    onClick={() => {
-                                        navigate(child.route);
-                                    }}                                      
-                                >
-                                    {child.icon}
-                            </IconButton>
-                            </Tooltip>
-                        ))}
-                    </Stack> 
-               </Collapse>
-                
-            </Stack>
+                        <MenuItem
+	                        key={child.index}
+                            onClick={() => {
+                                handlePopoverClose();
+                                navigate(child.route);
+                            }}             
+	                    >
+                          <ListItemIcon>
+                            {child.icon}
+                          </ListItemIcon>
+                          <ListItemText>{child.title}</ListItemText>          
+                        </MenuItem>
+                    ))}
+                </MenuList>
+            </Paper>
+          </Fade>
+        )}
+      </Popper>
+     </Stack>
         
     </>
     );
