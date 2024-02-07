@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Nav_Buttons } from '../../data/navmenudata';
 import { hasChildren } from "../../utils/hasChildren";
 import { useNavigate } from 'react-router-dom';
-import { Tooltip, Stack, IconButton, Button, Menu, MenuItem, Popover } from '@mui/material';
+import { Collapse, Box, Tooltip, Stack, IconButton, Button, Menu, MenuItem, Popover } from '@mui/material';
 
 const NavItem = ({ item }) => {
-    const Component = hasChildren(item) ? MultiLevel : SingleLevel;   
+    const Component = hasChildren(item) ? MultiLevel : SingleLevel;
     return <Component item={item} />;
 };
 
 const SingleLevel = ({ item }) => {
 
-    const navigate = useNavigate();    
+    const navigate = useNavigate();
 
     return (
         <Tooltip title={item.title} placement="right">
@@ -29,96 +29,62 @@ const SingleLevel = ({ item }) => {
                     {item.icon}
                 </IconButton>                                                                                  
             </Stack>
-        </Tooltip> 
+        </Tooltip>
     );
 };
 
 const MultiLevel = ({ item }) => {
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const { items: children } = item;
+    const [open, setOpen] = useState(false);
 
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const handlePopoverOpen = (event) => {
-      setAnchorEl(event.currentTarget);
+    const handleClick = () => {
+        setOpen((prev) => !prev);
     };
-  
-    const handlePopoverClose = () => {
-      setAnchorEl(null);
-    };
-  
-    const open = Boolean(anchorEl);  
 
-  return (
-    <>
-        <Tooltip title={item.title} placement='right'>
+    return (
+        <>
+        
             <Stack direction={"column"} >
-                <IconButton
-                    aria-owns={open ? `${item.menu_name}` : undefined}
-                    aria-haspopup="true"
-                    onMouseEnter={handlePopoverOpen}                                       
-                    sx={{
-                        width: "max-content",
-                        color: "#000",
-                        borderRadius: "10px"
-                    }}   
-                >
-                    {item.icon}
-                </IconButton>
-                <Popover
-                anchorOrigin={{
-                    vertical: 'center',
-                    horizontal: 'right',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                    id={item.menu_name}
-                    sx={{
-                      pointerEvents: 'none',
-                    }}
-                    open={open}
-                    anchorEl={anchorEl}                    
-                    onClose={handlePopoverClose}
-                    disableRestoreFocus  
-                >
-                    <Menu
-                        disableScrollLock={true}
-                        MenuListProps={{
-                            onMouseLeave: handlePopoverClose
-                        }}
-                        anchorOrigin={{
-                            vertical: 'center',
-                            horizontal: 'right',
-                          }}
-                          transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left',
-                          }}
-                        aria-labelledby="demo-positioned-button"
-                        anchorEl={anchorEl}
-                        open={open}                                           
+                <Tooltip title={item.title} placement='right'>
+                    <IconButton
+                        onClick={handleClick}
+                        sx={{
+                            width: "max-content",
+                            color: "#000",
+                            borderRadius: "10px"
+                        }}   
                     >
-                        {children.map((child, key) => (  
-                            <MenuItem
-                                key={child.index}
-                                onClick={() => {
-                                    navigate(child.route);
-                                }}                                      
-                            >
-                                {child.icon}
-                                {child.title}  
-                            </MenuItem>
+                        {item.icon}
+                    </IconButton>
+                </Tooltip>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <Stack> 
+                    {children.map((child, key) => (  
+                            <Tooltip title={child.title} placement='right'>
+                                <IconButton
+                                sx={{
+                            
+                            color: "#000",
+                            borderRadius: "10px"
+                        }}   
+                                    key={child.index}
+                                    onClick={() => {
+                                        navigate(child.route);
+                                    }}                                      
+                                >
+                                    {child.icon}
+                            </IconButton>
+                            </Tooltip>
                         ))}
-                    </Menu>
-                </Popover>
-                                                                                
+                    </Stack> 
+               </Collapse>
+                
             </Stack>
-        </Tooltip>    
+        
     </>
-  );
+    );
 };
 
 
