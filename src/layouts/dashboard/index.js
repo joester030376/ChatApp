@@ -11,15 +11,11 @@ const DashboardLayout = () => {
   const dispatch = useDispatch();
   const {open} = useSelector((state) => state.app.sidebar);
 
-  // const {isLoggedIn} = useSelector((state) => state.auth);
+  const {isLoggedIn} = useSelector((state) => state.auth);
   
-  const isLoggedIn = true;
-
   const user_id = window.localStorage.getItem("user_id");
 
-  useEffect(() => {
-    
-    //alert(user_id);
+  useEffect(() => {  
 
     if(isLoggedIn) {
       window.onload = function () {
