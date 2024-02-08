@@ -6,10 +6,12 @@ import {
     Stack,
     Tabs,   
     DialogContent,
+    DialogActions,
+    Button
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { FetchFriendRequests, FetchFriends, FetchUsers } from '../../redux/slices/app';
-import { FriendComponent, FriendRequestComponent, UserComponent } from '../../components/Friends';
+import { FriendComponent, FriendRequestComponent, UserComponent} from '../../components/Friends';
 
 const UsersList = () => {   
 
@@ -127,6 +129,9 @@ const Friends = ({open, handleClose}) => {
 
                 </Stack>
            </DialogContent>
+           <DialogActions>
+                <Button variant='contained' onClick={handleClose}>Ok</Button>
+            </DialogActions>
         </Dialog>
   )
 }

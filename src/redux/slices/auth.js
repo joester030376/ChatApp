@@ -57,8 +57,7 @@ export function LoginUser(formValues) {
             }));
 
             window.localStorage.setItem("user_id", response.data.user_id);
-            console.log(response.data.user_id);
-            
+                       
             dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
             
         }).catch(function(error) {
@@ -70,7 +69,7 @@ export function LoginUser(formValues) {
 // Sign out
 export function LogoutUser() {
     return async (dispatch, getState) => {
-        window.localStorage.removeItem("user_id");
+        window.localStorage.removeItem("user_id");               
         dispatch(slice.actions.signOut());   
     };
 }

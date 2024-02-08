@@ -8,10 +8,14 @@ import { socket } from '../../../utils/socket';
 import { useSelector, useDispatch } from 'react-redux';
 import { Search, SearchIconWrapper, StyledInputBase } from '../../../components/Search';
 import SearchIcon from '@mui/icons-material/Search';
+import { FetchDirectConversations } from '../../../redux/slices/conversation';
+import { FetchFriendRequests } from '../../../redux/slices/app';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const user_id = window.localStorage.getItem("user_id");
 
 const Chats = () => {
+    const navigate = useNavigate();
     const [value, setValue] = useState(0);
     const dispatch = useDispatch();
 
@@ -20,20 +24,19 @@ const Chats = () => {
 
    const {conversations} = useSelector((state) => state.conversation.direct_chat);
 
-   console.log(conversations);
-  
-    useEffect(() => {
+     useEffect(() => {
         socket.emit("get_direct_conversations", {user_id}, (data) => {
-            // data => list of conversations
+            // data => list of conversations                    
+           dispatch(FetchDirectConversations({data}));            
         })
     }, []);
-
     const handleOpenDialog = () => {
         setOpenDialog(true);
     };
 
     const handleCloseDialog = () => {
         setOpenDialog(false);
+        navigate('/generalchat');
     };    
  
   return (
@@ -116,7 +119,7 @@ const Chats = () => {
                         scrollbarColor: theme.palette.primary.dark,
                     }}  
                 >
-                    <AllConversations chatType={"Chat"} />
+                    <AllConversations chatType={"Chat"} conversations={conversations} />
                 </Stack>
             </Stack>
             

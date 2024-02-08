@@ -28,8 +28,7 @@ const GeneralChats = () => {
                     width: "320px",
                     border: "1px solid black"       
                   }}
-              >
-        
+              >        
                   <Chats />
               </Stack>
               <Stack
@@ -49,13 +48,13 @@ const GeneralChats = () => {
                       sx={{ height: "100%", width: "100%"}}
                       alignItems={"center"}
                       justifyContent={"center"}   
-                    >
-                      <NoChatSVG />
-                        <Typography
-                          variant="subtitle2"
+                    >  
+                        <NoChatSVG />
+                          <Typography
+                            variant="subtitle2"
                         >
-                            Select a conversation or start a new one
-                        </Typography>
+                          Select a conversation or start a new one
+                        </Typography>                     
                     </Stack>
                   }                
                 </Box>

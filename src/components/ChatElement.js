@@ -4,12 +4,13 @@ import StyledBadge from '../components/StyledBadge';
 import { useDispatch } from 'react-redux';
 import { SelectConversation } from '../redux/slices/app';
 import { faker } from '@faker-js/faker';
+import { ConstructionOutlined } from '@mui/icons-material';
 
-const ChatElement = ({id, name, img, msg, time, unread, online}) => {
+const ChatElement = ({id, name, img, msg, time, unread, online}) => {    
 
     const dispatch = useDispatch();
-
     const theme = useTheme();
+    
     return (
         <Box
             onClick={() => {

@@ -8,6 +8,8 @@ const AllConversations = ({chatType, conversations}) => {
 
     const theme = useTheme();    
 
+    console.log(conversations);
+
   return (
     <Stack 
         spacing={2.4}
@@ -17,7 +19,8 @@ const AllConversations = ({chatType, conversations}) => {
                 switch (chatType) {
 
                     case "Chat":        
-                        return ChatList.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> ); 
+                        // return conversations.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> ); 
+                        return conversations.map((el) => <ChatElement {...el} key={el.id} /> );
 
                     case "Group": 
                         return ChatList.filter((el) => !el.pinned).map((el) => <ChatElement {...el} key={el.id} /> );      

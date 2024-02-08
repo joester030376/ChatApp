@@ -11,9 +11,9 @@ const DashboardLayout = () => {
   const dispatch = useDispatch();
   const {open} = useSelector((state) => state.app.sidebar);
 
-  // const {isLoggedIn} = useSelector((state) => state.auth);
+  const {isLoggedIn} = useSelector((state) => state.auth);
   
-  const isLoggedIn = true;
+  //const isLoggedIn = true;
   
   const user_id = window.localStorage.getItem("user_id");
 
@@ -26,9 +26,7 @@ const DashboardLayout = () => {
           window.location.reload();
         }
       }
-
-     // window.reload();
-
+         
       if(!socket) {
         connectSocket(user_id);
       }
@@ -45,7 +43,6 @@ const DashboardLayout = () => {
         dispatch(ShowSnackbar({severity: "success", message: data.message }));
       });
     }
-
    
     if(socket) {
       return () => {
