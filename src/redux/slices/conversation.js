@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { faker } from "@faker-js/faker";
-import { convertLegacyOperators } from "@mui/x-data-grid/internals";
-import { ControlPointDuplicateRounded } from "@mui/icons-material";
 
 const user_id = window.localStorage.getItem("user_id");
 

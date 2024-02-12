@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Avatar, MenuItem, IconButton, Typography, Tooltip, Stack, Menu, Divider } from '@mui/material';
+import { Box, Avatar, MenuItem, IconButton, Tooltip, Stack, Menu, Divider } from '@mui/material';
 import { LogoutUser } from '../../redux/slices/auth';
 import { useDispatch } from 'react-redux';
 import { faker } from "@faker-js/faker";
 import { Profile_Menu } from '../../data';
 import {useNavigate} from 'react-router-dom';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-
-
 
 const MainAppBarAvatar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -30,7 +24,7 @@ const MainAppBarAvatar = () => {
       console.log(el);
       navigate(el);
   } 
-  
+
   const getMenuPath = (index) => {
     switch(index) {
       case 0:

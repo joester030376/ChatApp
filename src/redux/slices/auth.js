@@ -24,7 +24,8 @@ const slice = createSlice({
         },
         signOut(state, action) {
             state.isLoggedIn = false;
-            state.token = false;
+            state.token = false;  
+            // state = undefined;          
         },
         updateRegisterEmail(state, action) {
             state.email = action.payload.email;
@@ -69,7 +70,7 @@ export function LoginUser(formValues) {
 // Sign out
 export function LogoutUser() {
     return async (dispatch, getState) => {
-        window.localStorage.removeItem("user_id");               
+        window.localStorage.removeItem("user_id");                   
         dispatch(slice.actions.signOut());   
     };
 }

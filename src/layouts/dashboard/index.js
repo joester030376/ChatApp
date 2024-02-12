@@ -42,13 +42,19 @@ const DashboardLayout = () => {
       socket.on("request_sent", (data) => {
         dispatch(ShowSnackbar({severity: "success", message: data.message }));
       });
+
+      socket.on("start_chat", (data) => {
+        //
+        console.log(data);
+      });
     }
    
     if(socket) {
       return () => {
-        socket.off("new_friend_request");
-        socket.off("request_accepted");
-        socket.off("request_sent");
+        socket?.off("new_friend_request");
+        socket?.off("request_accepted");
+        socket?.off("request_sent");
+        socket?.off("start_chat");
       }
     }
 
