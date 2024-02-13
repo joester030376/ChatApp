@@ -6,9 +6,10 @@ import {
   Users,
   ChatsCircle,
   Calendar,
-  UserList
-  
-} from "phosphor-react";
+  UserList,
+  DotOutline
+   
+} from "@phosphor-icons/react";
 
 const Nav_Buttons = [
   {
@@ -20,19 +21,19 @@ const Nav_Buttons = [
     items: [
       {
         index: 0,
-        icon: <ChatsCircle size={24} />,
+        icon: <DotOutline size={24} weight="fill" />,
         route: "/generalchat",
         title: "Chat"
       },
       {
         index: 1,
-        icon: <Users size={24} />,
+        icon: <DotOutline size={24} weight="fill" />,
         route: "/group",
         title: "Group Chats" 
       },
       {
         index: 2,
-        icon: <Phone size={24} />,
+        icon: <DotOutline size={24} weight="fill" />,
         route: "/call",
         title: "Voice and Video Calling" 
       }
@@ -49,8 +50,22 @@ const Nav_Buttons = [
     index: 2,
     icon: <UserList size={32} />,
     route: "",
-    title: "Lists",
-    items: []
+    title: "Agents",
+    items: [
+        {
+          index: 0,
+          icon: <DotOutline size={32} weight="fill" />,
+          route: "/createagent",
+          title: "Create" 
+        },
+         {
+          index: 1,
+          icon: <DotOutline size={32} weight="fill" />,
+          route: "/agentlist",
+          title: "List" 
+        },
+        
+      ]
   },  
   {
     index: 3,

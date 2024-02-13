@@ -41,6 +41,8 @@ export default function Router() {
         { path: "generalchat", element: <GeneralChat />},
         { path: "group", element: <GroupPage />},    
         { path: "call", element: <CallPage />},  
+        { path: "createagent", element: <CreateAgent />},
+        { path: "agentlist", element: <AgentList />},
         { path: "profile", element: <ProfilePage /> },     
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
@@ -57,6 +59,8 @@ const GroupPage = Loadable(lazy(() => import("../pages/dashboard/GroupChats/Grou
 const CallPage = Loadable(lazy(() => import("../pages/dashboard/CallVideoChat/CallVideoChat.js")),);
 const GeneralChat = Loadable(lazy(() => import("../pages/dashboard/GeneralChat/GeneralChats.js") ));
 const ProfilePage = Loadable(lazy(() => import("../pages/dashboard/Profile/Profile.js")),);
+const CreateAgent = Loadable(lazy(() => import("../pages/dashboard/Agents/CreateAgent.js")),);
+const AgentList = Loadable(lazy(() => import("../pages/dashboard/Agents/AgentList.js")),);
 const LoginPage = Loadable(lazy(() => import("../pages/auth/Login")),);
 const Register = Loadable(lazy(() => import("../pages/auth/Register")),);
 const ResetPasswordPage = Loadable(lazy(() => import("../pages/auth/ResetPassword")),);
