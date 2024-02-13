@@ -17,52 +17,52 @@ const DashboardLayout = () => {
   
   const user_id = window.localStorage.getItem("user_id");
 
-  useEffect(() => {  
+  // useEffect(() => {  
 
-    if(isLoggedIn) {
-      window.onload = function () {
-        if(!window.location.hash) {
-          window.location = window.location + '#loaded';
-          window.location.reload();
-        }
-      }
+  //   if(isLoggedIn) {
+  //     window.onload = function () {
+  //       if(!window.location.hash) {
+  //         window.location = window.location + '#loaded';
+  //         window.location.reload();
+  //       }
+  //     }
          
-      if(!socket) {
-        connectSocket(user_id);
-      }
+  //     if(!socket) {
+  //       connectSocket(user_id);
+  //     }
 
-      // "new_friend_request"
-      socket.on("new_friend_request", (data) => {
-        dispatch(ShowSnackbar({severity: "success", message: data.message }));
-      });
+  //     // "new_friend_request"
+  //     socket.on("new_friend_request", (data) => {
+  //       dispatch(ShowSnackbar({severity: "success", message: data.message }));
+  //     });
 
-      socket.on("request_accepted", (data) => {
-        dispatch(ShowSnackbar({severity: "success", message: data.message }));
-      });
-      socket.on("request_sent", (data) => {
-        dispatch(ShowSnackbar({severity: "success", message: data.message }));
-      });
+  //     socket.on("request_accepted", (data) => {
+  //       dispatch(ShowSnackbar({severity: "success", message: data.message }));
+  //     });
+  //     socket.on("request_sent", (data) => {
+  //       dispatch(ShowSnackbar({severity: "success", message: data.message }));
+  //     });
 
-      socket.on("start_chat", (data) => {
-        //
-        console.log(data);
-      });
-    }
+  //     socket.on("start_chat", (data) => {
+  //       //
+  //       console.log(data);
+  //     });
+  //   }
    
-    if(socket) {
-      return () => {
-        socket?.off("new_friend_request");
-        socket?.off("request_accepted");
-        socket?.off("request_sent");
-        socket?.off("start_chat");
-      }
-    }
+  //   if(socket) {
+  //     return () => {
+  //       socket?.off("new_friend_request");
+  //       socket?.off("request_accepted");
+  //       socket?.off("request_sent");
+  //       socket?.off("start_chat");
+  //     }
+  //   }
 
-  }, [isLoggedIn, socket]);
+  // }, [isLoggedIn, socket]);
  
-  if(!isLoggedIn) {
-    return <Navigate to="/auth/login" />
-  }
+  // if(!isLoggedIn) {
+  //   return <Navigate to="/auth/login" />
+  // }
 
   return (   
       <Box
