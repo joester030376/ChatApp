@@ -170,7 +170,7 @@ export function VerifyEmail (formValues) {
                 token: response.data.token,
             }));
 
-            window.localStorage.setItem("user_id", response.data.user_id)
+            window.localStorage.setItem("user_id", response.data.user_id);
 
             dispatch(ShowSnackbar({severity: "success", message: response.data.message}));
 

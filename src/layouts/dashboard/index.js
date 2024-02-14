@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { Box } from "@mui/material";
 import { Navigate, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ShowSnackbar } from "../../redux/slices/app";
+import { SelectConversation, ShowSnackbar } from "../../redux/slices/app";
 import { socket, connectSocket } from '../../utils/socket';
 import MainCRMNavigation from "../../components/CrmUIComponents/MainCRMNavigation";
+import { UpdateDirectConversation,  AddDirectConversation} from "../../redux/slices/conversation";
 
 const DashboardLayout = () => {
 
@@ -12,6 +13,7 @@ const DashboardLayout = () => {
   const {open} = useSelector((state) => state.app.sidebar);
 
   //const {isLoggedIn} = useSelector((state) => state.auth);
+  const { conversations } = useSelector((state) => state.conversation.direct_chat);
   
   const isLoggedIn = true;
   
@@ -46,15 +48,24 @@ const DashboardLayout = () => {
       socket.on("start_chat", (data) => {
         //
         console.log(data);
+        const existing_conversation = conversations.find((el) => el.id === data._id);
+        if(existing_conversation) {
+          // If conversation exists the update conversation
+          dispatch(UpdateDirectConversation({conversation: data}));
+        } else {
+          // Add a new direct conversation to the list
+          dispatch(AddDirectConversation({conversation: data}));
+        }
+        dispatch(SelectConversation({room_id: data._id}));
       });
     }
    
     if(socket) {
       return () => {
-        socket?.off("new_friend_request");
-        socket?.off("request_accepted");
-        socket?.off("request_sent");
-        socket?.off("start_chat");
+        socket.off("new_friend_request");
+        socket.off("request_accepted");
+        socket.off("request_sent");
+        socket.off("start_chat");
       }
     }
 
