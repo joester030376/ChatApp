@@ -336,18 +336,14 @@ const MainCRMNavigation = ({outlet}) => {
         </List>
       </Drawer>
       <Box 
-        component="main" 
-        sx={{ 
-            flexGrow: 1, 
-            p: 3,             
-        }}>
+       >
         <DrawerHeader />
         <Container maxWidth="xl" sx={{ height: "100vh" }}>
             <Box sx={{ 
                     bgcolor: theme.palette.mode === 'light' ? "#fff" : 'rgb(30, 30, 30)', 
                     height: '100vh' 
                     }}>
-               { outlet }
+               
             </Box>
         </Container>
             
