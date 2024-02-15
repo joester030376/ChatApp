@@ -157,7 +157,6 @@ export const FetchFriendRequests = () => {
 };
 
 export const SelectConversation = ({room_id}) => {
-  console.log(room_id);
   return (dispatch, getState) => {
     dispatch(slice.actions.selectConversation((room_id)));
   };

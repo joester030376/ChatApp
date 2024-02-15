@@ -3,7 +3,7 @@ import { useTheme, styled } from '@mui/material/styles';
 import { PaperPlaneTilt, Link, Smiley, Image, Sticker, Camera, File, User } from "@phosphor-icons/react";
 import Picker from '@emoji-mart/react'
 import data from '@emoji-mart/data'
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 const StyledInput = styled(TextField)(({ theme }) => ({
     "& .MuiInputBase-input": {
@@ -49,12 +49,23 @@ const StyledInput = styled(TextField)(({ theme }) => ({
 const ChatInput = ({setOpenPicker}) => {
 
     const [openActions, setOpenActions] = useState(false);
+    const [inputValue, setInputValue] = useState("");
 
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+        console.log(inputValue);
+    }
+
+    useEffect(() => {
+        
+    }, [inputValue]);
+  
     return (
         <StyledInput 
+            onKeyDown={(el) => handleInputChange(el)}
             fullWidth                    
             placeholder="Write a message..."
-            variant="filled" 
+            variant="filled"             
             InputProps={{
                     disableUnderline: true,
                     startAdornment:  (
@@ -105,10 +116,12 @@ const ChatInput = ({setOpenPicker}) => {
     );
 };
    
-const Footer = () => {
+const Footer = ({inputValue}) => {
     
     const theme = useTheme();
     const [openPicker, setOpenPicker] = useState(false);
+
+    console.log(inputValue);
 
   return (
     <Box
@@ -149,7 +162,7 @@ const Footer = () => {
                         borderRadius: "5px",
                         backgroundColor: theme.palette.primary.main,
                         color: "#fff"
-                    }}                   
+                    }}   
                  >
                     <PaperPlaneTilt size={24} />
                  </IconButton>
