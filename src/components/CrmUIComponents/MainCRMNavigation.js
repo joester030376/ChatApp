@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import MailIcon from '@mui/icons-material/Mail';
 import SidebarNavItems from './SidebarNavItems';
 import { Sun, Gear, ArrowsOut, TextIndent, TextOutdent, Moon } from 'phosphor-react';
-import { Badge, InputBase, Menu, MenuItem, Avatar, Tooltip, Stack, Container } from '@mui/material';
+import { Badge, InputBase, Menu, MenuItem, Avatar, Tooltip, Stack, Container, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -24,6 +24,7 @@ import { useDispatch } from 'react-redux';
 import MainAppBarAvatar from '../CrmUIComponents/MainAppBarAvatar';
 import { Search, SearchIconWrapper, StyledInputBase } from '../Search';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 const drawerWidth = 300;
 
@@ -98,6 +99,7 @@ const MainCRMNavigation = ({outlet}) => {
   const [open, setOpen] = useState(false);
   const {onToggleMode} = useSettings();
   const dispatch = useDispatch();
+  const {sidenav} = useSelector((store) => store.app); 
 
   const handleDrawerOpen = () => {
     console.log("open")
@@ -338,15 +340,20 @@ const MainCRMNavigation = ({outlet}) => {
       <Box 
        >
         <DrawerHeader />
-        <Container maxWidth="xl" sx={{ height: "100vh" }}>
-            <Box sx={{ 
-                    bgcolor: theme.palette.mode === 'light' ? "#fff" : 'rgb(30, 30, 30)', 
-                    height: '100vh' 
-                    }}>
-               
+        <Container maxWidth="xl">
+            <Box 
+                mt={"60px"} 
+                sx={{ bgcolor: '#fff', 
+                      height: '75vh', 
+                      boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)", 
+                      width: sidenav.open ? "calc(100vw - 400px)" : "calc(100vw - 180px)", 
+                      mt: "60px",
+                      ml: "16px",
+                      mr: "16px"
+                }}>
+              {outlet}
             </Box>
         </Container>
-            
       </Box>
     </Box>
   );

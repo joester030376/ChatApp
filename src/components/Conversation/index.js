@@ -8,8 +8,7 @@ const Conversation = () => {
   return (
     <Stack
         direction="column"
-        height={"calc(100vh - 104px)"}
-        maxHeight={"100vh"}
+        height={"100%"}
         width={"auto"}
     >
         {/* Chat Header */}
@@ -17,10 +16,12 @@ const Conversation = () => {
 
         {/* Msg */}
         <Box
-            width={"100%"}            
+            width={"100%"}
+            
             sx={{
                 flexGrow: 1,
-                height: "100vh", 
+                height: "100%", 
+                scrollbarWidth: "thin",
                 overflowY: "scroll"                                         
             }}
         >

@@ -39,7 +39,7 @@ const Group = () => {
                   height={"100%"}
                   sx={{
                   width: "320px",
-                  border: "1px solid black"       
+                  boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"    
                 }}
               >        
                   <GroupChats />
@@ -49,9 +49,9 @@ const Group = () => {
               >
                 <Box
                     sx={{
-                      height: "calc(100vh - 100px)",
+                      height: "100%",
                       width: "100%",                      
-                      backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
+                      backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,
                     }}
                 >
                   {room_id !== null && chat_type === "individual" ? <Conversation /> :  

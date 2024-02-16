@@ -45,7 +45,7 @@ const Header = () => {
             sx={{
                 height: 64,
                 width: "100%",
-                backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
+                backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,
                 boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
             }}
         >

@@ -21,24 +21,28 @@ const GeneralChats = () => {
             direction={"row"}
             height={"inherit"}
           >
-              <Stack
-                  direction={"row"}
-                  height={"100%"}
-                  sx={{
-                    width: "320px",
-                    border: "1px solid black"       
-                  }}
-              >        
-                  <Chats />
-              </Stack>
+              <Box
+                height={"100%"}
+              >
+                  <Stack
+                    direction={"row"}
+                    height={"100%"}
+                    sx={{
+                      width: "320px",
+                      border: '1px solid rgba(181, 181, 181, 0.75'
+                    }}
+                >        
+                    <Chats />
+                </Stack>
+              </Box>
               <Stack
                 width={"100%"}                
               >
                 <Box
                     sx={{
-                      height: "calc(100vh - 100px)",
+                      height: "100%",
                       width: "100%",                      
-                      backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
+                      backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,
                     }}
                 >
                   {room_id !== null && chat_type === "individual" ? <Conversation /> :  

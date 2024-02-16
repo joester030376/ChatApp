@@ -66,7 +66,7 @@ const Profile = () => {
                     sx={{
                       height: "calc(100vh - 100px)",
                       width: "100%",                      
-                      backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
+                      backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,
                     }}
                 >
                     <Stack

@@ -4,6 +4,8 @@ import { PaperPlaneTilt, Link, Smiley, Image, Sticker, Camera, File, User } from
 import Picker from '@emoji-mart/react'
 import data from '@emoji-mart/data'
 import {useEffect, useState} from 'react';
+import { useSelector } from "react-redux";
+import {useRef, forwardRef} from 'react';
 
 const StyledInput = styled(TextField)(({ theme }) => ({
     "& .MuiInputBase-input": {
@@ -52,8 +54,8 @@ const ChatInput = ({setOpenPicker}) => {
     const [inputValue, setInputValue] = useState("");
 
     const handleInputChange = (event) => {
+        console.log(event.target.value);
         setInputValue(event.target.value);
-        console.log(inputValue);
     }
 
     useEffect(() => {
@@ -116,20 +118,21 @@ const ChatInput = ({setOpenPicker}) => {
     );
 };
    
-const Footer = ({inputValue}) => {
+const Footer = () => {
     
     const theme = useTheme();
     const [openPicker, setOpenPicker] = useState(false);
-
-    console.log(inputValue);
-
+    const {sidebar} = useSelector((store) => store.app);
+    
+    const childRef = useRef();
+    
   return (
     <Box
             p={3}            
             sx={{
                 height: 100,
                 width: "100%",
-                backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
+                backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,
                 boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
             }}
         >
@@ -148,14 +151,14 @@ const Footer = ({inputValue}) => {
                         sx={{
                             zIndex: 10,
                             position: "fixed",
-                            bottom: 81, 
-                            right: 100, 
+                            bottom: 320, 
+                            right: sidebar.open ? 420 : 100, 
                             display: openPicker ?  "inline" : "none"                          
                         }}
                     >
                         <Picker theme={theme.palette.mode} data={data} onEmojiSelect={console.log}/>
                     </Box>                    
-                    <ChatInput setOpenPicker={setOpenPicker} />
+                    <ChatInput ref={childRef} setOpenPicker={setOpenPicker} />
                 </Stack>
                  <IconButton               
                     sx={{
